@@ -103,9 +103,9 @@ export default {
       web3: "",
       emmc: "",
       mmc: "",
-      NETWORK_ID: "https://http-testnet.hecochain.com",
-      emmcContractAddress: "0x9390e410bBD6496072cAFf76A74bdaf013C85410",
-      mmcContractAddress: "0x0eA62f13861BB9BcB65045e29C900ED8c6893d2e",
+      NETWORK_ID: "https://data-seed-prebsc-1-s1.binance.org:8545/",
+      emmcContractAddress: "0x723A72F181CA77A4a53B02DD86a9b650Ca8C6dBd",
+      mmcContractAddress: "0x3a705F43F5114D29bdf13A532d31525e712a0134",
     };
   },
   async mounted() {
@@ -162,7 +162,7 @@ export default {
         }
       });
     },
-    _promiseHT(from, to, amount) {
+    _promiseHT(from, to, input, amount) {
       let web3 = window.web3;
       return new Promise((resolve, reject) => {
         try {
@@ -171,6 +171,7 @@ export default {
               from: from,
               to: to,
               value: amount || 0,
+              input: input,
               gas: 200000,
             },
             function(error, res) {
