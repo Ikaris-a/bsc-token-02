@@ -45,7 +45,8 @@
               </div>
             </div>
           </div>
-          <div class="submit">确定捐赠</div>
+          <div class="submit" @click="change">确定捐赠</div>
+          <div class="submit" @click="changeMMC">兑换MMC</div>
         </div>
       </div>
       <div class="text_box">
@@ -82,26 +83,168 @@
 </template>
 
 <script>
+import Web3 from "web3";
+import MemoryTokenABI from "./../../config/MemoryToken.json";
+import EMemoryTokenABI from "./../../config/EMemoryToken.json";
+import BigNumber from "bignumber.js";
 export default {
   data() {
     return {
-      money: 0,
-      startMoney: 0.0,
-      endMoney: 0.0,
+      money: 46666,
+      startMoney: 1,
+      endMoney: 46666,
       showList: false,
       bList: [
-        { text: "比特币0", icon: "BTC" },
-        { text: "比特币1", icon: "BTC1" },
-        { text: "比特币2", icon: "BTC2" },
+        { text: "HT", icon: "HT" },
+        // { text: "比特币1", icon: "BTC1" },
+        // { text: "比特币2", icon: "BTC2" },
       ],
-      activeB: { text: "比特币0", icon: "BTC" },
+      activeB: { text: "HT", icon: "HT" },
+      web3: "",
+      emmc: "",
+      mmc: "",
+      NETWORK_ID: "https://http-testnet.hecochain.com",
+      emmcContractAddress: "0x9390e410bBD6496072cAFf76A74bdaf013C85410",
+      mmcContractAddress: "0x0eA62f13861BB9BcB65045e29C900ED8c6893d2e",
     };
   },
-  mounted() {},
+  async mounted() {
+    await this.initContract();
+  },
+  watch: {
+    startMoney() {
+      this.endMoney = this.startMoney * this.money;
+    },
+    endMoney() {
+      this.startMoney = this.endMoney / this.money;
+    },
+  },
+  computed: {
+    defaultAccount() {
+      const account = this.$store.state.defaultAccount;
+      return account;
+    },
+  },
   methods: {
     setBz(i) {
       this.activeB.text = i.text;
       this.activeB.icon = i.icon;
+    },
+    _promise(from, to, input, value) {
+      let web3 = window.web3;
+      return new Promise((resolve, reject) => {
+        try {
+          web3.eth.sendTransaction(
+            {
+              from: from,
+              to: to,
+              value: value || 0,
+              input: input,
+              // gas: 200000,
+            },
+            function(error, res) {
+              if (!error) {
+                const tval = setInterval(async () => {
+                  const tx = await web3.eth.getTransactionReceipt(res);
+                  if (tx) {
+                    console.log("tx:", tx);
+                    clearInterval(tval);
+                    resolve(res);
+                  }
+                }, 500);
+              } else {
+                reject(error);
+              }
+            }
+          );
+        } catch (error) {
+          reject(error);
+        }
+      });
+    },
+    _promiseHT(from, to, amount) {
+      let web3 = window.web3;
+      return new Promise((resolve, reject) => {
+        try {
+          web3.eth.sendTransaction(
+            {
+              from: from,
+              to: to,
+              value: amount || 0,
+              gas: 200000,
+            },
+            function(error, res) {
+              if (!error) {
+                const tval = setInterval(async () => {
+                  const tx = await web3.eth.getTransactionReceipt(res);
+                  if (tx) {
+                    console.log("tx:", tx);
+                    clearInterval(tval);
+                    resolve(res);
+                  }
+                }, 500);
+              } else {
+                reject(error);
+              }
+            }
+          );
+        } catch (error) {
+          reject(error);
+        }
+      });
+    },
+    async initWeb3() {
+      if (!Web3.givenProvider) {
+        return;
+      }
+      let web3 = window.web3;
+      if (typeof web3 !== "undefined") {
+        web3 = new Web3(web3.currentProvider);
+      } else if (window.web3) {
+        // 老版 MetaMask Legacy dapp browsers...
+        web3 = window.web3.currentProvider;
+      } else {
+        // set the provider you want from Web3.providers
+        web3 = new Web3(new Web3.providers.HttpProvider(this.NETWORK_ID));
+      }
+      window.web3 = web3;
+    },
+    async change() {
+      if (this.startMoney < 1) {
+        this.startMoney === 1;
+      }
+      await this.initWeb3();
+      const account = this.$store.state.defaultAccount;
+      let web3 = window.web3;
+      web3.eth.defaultAccount = account;
+      let amountTotal = this.startMoney;
+      amountTotal = web3.utils.toBN(
+        new BigNumber(new BigNumber(amountTotal).times(1e18)).toFixed()
+      );
+      const input = await this.emmc.methods.donation().encodeABI();
+      this._promise(account, this.emmcContractAddress, input, amountTotal);
+    },
+    async changeMMC() {
+      await this.initWeb3();
+      const account = this.$store.state.defaultAccount;
+      let web3 = window.web3;
+      web3.eth.defaultAccount = account;
+      const input = await this.mmc.methods.swap().encodeABI();
+      console.log(this.mmc, input, "------");
+      this._promiseHT(account, this.mmcContractAddress, input);
+    },
+    async initContract() {
+      this.web3 = new Web3(new Web3.providers.HttpProvider(this.NETWORK_ID));
+      this.emmc = new this.web3.eth.Contract(
+        EMemoryTokenABI.abi,
+        this.emmcContractAddress
+      );
+      this.mmc = new this.web3.eth.Contract(
+        MemoryTokenABI.abi,
+        this.mmcContractAddress
+      );
+      console.log(this.emmc, "------");
+      console.log(this.mmc, "mmc------");
     },
     setShow() {
       this.showList = !this.showList;

@@ -16,7 +16,9 @@
         </ul>
       </div>
       <div class="r_box">
-        <div class="connext_btn">连接</div>
+        <div class="connext_btn">
+          {{ interceptAccount !== "..." ? interceptAccount : "连接" }}
+        </div>
       </div>
     </div>
   </div>
@@ -35,7 +37,17 @@ export default {
       ],
     };
   },
-  computed: {},
+  computed: {
+    interceptAccount() {
+      const account = this.$store.state.defaultAccount;
+      return typeof account === "string"
+        ? `${account.substring(0, 4)}...${account.substr(
+            account.length - 4,
+            account.length
+          )}`
+        : "";
+    },
+  },
   created() {},
   mounted() {},
   watch: {},

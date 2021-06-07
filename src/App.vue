@@ -15,10 +15,10 @@ export default {
   name: "App",
   data() {
     return {
-      NETWORK_ID: "https://data-seed-prebsc-1-s1.binance.org:8545/",
+      NETWORK_ID: "https://http-testnet.hecochain.com",
       defaultAccount: "",
       necContract: "",
-      contractAddress: "0xdE6e5108F4BB805F34B6AA8d85049Be9ce9BE27D",
+      contractAddress: "0x9390e410bBD6496072cAFf76A74bdaf013C85410",
       addressList: [],
     };
   },
