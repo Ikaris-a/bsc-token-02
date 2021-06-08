@@ -2,9 +2,17 @@
   <div class="nft_main">
     <p class="name width_1200">NFT</p>
     <div class="swiper_box width_1200">
-      <img src="./../img/pic1.png" alt="" class="img1" />
-      <img src="./../img/pic2.png" alt="" class="img2" />
-      <img src="./../img/pic3.png" alt="" class="img3" />
+      <swiper class="swiper" :options="swiperOption">
+        <swiper-slide>
+          <img src="./../img/pic1.png" alt="" class="img1"
+        /></swiper-slide>
+        <swiper-slide>
+          <img src="./../img/pic2.png" alt="" class="img2"
+        /></swiper-slide>
+        <swiper-slide>
+          <img src="./../img/pic3.png" alt="" class="img3"
+        /></swiper-slide>
+      </swiper>
     </div>
     <div class="text_box width_1200">
       <div>
@@ -18,10 +26,30 @@
 </template>
 
 <script>
+import { swiper, swiperSlide } from "vue-awesome-swiper";
+import "swiper/dist/css/swiper.css";
 export default {
   data() {
-    return {};
+    return {
+      swiperOption: {
+        autoplay: true,
+        loop: true,
+        effect: "coverflow",
+        grabCursor: true,
+        centeredSlides: true,
+        initialSlide: 1,
+        slidesPerView: 3,
+        coverflowEffect: {
+          rotate: 0,
+          stretch: -66,
+          depth: 100,
+          modifier: 1,
+          slideShadows: false,
+        },
+      },
+    };
   },
+  components: { swiper, swiperSlide },
   mounted() {},
   methods: {},
 };
@@ -49,7 +77,7 @@ export default {
     align-items: center;
     .img1,
     .img3 {
-      width: 390px;
+      width: 450px;
     }
     .img1 {
       animation-name: fadeInLeft;
@@ -57,7 +85,7 @@ export default {
       animation-duration: 1s;
     }
     .img2 {
-      width: 420px;
+      width: 450px;
       animation-name: fadeInDown;
       animation-fill-mode: both;
       animation-duration: 1s;
@@ -66,6 +94,13 @@ export default {
       animation-name: fadeInRight;
       animation-fill-mode: both;
       animation-duration: 1s;
+    }
+    .swiper {
+      height: 100%;
+      width: 100%;
+      .swiper-silide {
+        width: 400px;
+      }
     }
   }
   .text_box {
@@ -107,5 +142,4 @@ export default {
     }
   }
 }
-
 </style>
