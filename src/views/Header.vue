@@ -16,7 +16,7 @@
         </ul>
       </div>
       <div class="r_box">
-        <div class="connext_btn">
+        <div class="connext_btn" @click="conecWallet"> 
           {{ interceptAccount !== "..." ? interceptAccount : "连接" }}
         </div>
       </div>
@@ -52,6 +52,9 @@ export default {
   mounted() {},
   watch: {},
   methods: {
+    conecWallet(){
+      window.location.reload();
+    },
     goPage(path) {
       this.$router.push(path);
     },
