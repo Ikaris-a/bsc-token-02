@@ -387,6 +387,10 @@ export default {
         text-align: center;
         margin-top: 30px;
         line-height: 52px;
+        cursor: pointer;
+        &:hover {
+          opacity: 0.8;
+        }
       }
     }
     .text_box {

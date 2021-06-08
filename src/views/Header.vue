@@ -69,6 +69,7 @@ export default {
   top: 0;
   left: 0;
   font-size: 16px;
+  z-index: 999;
   .content {
     height: 100%;
     display: flex;
