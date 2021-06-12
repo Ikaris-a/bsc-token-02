@@ -233,8 +233,9 @@ export default {
   width: 100%;
   min-height: 100vh;
   overflow: hidden;
-  background: url("./../img/donate_bg.png") no-repeat center top;
-  background-size: 100% 100%;
+  background: url("./../img/index_bg.gif") no-repeat;
+  background-size: cover;
+  background-position: center center;
   padding-top: 130px;
   color: #fff;
   .inner {
