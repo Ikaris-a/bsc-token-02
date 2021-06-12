@@ -4,6 +4,7 @@ import Home from "./../views/index/Home.vue";
 import Nft from "./../views/index/Nft.vue";
 import Swap from "./../views/index/Swap.vue";
 import Donate from "./../views/index/Donate.vue";
+import Dividends from "./../views/index/Dividends.vue";
 Vue.use(VueRouter);
 
 const routes = [
@@ -31,6 +32,11 @@ const routes = [
     path: "/donate",
     name: "Donate",
     component: Donate,
+  },
+  {
+    path: "/dividends",
+    name: "Dividends",
+    component: Dividends,
   },
 ];
 

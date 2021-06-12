@@ -21,7 +21,7 @@ export default {
   width: 100%;
   height: 100vh;
   overflow: hidden;
-  background: url("./../img/index_bg.png") no-repeat center top;
+  background: url("./../img/index_bg.gif") no-repeat center top;
   background-size: 100% 100%;
   .bo_text {
     font-family: PingFangSC-Semibold, PingFang SC;
@@ -38,6 +38,17 @@ export default {
       animation-name: fadeInRight;
       animation-fill-mode: both;
       animation-duration: 1s;
+    }
+  }
+}
+@media only screen and (max-width: 1000px) {
+  .swap_main .bo_text .title,
+  .swap_main .bo_text {
+    width: 100%;
+  }
+  .swap_main .bo_text {
+    .title {
+      font-size: 34px;
     }
   }
 }

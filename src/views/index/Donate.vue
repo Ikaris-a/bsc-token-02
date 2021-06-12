@@ -46,7 +46,7 @@
             </div>
           </div>
           <div class="submit" @click="change">确定捐赠</div>
-          <div class="submit" @click="changeMMC">兑换MMC</div>
+          <!-- <div class="submit" @click="changeMMC">兑换MMC</div> -->
         </div>
       </div>
       <div class="text_box">
@@ -266,7 +266,7 @@ export default {
   .inner {
     .txta_box {
       background-color: rgba(255, 255, 255, 0.29);
-      width: 560px;
+      max-width: 560px;
       margin: 0 auto;
       border-radius: 4px;
       padding: 43px 67px 75px;
@@ -402,6 +402,19 @@ export default {
         line-height: 26px;
         color: #fff;
       }
+    }
+  }
+}
+@media only screen and (max-width: 1000px) {
+  .donate_main {
+    &>div{
+      width: 86%;
+    }
+    .txta_box{
+      padding: 20px!important;
+    }
+    .text_box{
+      width: 100%!important;
     }
   }
 }

@@ -151,6 +151,6 @@ a {
   opacity: 0.8;
 }
 .width_1200{
-  width: 1200px;
+  max-width: 1200px;
   margin: 0 auto;
 }

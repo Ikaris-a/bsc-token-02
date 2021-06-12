@@ -3,7 +3,18 @@
     <div class="content width_1200">
       <div class="l_box">
         <div class="logo">memory coin</div>
-        <ul>
+        <ul class="menu-container web-menu">
+          <li
+            class="item"
+            v-for="item in menuList"
+            :key="item.path"
+            :class="{ active: $route.path === item.path }"
+            @click="goPage(item.path)"
+          >
+            {{ item.text }}
+          </li>
+        </ul>
+        <ul class="menu-container mobile-menu" v-if="!menuStatus">
           <li
             class="item"
             v-for="item in menuList"
@@ -15,11 +26,18 @@
           </li>
         </ul>
       </div>
+
       <div class="r_box">
-        <div class="connext_btn" @click="conecWallet"> 
+        <div class="connext_btn" @click="conecWallet">
           {{ interceptAccount !== "..." ? interceptAccount : "连接" }}
         </div>
       </div>
+      <template>
+        <div v-if="menuStatus" class="menu-icon" @click="showMenu"></div>
+      </template>
+      <template>
+        <div v-if="!menuStatus" class="menu-icon close" @click="showMenu"></div>
+      </template>
     </div>
   </div>
 </template>
@@ -34,7 +52,9 @@ export default {
         { text: "NFT", path: "/nft" },
         { text: "SWAP", path: "/swap" },
         { text: "捐赠", path: "/donate" },
+        { text: "分红", path: "/dividends" },
       ],
+      menuStatus: true,
     };
   },
   computed: {
@@ -52,10 +72,14 @@ export default {
   mounted() {},
   watch: {},
   methods: {
-    conecWallet(){
+    showMenu() {
+      this.menuStatus = !this.menuStatus;
+    },
+    conecWallet() {
       window.location.reload();
     },
     goPage(path) {
+      this.menuStatus = true;
       this.$router.push(path);
     },
   },
@@ -118,6 +142,52 @@ export default {
         }
       }
     }
+  }
+}
+@media only screen and (min-width: 1000px) {
+  .mobile-menu {
+    display: none !important;
+  }
+}
+
+@media only screen and (max-width: 1000px) {
+  .logo {
+    margin-left: 30px;
+  }
+
+  .web-menu {
+    display: none !important;
+  }
+  .menu-container {
+    width: 100%;
+    position: fixed;
+    top: 68px;
+    background: rgba(255, 255, 255, 0.29);
+    li {
+      height: 68px;
+      line-height: 68px;
+    }
+  }
+  .header .content .l_box ul {
+    display: block;
+  }
+  .menu-icon {
+    width: 32px;
+    height: 28px;
+    margin: 0 20px 0 40px;
+    background: url("./img/gengduo-2@3x.png") no-repeat;
+    background-size: auto 100%;
+    &.close {
+      width: 32px;
+      height: 28px;
+      margin: 0 20px 0 40px;
+      background: url("./img/guanbi@2x.png") no-repeat;
+      background-size: auto 100%;
+    }
+  }
+  .header {
+    // background-color: inherit;
+    // background: #fff;
   }
 }
 </style>

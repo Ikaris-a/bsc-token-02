@@ -1,7 +1,7 @@
 <template>
   <div class="nft_main">
     <p class="name width_1200">NFT</p>
-    <div class="swiper_box width_1200">
+    <div class="swiper_box width_1200 web-card">
       <swiper class="swiper" :options="swiperOption">
         <swiper-slide>
           <img src="./../img/pic1.png" alt="" class="img1"
@@ -12,6 +12,20 @@
         <swiper-slide>
           <img src="./../img/pic3.png" alt="" class="img3"
         /></swiper-slide>
+      </swiper>
+    </div>
+    <div class="swiper_box width_1200 mobile-card">
+      <swiper class="swiper" :options="swiperOption1">
+        <swiper-slide>
+          <img src="./../img/pic1.png" alt="" class="img1"
+        /></swiper-slide>
+        <swiper-slide>
+          <img src="./../img/pic2.png" alt="" class="img2"
+        /></swiper-slide>
+        <swiper-slide>
+          <img src="./../img/pic3.png" alt="" class="img3"
+        /></swiper-slide>
+        <div class="swiper-pagination" slot="pagination"></div>
       </swiper>
     </div>
     <div class="text_box width_1200">
@@ -46,6 +60,17 @@ export default {
           modifier: 1,
           slideShadows: false,
         },
+        swiperOption1: {
+          autoplay: true,
+          loop: true,
+          spaceBetween: 30,
+          initialSlide: 1,
+          slidesPerView: 3,
+          pagination: {
+            el: ".swiper-pagination",
+            clickable: true,
+          },
+        },
       },
     };
   },
@@ -59,7 +84,7 @@ export default {
 .nft_main {
   width: 100%;
   min-height: 100vh;
-  background: url("./../img/index_bg.png") no-repeat center top;
+  background: url("./../img/index_bg.gif") no-repeat center top;
   background-size: 100% 100%;
   padding-top: 130px;
   .name {
@@ -140,6 +165,36 @@ export default {
       color: #fff;
       width: 100%;
     }
+  }
+}
+@media only screen and (min-width: 1000px) {
+  .mobile-card {
+    display: none !important;
+  }
+}
+@media only screen and (max-width: 1000px) {
+  .nft_main .text_box > div {
+    width: 100%;
+  }
+  .nft_main .text_box .desc {
+    width: 80%;
+    padding: 0 40px;
+  }
+  .mobile-card {
+    width: 80%;
+  }
+  .web-card {
+    display: none !important;
+  }
+  .swiper-slide {
+    border-radius: 20px;
+    overflow: hidden;
+    min-height: 436px;
+  }
+  .nft_main .swiper_box img {
+    width: 100% !important;
+    height: 100%;
+    border-radius: 20px;
   }
 }
 </style>
