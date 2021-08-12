@@ -49,10 +49,10 @@ export default {
     return {
       menuList: [
         { text: "首页", path: "/index" },
-        { text: "NFT", path: "/nft" },
-        { text: "SWAP", path: "/swap" },
-        { text: "捐赠", path: "/donate" },
-        { text: "分红", path: "/dividends" },
+        // { text: "NFT", path: "/nft" },
+        // { text: "SWAP", path: "/swap" },
+        // { text: "捐赠", path: "/donate" },
+        // { text: "分红", path: "/dividends" },
       ],
       menuStatus: true,
     };
@@ -91,7 +91,7 @@ export default {
 .header {
   height: 68px;
   width: 100%;
-  background-color: rgba(255, 255, 255, 0.29);
+  background-color: rgba(0, 0, 0, 0.69);
   position: fixed;
   top: 0;
   left: 0;
@@ -123,7 +123,7 @@ export default {
           cursor: pointer;
           &:hover,
           &.active {
-            color: #5fd7e1;
+            color: #FF993C;
           }
         }
       }
@@ -131,7 +131,7 @@ export default {
 
     .r_box {
       .connext_btn {
-        background-color: #5fd7e1;
+        background-color: #FF993C;
         width: 105px;
         height: 40px;
         border-radius: 5px;
@@ -162,7 +162,7 @@ export default {
     width: 100%;
     position: fixed;
     top: 68px;
-    background: rgba(255, 255, 255, 0.29);
+    background: rgba(0,0,0, 0.29);
     li {
       height: 68px;
       line-height: 68px;

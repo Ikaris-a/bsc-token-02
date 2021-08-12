@@ -88,7 +88,7 @@ export default {
   background-size: 100% 100%;
   padding-top: 130px;
   .name {
-    color: #5fd7e1;
+    color: #FF993C;
     font-size: 30px;
     font-family: DINAlternate-Bold, DINAlternate;
     font-weight: bold;
@@ -140,7 +140,7 @@ export default {
     }
     .title {
       font-size: 16px;
-      color: #5fd7e1;
+      color: #FF993C;
       margin-bottom: 10px;
       text-align: left;
       display: flex;
@@ -152,7 +152,7 @@ export default {
         width: 5px;
         height: 5px;
         border-radius: 50%;
-        background-color: #5fd7e1;
+        background-color: #FF993C;
         margin-right: 8px;
       }
     }

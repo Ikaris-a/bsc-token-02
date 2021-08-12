@@ -33,7 +33,7 @@ export default {
       font-size: 60px;
       letter-spacing: 6px;
       text-transform: uppercase;
-      color: #5fd7e1;
+      color: #FF993C;
       font-weight: 600;
       animation-name: fadeInRight;
       animation-fill-mode: both;

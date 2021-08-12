@@ -240,7 +240,7 @@ export default {
   color: #fff;
   .inner {
     .txta_box {
-      background-color: rgba(255, 255, 255, 0.29);
+      background-color: rgba(0,0,0, 0.29);
       max-width: 560px;
       margin: 0 auto;
       border-radius: 14px;
@@ -255,7 +255,7 @@ export default {
         .name {
           font-size: 26px;
           font-weight: 500;
-          color: #5fd7e1;
+          color: #FF993C;
           line-height: 42px;
           text-align: left;
           margin-bottom: 10px;
@@ -283,7 +283,7 @@ export default {
             line-height: 30px;
             width: 40%;
             .money {
-              color: #5fd7e1;
+              color: #FF993C;
               background-color: transparent;
               outline: none;
               padding-right: 10px;
@@ -350,7 +350,7 @@ export default {
               padding: 4px 20px;
               line-height: 30px;
               &:hover {
-                background-color: #5fd7e1;
+                background-color: #FF993C;
                 color: #fff;
               }
             }
@@ -358,7 +358,7 @@ export default {
         }
       }
       .submit {
-        background: #5fd7e1;
+        background: #FF993C;
         color: #fff;
         border-radius: 4px;
         height: 52px;
