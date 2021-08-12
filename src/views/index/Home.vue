@@ -1,14 +1,52 @@
 <template>
   <div class="index_main">
-    <div class="bo_text width_1200">
-      <p class="title">回忆里的精彩 永远不说再见</p>
-      <p class="cont">Wonderful in memories ,Never say goodbye</p>
+    <div class=" width_1200">
+      <p class="title"></p>
+      <div class="container">
+        <CardItem
+        >
+          <h1 slot="header">Canyons</h1>
+          <p slot="content">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+          </p>
+        </CardItem>
+           <CardItem
+        >
+          <h1 slot="header">Canyons</h1>
+          <p slot="content">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+          </p>
+        </CardItem>
+        <CardItem
+        >
+          <h1 slot="header">Beaches</h1>
+          <p slot="content">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+          </p>
+        </CardItem>
+        <CardItem
+        >
+          <h1 slot="header">Trees</h1>
+          <p slot="content">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+          </p>
+        </CardItem>
+        <CardItem
+        >
+          <h1 slot="header">Lakes</h1>
+          <p slot="content">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+          </p>
+        </CardItem>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
+import CardItem from "@/components/CardItem";
 export default {
+  components: { CardItem },
   data() {
     return {};
   },
@@ -20,18 +58,13 @@ export default {
 <style scoped lang="less">
 .index_main {
   width: 100%;
-  height: 100vh;
   overflow: hidden;
-  background: url("./../img/index_bg.gif") no-repeat center top;
+  background: rgba(0, 0, 0, 0.8);
   background-size: 100% 100%;
   .bo_text {
     font-family: PingFangSC-Semibold, PingFang SC;
     color: #ffffff;
     font-weight: 600;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
     .title {
       font-size: 4rem;
       line-height: 98px;
@@ -54,7 +87,7 @@ export default {
     .bo_text .title {
       font-size: 3rem;
     }
-    .bo_text{
+    .bo_text {
       width: 80%;
     }
   }

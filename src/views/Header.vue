@@ -2,7 +2,7 @@
   <div class="header">
     <div class="content width_1200">
       <div class="l_box">
-        <div class="logo">memory coin</div>
+        <div class="logo">Dragon Ball</div>
         <ul class="menu-container web-menu">
           <li
             class="item"
