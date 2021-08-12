@@ -1,38 +1,49 @@
 <template>
   <div class="index_main">
     <div class="width_1200">
-      <p class="title"></p>
-      <div class="title-info">
-        <h2>
-          DBFZ Token 看似簡單，瘋狂的樂趣 歡迎加入《DBFZ
-          Token》
-        </h2>
-        <p>這是一款上手容易但絕對讓你愛不釋手的区块链卡牌遊戲！即将来临...</p>
-      </div>
-      <div class="container">
-        <template v-for="index in dataConfig">
-          <div class="lottery" :key="index"></div>
-        </template>
-      </div>
-      <div class="title-info">
-        <h2>抽取卡牌</h2>
+      <p class="title-fill">
+        Binance smart chain card NFT
+        <span>
+          DBFZ Token
+        </span>
+        &mdash; Unlock new ways to play &mdash;
+      </p>
+
+      <!-- <div class="title-info">
+        <h2>Cards Show</h2>
         <p>你可以通过购买卡牌,解锁无限玩法...(质押战力获取DBFZ，PK...)</p>
-      </div>
+      </div> -->
       <div class="container">
         <template v-for="(item, index) in dataConfig">
           <CardItem :key="index" :dataItem="item"> </CardItem>
         </template>
+        <!-- <swiper class="swiper" :options="swiperOption">
+          <template v-for="(item, index) in dataConfig">
+            <swiper-slide  :key="index">
+              <CardItem :dataItem="item"> </CardItem
+            ></swiper-slide>
+          </template>
+          <div class="swiper-pagination" slot="pagination"></div>
+        </swiper> -->
       </div>
-        <div class="title-info">
-        <h2>上线将释放所有卡牌～</h2>
+      <!-- <div class="container">
+        <template v-for="index in dataConfig">
+          <div class="lottery" :key="index"></div>
+        </template>
+      </div> -->
+      <div class="title-info">
+        <!-- <h2>上线将释放所有卡牌～</h2> -->
       </div>
-       <div class="lottery"></div>
+      <div class="lottery"></div>
     </div>
   </div>
 </template>
 
 <script>
+// import "swiper/swiper-bundle.css";
 import CardItem from "@/components/CardItem";
+// import { Swiper, SwiperSlide } from "vue-awesome-swiper";
+
 export default {
   components: { CardItem },
   data() {
@@ -74,7 +85,7 @@ export default {
           urlIndex: "kelin1",
         },
         {
-          name: "******" ,
+          name: "******",
           desc: "",
           urlIndex: "kelin2",
         },
@@ -87,11 +98,56 @@ export default {
 </script>
 
 <style scoped lang="less">
+/* Animate Background Image */
+
+@-webkit-keyframes aitf {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 100% 50%;
+  }
+}
 .index_main {
   width: 100%;
   overflow: hidden;
   padding-top: 68px;
   padding-bottom: 80px;
+  .title-fill {
+    text-transform: uppercase;
+    letter-spacing: 0.5em;
+    display: inline-block;
+    border: 4px double rgba(255, 255, 255, 0.25);
+    font-size: 2rem;
+    position: relative;
+    margin: 20px;
+
+    span {
+      font: 700 4em/1 "Oswald", sans-serif;
+      letter-spacing: 0;
+      padding: 0.25em 0 0.325em;
+      display: block;
+      margin: 0 auto;
+      text-shadow: 0 0 80px rgba(255, 255, 255, 0.5);
+
+      /* Clip Background Image */
+
+      background: url(https://i.ibb.co/RDTnNrT/animated-text-fill.png) repeat-y;
+      -webkit-background-clip: text;
+      background-clip: text;
+
+      /* Animate Background Image */
+
+      -webkit-text-fill-color: transparent;
+      -webkit-animation: aitf 80s linear infinite;
+
+      /* Activate hardware acceleration for smoother animations */
+
+      -webkit-transform: translate3d(0, 0, 0);
+      -webkit-backface-visibility: hidden;
+    }
+  }
+
   .lottery {
     width: 258px;
     height: 375px;

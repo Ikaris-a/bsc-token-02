@@ -1,6 +1,6 @@
 <template>
   <div
-    class="card-wrap"
+    class="card-wrap animate__animated animate__backInDown "
     @mousemove="handleMouseMove"
     @mouseenter="handleMouseEnter"
     @mouseleave="handleMouseLeave"
@@ -20,6 +20,7 @@
 </template>
 
 <script>
+import 'animate.css';
 export default {
   name: "CardItem",
   props: ["dataImage", "dataItem", "defaultCard"],
@@ -159,5 +160,10 @@ export default {
     url(./card/cards_bgimg.png) no-repeat;
   background-size: 258px 375px, 200px 200px;
   background-position: 0 0, 30px 40px;
+}
+@media only screen and (max-width: 1000px) {
+  .card{
+    // transform: scale(0.5)!important;
+  }
 }
 </style>

@@ -48,7 +48,8 @@ export default {
   data() {
     return {
       menuList: [
-        { text: "首页", path: "/index" },
+        { text: "Home", path: "/index" },
+         { text: "Shop", path: "/index" },
         // { text: "NFT", path: "/nft" },
         // { text: "SWAP", path: "/swap" },
         // { text: "捐赠", path: "/donate" },
@@ -113,7 +114,7 @@ export default {
       letter-spacing: 1px;
       .logo {
         margin-right: 40px;
-        font-size: 18px;
+        font-size: .3rem;
       }
       ul {
         display: flex;
@@ -162,7 +163,7 @@ export default {
     width: 100%;
     position: fixed;
     top: 68px;
-    background: rgba(0,0,0, 0.29);
+    background: rgba(0,0,0, 0.69);
     li {
       height: 68px;
       line-height: 68px;
