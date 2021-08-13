@@ -41,10 +41,10 @@
           phase. Official Contract address:
         </div>
       </div>
-      <div class="lottery"></div>
-      <div class="lottery"></div>
-      <div class="lottery"></div>
-      <div class="lottery"></div>
+      <div class="lottery animate__animated animate__flip "></div>
+      <div class="lottery animate__animated animate__flip"></div>
+      <div class="lottery animate__animated animate__flip"></div>
+      <div class="lottery animate__animated animate__flip"></div>
       <div class="title-info">
         <h2>Token Economics</h2>
         <ul class="te">
