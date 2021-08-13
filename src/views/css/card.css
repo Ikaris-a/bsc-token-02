@@ -1,6 +1,6 @@
 
 .title {
-  font-family: "Raleway";
+  font-family: "game-font";
   font-size: 24px;
   font-weight: 700;
   color: #5d4037;
@@ -19,7 +19,7 @@
     opacity: 1;
     background-image: url(https://assets.codepen.io/13471/sparkles.gif), url(https://assets.codepen.io/13471/holo.png), linear-gradient(
 125deg
-, #ff008450 15%, #fca40040 30%, #ffff0030 40%, #00ff8a20 60%, #00cfff40 70%, #cc4cfa50 85%);
+, #ff008450 15%, #fca40040 30%, #cececef0030 40%, #00ff8a20 60%, #00cfff40 70%, #cc4cfa50 85%);
     background-position: 50% 50%;
     background-size: 160%;
     background-blend-mode: overlay;
@@ -136,7 +136,7 @@
 }
 
 .card-info h1 {
-  font-family: "Playfair Display";
+  font-family: "game-font";
   font-size: 24px;
   font-weight: 700;
   text-shadow: rgba(0, 0, 0, 0.5) 0 10px 10px;

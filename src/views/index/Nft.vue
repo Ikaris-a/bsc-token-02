@@ -90,7 +90,7 @@ export default {
   .name {
     color: #FF993C;
     font-size: 30px;
-    font-family: DINAlternate-Bold, DINAlternate;
+    font-family: "game-font";
     font-weight: bold;
     line-height: 47px;
     letter-spacing: 3px;
@@ -158,11 +158,11 @@ export default {
     }
     .desc {
       font-size: 12px;
-      font-family: LucidaGrande;
+      font-family: "game-font";
       line-height: 22px;
       letter-spacing: 5px;
       text-align: left;
-      color: #fff;
+      color: #cecece;
       width: 100%;
     }
   }

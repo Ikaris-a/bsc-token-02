@@ -103,7 +103,7 @@ export default {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    color: #ffffff;
+    color: #cecece;
     .l_box {
       text-transform: uppercase;
       display: flex;
@@ -188,7 +188,7 @@ export default {
   }
   .header {
     // background-color: inherit;
-    // background: #fff;
+    // background: #cecece;
   }
 }
 </style>

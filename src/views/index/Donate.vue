@@ -263,7 +263,7 @@ export default {
   background-size: cover;
   background-position: center center;
   padding-top: 130px;
-  color: #fff;
+  color: #cecece;
   .inner {
     .txta_box {
       background-color: rgba(0,0,0, 0.29);
@@ -277,7 +277,7 @@ export default {
       .content {
         width: 100%;
         text-align: left;
-        font-family: PingFangSC-Medium, PingFang SC;
+        font-family: "game-font";
         .name {
           font-size: 26px;
           font-weight: 500;
@@ -299,7 +299,7 @@ export default {
           padding: 17px 26px;
           margin-top: 30px;
           .mon_name {
-            color: #fff;
+            color: #cecece;
           }
           .b_mon {
             display: flex;
@@ -346,7 +346,7 @@ export default {
             }
             span {
               margin: 0 15px;
-              color: #fff;
+              color: #cecece;
             }
             .xiala {
               background: url("./../img/xia.png") no-repeat center top;
@@ -364,7 +364,7 @@ export default {
             position: absolute;
             right: 0;
             top: 40px;
-            background-color: #fff;
+            background-color: #cecece;
             color: #000;
             border-radius: 4px;
             overflow: hidden;
@@ -374,7 +374,7 @@ export default {
               line-height: 30px;
               &:hover {
                 background-color: #FF993C;
-                color: #fff;
+                color: #cecece;
               }
             }
           }
@@ -382,7 +382,7 @@ export default {
       }
       .submit {
         background: #FF993C;
-        color: #fff;
+        color: #cecece;
         border-radius: 4px;
         height: 52px;
         text-align: center;
@@ -401,7 +401,7 @@ export default {
         text-align: left;
         font-size: 13px;
         line-height: 26px;
-        color: #fff;
+        color: #cecece;
       }
     }
   }

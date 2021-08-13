@@ -24,7 +24,7 @@ export default {
   background: url("./../img/index_bg.gif") no-repeat center top;
   background-size: 100% 100%;
   .bo_text {
-    font-family: PingFangSC-Semibold, PingFang SC;
+    font-family: "game-font";
     position: fixed;
     top: 50%;
     left: 50%;

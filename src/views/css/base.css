@@ -1,3 +1,9 @@
+@font-face {
+  font-family: 'game-font';
+  src: url('https://fonts.gstatic.com/s/lilitaone/v8/i7dPIFZ9Zz-WBtRtedDbYEF8RXi4EwQ.woff2');
+}
+  
+  
 html,body{
   width: 100%;
   height: 100%;
@@ -6,6 +12,7 @@ html,body{
   background-attachment: fixed;
   /* min-width: 1200px; */
   font-size: 62.5%;
+  font-family: 'game-font', 'Arial', sans-serif;
 }
 em,
 i {
@@ -20,7 +27,7 @@ legend,
 option,
 select,
 textarea {
-  font-family: "微软雅黑", tahoma, verdana, arial, STHeiTi, simsun, sans-serif;
+  font-family: "game-font", tahoma, verdana, arial, STHeiTi, simsun, sans-serif;
 }
 
 h1,
@@ -34,7 +41,7 @@ h6 {
 }
 
 * {
-  font-family: "微软雅黑" !important;
+  font-family: "game-font" !important;
   margin: 0;
   padding: 0;
   font-family: Helvetica;
@@ -100,7 +107,7 @@ p {
   padding: 0;
   text-align: center;
   text-decoration: none;
-  color: #fff;
+  color: #cecece;
 }
 
 li,
