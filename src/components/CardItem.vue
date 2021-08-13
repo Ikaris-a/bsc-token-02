@@ -1,9 +1,8 @@
 <template>
   <div
     class="card-wrap animate__animated animate__backInDown "
-    @mousemove="handleMouseMove"
-    @mouseenter="handleMouseEnter"
-    @mouseleave="handleMouseLeave"
+    v-on:mouseover="changeActive($event)"
+    v-on:mouseout="removeActive($event)"
     ref="card"
   >
     <div class="card" :style="cardStyle">
@@ -20,7 +19,7 @@
 </template>
 
 <script>
-import 'animate.css';
+import "animate.css";
 export default {
   name: "CardItem",
   props: ["dataImage", "dataItem", "defaultCard"],
@@ -63,6 +62,13 @@ export default {
     },
   },
   methods: {
+    changeActive($event) {
+      $event.currentTarget.className =
+        "card-wrap animate__animated animate__rotateIn";
+    },
+    removeActive($event) {
+      $event.currentTarget.className = "card-wrap";
+    },
     handleMouseMove() {
       //   this.mouseX = e.pageX - this.$refs.card.offsetLeft - this.width / 2;
       //   this.mouseY = e.pageY - this.$refs.card.offsetTop - this.height / 2;
@@ -162,7 +168,7 @@ export default {
   background-position: 0 0, 30px 40px;
 }
 @media only screen and (max-width: 1000px) {
-  .card{
+  .card {
     // transform: scale(0.5)!important;
   }
 }

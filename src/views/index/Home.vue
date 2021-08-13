@@ -6,7 +6,26 @@
         <span> DBFZ Token </span>
         &mdash; Unlock new ways to play &mdash;
       </p>
-
+      <div class="title-info">
+        <h2>Dragon Ball Card</h2>
+        <p>
+          Special cards, a single wallet collects seven cards, and you can claim
+          tokens for seven consecutive days
+        </p>
+      </div>
+      <div class="specal-card">
+        <img
+          class="animate__animated animate__rotateIn"
+          src="../../components/card/ball_1.png"
+          alt=""
+        />
+        <img src="../../components/card/ball_2.png" alt="" />
+        <img src="../../components/card/ball_3.png" alt="" />
+        <img src="../../components/card/ball_4.png" alt="" />
+        <img src="../../components/card/ball_5.png" alt="" />
+        <img src="../../components/card/ball_6.png" alt="" />
+        <img src="../../components/card/ball_7.png" alt="" />
+      </div>
       <div class="title-info">
         <h2>About DBFZ</h2>
         <p>
@@ -41,15 +60,32 @@
           phase. Official Contract address:
         </div>
       </div>
-      <div class="lottery animate__animated animate__flip "></div>
-      <div class="lottery animate__animated animate__flip"></div>
-      <div class="lottery animate__animated animate__flip"></div>
-      <div class="lottery animate__animated animate__flip"></div>
+      <div
+        v-on:mouseover="changeActive($event)"
+        v-on:mouseout="removeActive($event)"
+        class="lottery"
+      ></div>
+      <div
+        v-on:mouseover="changeActive($event)"
+        v-on:mouseout="removeActive($event)"
+        class="lottery"
+      ></div>
+      <div
+        v-on:mouseover="changeActive($event)"
+        v-on:mouseout="removeActive($event)"
+        class="lottery "
+      ></div>
+      <div
+        v-on:mouseover="changeActive($event)"
+        v-on:mouseout="removeActive($event)"
+        class="lottery"
+      ></div>
       <div class="title-info">
         <h2>Token Economics</h2>
         <ul class="te">
           <li>
             <img src="../../components/card/character_17.png" alt="" />
+
             <div>In-game Currency</div>
             <p>Most items in the game will be payable using DBFZ tokens.</p>
           </li>
@@ -105,6 +141,48 @@
           </li>
           <li>
             <img src="../img/Partners/Partner8.png" alt="" />
+          </li>
+        </ul>
+      </div>
+      <div class="title-info">
+        <h2>Our Team</h2>
+        <ul class="te team">
+          <li>
+            <div class="thumb-icon">
+              <img src="../../components/card/character_13.png" alt="" />
+            </div>
+            <div>James</div>
+            <p>
+              Business Development Director
+              <br />@Cooper(game payment) <br />@Tim (VR gaming)
+            </p>
+          </li>
+          <li>
+            <div class="thumb-icon">
+              <img src="../../components/card/character_14.png" alt="" />
+            </div>
+            <div>Dorothy</div>
+            <p>
+              Chief Operating Officer <br />
+              Game Producer
+            </p>
+          </li>
+          <li>
+            <div class="thumb-icon">
+              <img src="../../components/card/character_15.png" alt="" />
+            </div>
+            <div>Pearl</div>
+            <p>
+              Development<br />
+              Program Manager
+            </p>
+          </li>
+          <li>
+            <div class="thumb-icon">
+              <img src="../../components/card/character_16.png" alt="" />
+            </div>
+            <div>Wallace</div>
+            <p>Game Product Manager <br /></p>
           </li>
         </ul>
       </div>
@@ -186,7 +264,15 @@ export default {
     };
   },
   mounted() {},
-  methods: {},
+  methods: {
+    changeActive($event) {
+      $event.currentTarget.className =
+        "lottery animate__animated animate__flip";
+    },
+    removeActive($event) {
+      $event.currentTarget.className = "lottery";
+    },
+  },
 };
 </script>
 
@@ -246,6 +332,46 @@ export default {
 
     // display: inline-block;
     // border: 1px solid red;
+  }
+}
+.team {
+  text-align: center;
+  .thumb-icon {
+    border: 0 !important;
+    border-radius: 50%;
+    border: 1px solid red;
+    width: 100px;
+    height: 100px;
+    margin-bottom: 30px;
+    &::after {
+      display: none;
+    }
+  }
+  img {
+    border-radius: 50%;
+    display: inline-block;
+    width: auto;
+    height: 100%;
+    filter: blur(1px);
+    // opacity: .6;
+  }
+}
+@keyframes myRotate {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+  50% {
+    -webkit-transform: rotate(180deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+.specal-card {
+  img {
+    margin: 0 20px;
+    width: 80px;
+    animation: myRotate 1s linear infinite;
   }
 }
 .footer {
