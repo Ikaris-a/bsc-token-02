@@ -2,7 +2,7 @@
   <div class="header">
     <div class="content width_1200">
       <div class="l_box">
-        <div class="logo">Dragon Ball</div>
+        <div class="logo">ドラゴンボール(Dragon Ball)</div>
         <ul class="menu-container web-menu">
           <li
             class="item"
@@ -29,7 +29,7 @@
 
       <div class="r_box">
         <div class="connext_btn" @click="conecWallet">
-          {{ interceptAccount !== "..." ? interceptAccount : "连接" }}
+          {{ interceptAccount !== "..." ? interceptAccount : "Connect" }}
         </div>
       </div>
       <template>
@@ -48,8 +48,8 @@ export default {
   data() {
     return {
       menuList: [
-        { text: "Home", path: "/index" },
-         { text: "Shop", path: "/index" },
+        { text: "表紙", path: "/index" },
+         { text: "カードストア", path: "/index" },
         // { text: "NFT", path: "/nft" },
         // { text: "SWAP", path: "/swap" },
         // { text: "捐赠", path: "/donate" },

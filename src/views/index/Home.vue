@@ -2,15 +2,17 @@
   <div class="index_main">
     <div class="width_1200">
       <p class="title-fill">
-        Binance smart chain card NFT
-        <span> DBFZ Token </span>
-        &mdash; Unlock new ways to play &mdash;
+        BinanceスマートチェーンカードNFT
+        <span> DBFZトークン </span>
+        &mdash;新しい遊び方のロックを解除する &mdash;
       </p>
       <div class="title-info">
-        <h2>Dragon Ball Card</h2>
+        <h2>
+          ドラゴンボールカード
+        </h2>
         <p>
-          Special cards, a single wallet collects seven cards, and you can claim
-          tokens for seven consecutive days
+          特別なカード、1つの財布が7枚のカードを集めます、そしてあなたは主張することができます
+          7日間連続のトークン
         </p>
       </div>
       <div class="specal-card">
@@ -27,11 +29,11 @@
         <img src="../../components/card/ball_7.png" alt="" />
       </div>
       <div class="title-info">
-        <h2>About DBFZ</h2>
+        <h2>DBFZについて</h2>
         <p>
-          DBFZ is a virtual card game that combines DeFi, collectibles and your
-          own personality. DBFZ runs on supported networks, including Binance
-          Smart Chain
+          DBFZは、DeFi、収集品、および 自分の性格。
+          DBFZは、Binanceを含むサポートされているネットワークで実行されます
+          スマートチェーン
         </p>
       </div>
       <div class="container">
@@ -55,9 +57,9 @@
       <div class="title-info">
         <h2>DBFZ Token</h2>
         <div>
-          DBFZ token is the main in-game currency. It will be used for trading,
-          exchanging, improving their special qualities, mainly in the first
-          phase. Official Contract address:
+          DBFZトークンはゲーム内の主要通貨です。それは取引に使用されます、
+          主に最初に交換し、彼らの特別な資質を向上させる
+          段階。正式な契約アドレス：
         </div>
       </div>
       <div
@@ -81,45 +83,47 @@
         class="lottery"
       ></div>
       <div class="title-info">
-        <h2>Token Economics</h2>
+        <h2>トークンエコノミー</h2>
         <ul class="te">
           <li>
             <img src="../../components/card/character_17.png" alt="" />
 
-            <div>In-game Currency</div>
-            <p>Most items in the game will be payable using DBFZ tokens.</p>
+            <div>ゲーム内通貨</div>
+            <p>
+              ゲーム内のほとんどのアイテムは、DBFZトークンを使用して支払われます。
+            </p>
           </li>
 
           <li>
             <img src="../../components/card/character_18.png" alt="" />
-            <div>Governance</div>
+            <div>ガバナンス</div>
             <p>
-              Vote for new features and settings of the game to earn special
-              rewards. Lock DBFZ tokens for a certain time to gain voting power.
+              ゲームの新機能と設定に投票して、特別な賞金を獲得しましょう 報酬。
+              DBFZトークンを一定時間ロックして、投票権を獲得します。
             </p>
           </li>
           <li>
             <img src="../../components/card/character_19.png" alt="" />
-            <div>Staking</div>
+            <div>ステーキング</div>
             <p>
-              Become part of the game by staking DBFZ tokens into pools.
-              Different pools will yield different returns such as new items, or
-              DBFZ tokens.
+              DBFZトークンをプールにステーキングして、ゲームの一部になりましょう。
+              プールが異なれば、新しいアイテムなどの収益も異なります。
+              DBFZトークン。
             </p>
           </li>
           <li>
             <img src="../../components/card/character_20.png" alt="" />
-            <div>Play 2 Earn</div>
+            <div>プレイ2獲得</div>
             <p>
-              Simply playing can also get you DBFZ tokens via mission and social
-              mining.
+              プレイするだけで、ミッションやソーシャルを介してDBFZトークンを取得することもできます
+              鉱業。
             </p>
           </li>
         </ul>
       </div>
 
       <div class="title-info">
-        <h2>Partners</h2>
+        <h2>パートナー</h2>
         <ul class="partners">
           <li>
             <img src="../img/Partners/Partner1.png" alt="" />
@@ -145,52 +149,52 @@
         </ul>
       </div>
       <div class="title-info">
-        <h2>Our Team</h2>
+        <h2>私たちのチーム</h2>
         <ul class="te team">
           <li>
             <div class="thumb-icon">
               <img src="../../components/card/character_13.png" alt="" />
             </div>
-            <div>James</div>
+            <div>ひなた</div>
             <p>
-              Business Development Director
-              <br />@Cooper(game payment) <br />@Tim (VR gaming)
+              事業開発ディレクター
+              <br />@やまと <br />@ひろと (VRゲーム)
             </p>
           </li>
           <li>
             <div class="thumb-icon">
               <img src="../../components/card/character_14.png" alt="" />
             </div>
-            <div>Dorothy</div>
+            <div>ドロシー</div>
             <p>
-              Chief Operating Officer <br />
-              Game Producer
+              最高執行責任者 <br />
+              ゲームプロデューサー
             </p>
           </li>
           <li>
             <div class="thumb-icon">
               <img src="../../components/card/character_15.png" alt="" />
             </div>
-            <div>Pearl</div>
+            <div>パール</div>
             <p>
-              Development<br />
-              Program Manager
+              発達<br />
+              プログラムマネージャー
             </p>
           </li>
           <li>
             <div class="thumb-icon">
               <img src="../../components/card/character_16.png" alt="" />
             </div>
-            <div>Wallace</div>
-            <p>Game Product Manager <br /></p>
+            <div>ウォレス</div>
+            <p>ゲームプロダクトマネージャー <br /></p>
           </li>
         </ul>
       </div>
     </div>
     <div class="footer">
       <div class="footer-left">
-        <div>@2021 DBFZ All Right Reserved</div>
-        <div>ID Number：20210801230</div>
+        <div>@2021 DBFZ @商家徽标 株式会社ＴＯＫＹＯ</div>
+        <div> 日本橋茅場町</div>
       </div>
       <div class="footer-right">
         <a>
@@ -221,23 +225,23 @@ export default {
     return {
       dataConfig: [
         {
-          name: "Son Gōhan",
-          desc: "赛亚人巴达克之子",
+          name: "カカロット",
+          desc: "",
           urlIndex: "sunwukong",
         },
         {
-          name: "贝吉塔",
-          desc: "(超级)赛亚人",
+          name: "ベジット",
+          desc: "",
           urlIndex: "beijita",
         },
         {
-          name: "布欧",
-          desc: "亦正亦邪",
+          name: "ウーブ",
+          desc: "",
           urlIndex: "buou",
         },
         {
-          name: "Dende",
-          desc: "战斗型那美克星人",
+          name: "ピッコロ",
+          desc: "",
           urlIndex: "dende",
         },
         // {

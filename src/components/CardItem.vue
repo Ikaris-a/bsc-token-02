@@ -10,9 +10,9 @@
       <div class="card-bg" :style="[cardBgTransform]">
         <div></div>
       </div>
-      <div class="card-info">
+      <div class="card-info level-1">
         <div name="header">{{ dataItem.name }}</div>
-        <div name="content">{{ dataItem.desc }}</div>
+        <!-- <div name="content">{{ dataItem.desc }}</div> -->
       </div>
     </div>
   </div>
@@ -98,6 +98,27 @@ export default {
     top: 80px;
     left: 50%;
     transform: translateX(-50%);
+    display: inline-block;
+  }
+}
+.card-info.level-1{
+  text-align: center;
+  font-weight: bold;
+  &::before{
+    content: "";
+     background: url(./card/ball_1.png)  no-repeat;
+     background-size: 100% auto;
+     width: 40px;
+     height: 40px;
+     position: absolute;
+     left: 50%;
+     transform: translateX(-50%);
+     top: 0px;
+  }
+  div{
+    margin-top: 30px;
+    width: 80%;
+    font-size: 30px;
     display: inline-block;
   }
 }
