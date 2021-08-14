@@ -6,23 +6,7 @@
         <span>DBFZトークン</span>
         &mdash;新しい遊び方のロックを解除する &mdash;
       </p>
-      <div class="title-info ti-1">
-        <img src="../img/fs_002.png" alt />
-        <!-- <h2>ドラゴンボールカード</h2> -->
-        <p>
-          特別なカード、1つの財布が7枚のカードを集めます、そしてあなたは主張することができます
-          7日間連続のトークン
-        </p>
-      </div>
-      <div class="specal-card">
-        <img class="animate__animated animate__rotateIn" src="../../components/card/ball_1.png" alt />
-        <img src="../../components/card/ball_2.png" alt />
-        <img src="../../components/card/ball_3.png" alt />
-        <img src="../../components/card/ball_4.png" alt />
-        <img src="../../components/card/ball_5.png" alt />
-        <img src="../../components/card/ball_6.png" alt />
-        <img src="../../components/card/ball_7.png" alt />
-      </div>
+
       <div class="title-info">
         <!-- <h2>DBFZについて</h2> -->
         <p>
@@ -43,6 +27,23 @@
           </template>
           <div class="swiper-pagination" slot="pagination"></div>
         </swiper>-->
+      </div>
+      <div class="title-info ti-1">
+        <img src="../img/fs_002.png" alt />
+        <!-- <h2>ドラゴンボールカード</h2> -->
+        <p>
+          特別なカード、1つの財布が7枚のカードを集めます、そしてあなたは主張することができます
+          7日間連続のトークン
+        </p>
+      </div>
+      <div class="specal-card">
+        <img class="animate__animated animate__rotateIn" src="../../components/card/ball_1.png" alt />
+        <img src="../../components/card/ball_2.png" alt />
+        <img src="../../components/card/ball_3.png" alt />
+        <img src="../../components/card/ball_4.png" alt />
+        <img src="../../components/card/ball_5.png" alt />
+        <img src="../../components/card/ball_6.png" alt />
+        <img src="../../components/card/ball_7.png" alt />
       </div>
       <!-- <div class="container">
         <template v-for="index in dataConfig">
@@ -367,7 +368,7 @@ export default {
   img {
     margin: 0 20px;
     width: 80px;
-    animation: myRotate 2s linear infinite;
+    animation: myRotate 5s linear infinite;
   }
 }
 .footer {
@@ -473,6 +474,8 @@ export default {
     img {
       display: inline-block;
       width: 100px;
+      position: relative;
+      top: 30px;
     }
     p {
       display: inline-block;
