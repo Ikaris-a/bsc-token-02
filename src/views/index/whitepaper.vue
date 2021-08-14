@@ -66,7 +66,7 @@ export default {
   background: url(./../img/jz/fs_0002.png) no-repeat;
   p {
     text-align: left;
-    padding: 220px 200px;
+    padding: 160px 200px;
     color: #6b250c;
   }
 }
