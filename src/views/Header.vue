@@ -10,9 +10,7 @@
             :key="item.path"
             :class="{ active: $route.path === item.path }"
             @click="goPage(item.path)"
-          >
-            {{ item.text }}
-          </li>
+          >{{ item.text }}</li>
         </ul>
         <ul class="menu-container mobile-menu" v-if="!menuStatus">
           <li
@@ -21,16 +19,15 @@
             :key="item.path"
             :class="{ active: $route.path === item.path }"
             @click="goPage(item.path)"
-          >
-            {{ item.text }}
-          </li>
+          >{{ item.text }}</li>
         </ul>
       </div>
 
       <div class="r_box">
-        <div class="connext_btn" @click="conecWallet">
-          {{ interceptAccount !== "..." ? interceptAccount : "Connect" }}
-        </div>
+        <div
+          class="connext_btn"
+          @click="conecWallet"
+        >{{ interceptAccount !== "..." ? interceptAccount : "Connect" }}</div>
       </div>
       <template>
         <div v-if="menuStatus" class="menu-icon" @click="showMenu"></div>
@@ -49,13 +46,13 @@ export default {
     return {
       menuList: [
         { text: "表紙", path: "/index" },
-         { text: "カードストア", path: "/index" },
+        { text: "カードストア", path: "/index" }
         // { text: "NFT", path: "/nft" },
         // { text: "SWAP", path: "/swap" },
         // { text: "捐赠", path: "/donate" },
         // { text: "分红", path: "/dividends" },
       ],
-      menuStatus: true,
+      menuStatus: true
     };
   },
   computed: {
@@ -67,7 +64,7 @@ export default {
             account.length
           )}`
         : "";
-    },
+    }
   },
   created() {},
   mounted() {},
@@ -82,9 +79,9 @@ export default {
     goPage(path) {
       this.menuStatus = true;
       this.$router.push(path);
-    },
+    }
   },
-  components: {},
+  components: {}
 };
 </script>
 
@@ -114,7 +111,7 @@ export default {
       letter-spacing: 1px;
       .logo {
         margin-right: 40px;
-        font-size: .3rem;
+        font-size: 0.3rem;
       }
       ul {
         display: flex;
@@ -124,7 +121,7 @@ export default {
           cursor: pointer;
           &:hover,
           &.active {
-            color: #FF993C;
+            color: #ff993c;
           }
         }
       }
@@ -132,7 +129,8 @@ export default {
 
     .r_box {
       .connext_btn {
-        background-color: #FF993C;
+        background: url(./img/header/fs_001.png) no-repeat;
+        background-size: 100% 100%;
         width: 105px;
         height: 40px;
         border-radius: 5px;
@@ -163,7 +161,7 @@ export default {
     width: 100%;
     position: fixed;
     top: 68px;
-    background: rgba(0,0,0, 0.69);
+    background: rgba(0, 0, 0, 0.69);
     li {
       height: 68px;
       line-height: 68px;

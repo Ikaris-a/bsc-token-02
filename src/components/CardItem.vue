@@ -1,6 +1,6 @@
 <template>
   <div
-    class="card-wrap animate__animated animate__backInDown "
+    class="card-wrap animate__animated animate__backInDown"
     v-on:mouseover="changeActive($event)"
     v-on:mouseout="removeActive($event)"
     ref="card"
@@ -28,7 +28,7 @@ export default {
     height: 0,
     mouseX: 0,
     mouseY: 0,
-    mouseLeaveDelay: null,
+    mouseLeaveDelay: null
   }),
   mounted() {
     this.width = this.$refs.card.offsetWidth;
@@ -45,21 +45,21 @@ export default {
       const rX = this.mousePX * 30;
       const rY = this.mousePY * -30;
       return {
-        transform: `rotateY(${rX}deg) rotateX(${rY}deg)`,
+        transform: `rotateY(${rX}deg) rotateX(${rY}deg)`
       };
     },
     cardBgTransform() {
       const tX = this.mousePX * -40;
       const tY = this.mousePY * -40;
       return {
-        transform: `translateX(${tX}px) translateY(${tY}px)`,
+        transform: `translateX(${tX}px) translateY(${tY}px)`
       };
     },
     cardBgImage() {
       return {
-        backgroundImage: `url(${this.dataImage})`,
+        backgroundImage: `url(${this.dataImage})`
       };
-    },
+    }
   },
   methods: {
     changeActive($event) {
@@ -81,8 +81,8 @@ export default {
       //     this.mouseX = 0;
       //     this.mouseY = 0;
       //   }, 1000);
-    },
-  },
+    }
+  }
 };
 </script>
 
@@ -90,8 +90,8 @@ export default {
 .card {
   position: relative;
   .card-icon {
-    width: 130px;
-    height: 150px;
+    width: 120px;
+    height: 110px;
     position: absolute;
     top: 30px;
     z-index: 100;
@@ -101,21 +101,21 @@ export default {
     display: inline-block;
   }
 }
-.card-info.level-1{
+.card-info.level-1 {
   text-align: center;
   font-weight: bold;
-  &::before{
+  &::before {
     content: "";
-     background: url(./card/ball_1.png)  no-repeat;
-     background-size: 100% auto;
-     width: 40px;
-     height: 40px;
-     position: absolute;
-     left: 50%;
-     transform: translateX(-50%);
-     top: 0px;
+    background: url(./card/ball_1.png) no-repeat;
+    background-size: 100% auto;
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: -12px;
   }
-  div{
+  div {
     margin-top: 30px;
     width: 80%;
     font-size: 30px;
@@ -183,8 +183,8 @@ export default {
   background-position: center center;
 }
 .card-bg {
-  background: url(./card/cards.png) no-repeat,
-    url(./card/cards_bgimg.png) no-repeat;
+  background: url(./card/fs_003.png) no-repeat,
+    url(./card/fs_004.png) no-repeat;
   background-size: 258px 375px, 200px 200px;
   background-position: 0 0, 30px 40px;
 }
