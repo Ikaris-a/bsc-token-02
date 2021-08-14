@@ -46,8 +46,8 @@ export default {
     return {
       menuList: [
         { text: "表紙", path: "/index" },
-        { text: "カードストア", path: "/index" }
-        // { text: "NFT", path: "/nft" },
+        // { text: "カードストア", path: "/index" },
+        { text: "白書", path: "/whitepaper" }
         // { text: "SWAP", path: "/swap" },
         // { text: "捐赠", path: "/donate" },
         // { text: "分红", path: "/dividends" },

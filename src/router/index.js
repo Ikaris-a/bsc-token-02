@@ -2,27 +2,27 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "./../views/index/Home.vue";
 // import Nft from "./../views/index/Nft.vue";
-// import Swap from "./../views/index/Swap.vue";
+import whitepaper from "./../views/index/whitepaper.vue";
 // import Donate from "./../views/index/Donate.vue";
 // import Dividends from "./../views/index/Dividends.vue";
 Vue.use(VueRouter);
 
 const routes = [
-  {
-    path: "/",
-    name: "Index",
-    redirect: "/index",
-  },
+  // {
+  //   path: "/",
+  //   name: "Index",
+  //   redirect: "/index",
+  // },
   {
     path: "/index",
     name: "Home",
     component: Home,
   },
-  // {
-  //   path: "/nft",
-  //   name: "Nft",
-  //   component: Nft,
-  // },
+  {
+    path: "/whitepaper",
+    name: "whitepaper",
+    component: whitepaper,
+  },
   // {
   //   path: "/swap",
   //   name: "Swap",
