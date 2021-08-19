@@ -37,7 +37,11 @@
         </p>
       </div>
       <div class="specal-card">
-        <img class="animate__animated animate__rotateIn" src="../../components/card/ball_1.png" alt />
+        <img
+          class="animate__animated animate__rotateIn"
+          src="../../components/card/ball_1.png"
+          alt
+        />
         <img src="../../components/card/ball_2.png" alt />
         <img src="../../components/card/ball_3.png" alt />
         <img src="../../components/card/ball_4.png" alt />
@@ -59,6 +63,7 @@
         </div>
       </div>
       <div
+        @click="lottery"
         v-on:mouseover="changeActive($event)"
         v-on:mouseout="removeActive($event)"
         class="lottery"
@@ -85,7 +90,9 @@
             <img src="../../components/card/character_17.png" alt />
 
             <div>ゲーム内通貨</div>
-            <p>ゲーム内のほとんどのアイテムは、DBFZトークンを使用して支払われます。</p>
+            <p>
+              ゲーム内のほとんどのアイテムは、DBFZトークンを使用して支払われます。
+            </p>
           </li>
 
           <li>
@@ -152,8 +159,7 @@
             <div>ひなた</div>
             <p>
               事業開発ディレクター
-              <br />@やまと
-              <br />@ひろと (VRゲーム)
+              <br />@やまと <br />@ひろと (VRゲーム)
             </p>
           </li>
           <li>
@@ -216,7 +222,9 @@
 // import "swiper/swiper-bundle.css";
 import CardItem from "@/components/CardItem";
 // import { Swiper, SwiperSlide } from "vue-awesome-swiper";
-
+import CardShop from "./../../config/contracts/CardShop.json";
+import Web3 from "web3";
+// import BigNumber from "bignumber.js";
 export default {
   components: { CardItem },
   data() {
@@ -225,23 +233,23 @@ export default {
         {
           name: "カカロット",
           desc: "",
-          urlIndex: "sunwukong"
+          urlIndex: "sunwukong",
         },
         {
           name: "ベジット",
           desc: "",
-          urlIndex: "beijita"
+          urlIndex: "beijita",
         },
         {
           name: "ウーブ",
           desc: "",
-          urlIndex: "buou"
+          urlIndex: "buou",
         },
         {
           name: "ピッコロ",
           desc: "",
-          urlIndex: "dende"
-        }
+          urlIndex: "dende",
+        },
         // {
         //   name: "克林",
         //   desc: "多林寺的弟子",
@@ -262,19 +270,91 @@ export default {
         //   desc: "",
         //   urlIndex: "kelin2",
         // },
-      ]
+      ],
+      NETWORK: "https://exchaintestrpc.okex.org",
+      cardShop: {
+        contract: "",
+        address: "0x9016c00f020B4030Ca726A5Cb41EF95bc8D0E92b",
+      },
     };
   },
-  mounted() {},
+  async mounted() {},
   methods: {
+    async lottery() {
+      console.log(333);
+      await this.initContract();
+    },
+    async initContract() {
+      await this.initWeb3();
+      this.web3 = new Web3(new Web3.providers.HttpProvider(this.NETWORK));
+      this.cardShop.contract = new this.web3.eth.Contract(
+        CardShop.abi,
+        this.cardShop.address
+      );
+
+      const account = await this.$store.state.defaultAccount;
+      const input = await this.cardShop.contract.methods
+        .buy("DBFZ")
+        .encodeABI();
+      const res = await this._promise(account, this.cardShop.address, input);
+      console.log(res, "res========");
+    },
+    _promise(from, to, input, value) {
+      let web3 = window.web3;
+      return new Promise((resolve, reject) => {
+        try {
+          web3.eth.sendTransaction(
+            {
+              from: from,
+              to: to,
+              value: value || 0,
+              input: input,
+              // gas: 200000,
+            },
+            function(error, res) {
+              if (!error) {
+                console.log(res,"resdata==========");
+                const tval = setInterval(async () => {
+                  const tx = await web3.eth.getTransactionReceipt(res);
+                  if (tx) {
+                    console.log("tx:", tx);
+                    clearInterval(tval);
+                    resolve(res);
+                  }
+                }, 500);
+              } else {
+                reject(error);
+              }
+            }
+          );
+        } catch (error) {
+          reject(error);
+        }
+      });
+    },
+    async initWeb3() {
+      if (!Web3.givenProvider) {
+        return;
+      }
+      let web3 = window.web3;
+      if (typeof web3 !== "undefined") {
+        web3 = new Web3(web3.currentProvider);
+      } else if (window.web3) {
+        // 老版 MetaMask Legacy dapp browsers...
+        web3 = window.web3.currentProvider;
+      } else {
+        web3 = new Web3(new Web3.providers.HttpProvider(this.NETWORK));
+      }
+      window.web3 = web3;
+    },
     changeActive($event) {
       $event.currentTarget.className =
         "lottery animate__animated animate__flip";
     },
     removeActive($event) {
       $event.currentTarget.className = "lottery";
-    }
-  }
+    },
+  },
 };
 </script>
 
