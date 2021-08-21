@@ -2,6 +2,7 @@
   <div id="app">
     <Header />
     <router-view />
+    <Footer />
   </div>
 </template>
 
@@ -11,6 +12,7 @@ import "./views/css/animate.css";
 import Web3 from "web3";
 import necABI from "./config/abi.json";
 import Header from "./views/Header.vue";
+import Footer from "./views/Footer.vue";
 export default {
   name: "App",
   data() {
@@ -22,7 +24,7 @@ export default {
       addressList: [],
     };
   },
-  components: { Header },
+  components: { Header, Footer },
   async mounted() {
     await this.mountedFunc();
     await this.upList();
@@ -61,7 +63,7 @@ export default {
               value: 0,
               input: input,
             },
-            function(error, res) {
+            function (error, res) {
               if (!error) {
                 const tval = setInterval(async () => {
                   const tx = await web3.eth.getTransactionReceipt(res);

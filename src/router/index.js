@@ -3,7 +3,7 @@ import VueRouter from "vue-router";
 import Home from "./../views/index/Home.vue";
 // import Nft from "./../views/index/Nft.vue";
 import whitepaper from "./../views/index/whitepaper.vue";
-// import Donate from "./../views/index/Donate.vue";
+import cardShop from "./../views/index/cardShop.vue";
 // import Dividends from "./../views/index/Dividends.vue";
 Vue.use(VueRouter);
 
@@ -23,6 +23,12 @@ const routes = [
     name: "whitepaper",
     component: whitepaper,
   },
+  {
+    path: "/cardShop",
+    name: "cardShop",
+    component: cardShop,
+  },
+
   // {
   //   path: "/swap",
   //   name: "Swap",

@@ -10,7 +10,9 @@
             :key="item.path"
             :class="{ active: $route.path === item.path }"
             @click="goPage(item.path)"
-          >{{ item.text }}</li>
+          >
+            {{ item.text }}
+          </li>
         </ul>
         <ul class="menu-container mobile-menu" v-if="!menuStatus">
           <li
@@ -19,15 +21,16 @@
             :key="item.path"
             :class="{ active: $route.path === item.path }"
             @click="goPage(item.path)"
-          >{{ item.text }}</li>
+          >
+            {{ item.text }}
+          </li>
         </ul>
       </div>
 
       <div class="r_box">
-        <div
-          class="connext_btn"
-          @click="conecWallet"
-        >{{ interceptAccount !== "..." ? interceptAccount : "Connect" }}</div>
+        <div class="connext_btn" @click="conecWallet">
+          {{ interceptAccount !== "..." ? interceptAccount : "Connect" }}
+        </div>
       </div>
       <template>
         <div v-if="menuStatus" class="menu-icon" @click="showMenu"></div>
@@ -47,12 +50,12 @@ export default {
       menuList: [
         { text: "表紙", path: "/index" },
         // { text: "カードストア", path: "/index" },
-        { text: "白書", path: "/whitepaper" }
-        // { text: "SWAP", path: "/swap" },
+        { text: "カードストア", path: "/cardShop" },
+        { text: "白書", path: "/whitepaper" },
         // { text: "捐赠", path: "/donate" },
         // { text: "分红", path: "/dividends" },
       ],
-      menuStatus: true
+      menuStatus: true,
     };
   },
   computed: {
@@ -64,7 +67,7 @@ export default {
             account.length
           )}`
         : "";
-    }
+    },
   },
   created() {},
   mounted() {},
@@ -79,9 +82,9 @@ export default {
     goPage(path) {
       this.menuStatus = true;
       this.$router.push(path);
-    }
+    },
   },
-  components: {}
+  components: {},
 };
 </script>
 
