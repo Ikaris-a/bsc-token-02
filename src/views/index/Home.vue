@@ -15,6 +15,7 @@
           スマートチェーン
         </p>
       </div>
+      <div class="rank-container"></div>
       <div class="container">
         <template v-for="(item, index) in dataConfig">
           <CardItem :key="index" :dataItem="item"></CardItem>
