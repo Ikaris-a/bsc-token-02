@@ -8,11 +8,11 @@ import cardShop from "./../views/index/cardShop.vue";
 Vue.use(VueRouter);
 
 const routes = [
-  // {
-  //   path: "/",
-  //   name: "Index",
-  //   redirect: "/index",
-  // },
+  {
+    path: "/",
+    name: "Index",
+    redirect: "/index",
+  },
   {
     path: "/index",
     name: "Home",
