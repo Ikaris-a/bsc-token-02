@@ -5,6 +5,7 @@
         <img src="../img/new/header.png" alt />
       </div>
       <div class="my-card-container width_1200">
+        <div></div>
         <ul>
           <li class="r">
             <img src="../img/cardList/1.png" alt />
