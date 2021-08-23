@@ -7,22 +7,21 @@
       <div class="card-shop-container">
         <!-- <img src="../img/new/card_shop.png" alt /> -->
       </div>
-
       <div class="my-card-container width_1200">
         <ul>
-          <li>
+          <li class="r">
             <img src="../img/cardList/1.png" alt />
             <div>ヤキローブ</div>
           </li>
-          <li>
+          <li class="s">
             <img src="../img/cardList/2.png" alt />
             <div>テンシンハン</div>
           </li>
-          <li>
+          <li class="ssr">
             <img src="../img/cardList/3.png" alt />
             <div>カカロット</div>
           </li>
-          <li>
+          <li class="ss">
             <img src="../img/cardList/4.png" alt />
             <div>タートルフェアリー</div>
           </li>
@@ -294,6 +293,37 @@ export default {
       width: 200px;
       padding: 0 0.5%;
       position: relative;
+      &::before {
+        content: "";
+        display: inline-block;
+        width: 80px;
+        height: 80px;
+        position: absolute;
+      }
+      &.r {
+        &::before {
+          background: url(./../img/level/r.png) no-repeat;
+          background-size: 100% auto;
+        }
+      }
+      &.s {
+        &::before {
+          background: url(./../img/level/s.png) no-repeat;
+          background-size: 100% auto;
+        }
+      }
+      &.ss {
+        &::before {
+          background: url(./../img/level/ss.png) no-repeat;
+          background-size: 100% auto;
+        }
+      }
+      &.ssr {
+        &::before {
+          background: url(./../img/level/ssr.png) no-repeat;
+          background-size: 100% auto;
+        }
+      }
       img {
         width: 100%;
       }
@@ -318,7 +348,7 @@ export default {
   }
   cursor: pointer;
 }
-.card-shop-container{
+.card-shop-container {
   height: 800px;
   background: url(../img/new/card_shop_ja.png) no-repeat;
   background-size: 100% auto;
