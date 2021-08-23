@@ -5,11 +5,11 @@
         <img src="../img/new/header.png" alt />
       </div>
       <div class="my-card-container width_1200">
-        <img src="../img/new/my_card_title.png" alt />
+        <div></div>
         <ul>
           <li>
             <img src="../img/cardList/1.png" alt />
-             <div>ヤキローブ</div>
+            <div>ヤキローブ</div>
           </li>
           <li>
             <img src="../img/cardList/2.png" alt />
@@ -36,17 +36,6 @@
           <li>0x28e96f3fe5c3415b3024719c5c53fa9e27369083 <span>80</span></li>
         </ul>
       </div>
-      <!-- <div class="card-shop-container">
-        <img src="../img/new/card_shop.png" alt />
-      </div> -->
-
-      <!-- <div class="title-info ti-1 width_1200">
-        <img src="../img/fs_002.png" alt />
-        <p>
-          特別なカード、1つの財布が7枚のカードを集めます、そしてあなたは主張することができます
-          7日間連続のトークン
-        </p>
-      </div> -->
       <div class="title-info width_1200">
         <h2>トークンエコノミー</h2>
         <ul class="te">
@@ -245,8 +234,7 @@ export default {
 
 <style scoped lang="less">
 /* Animate Background Image */
-.header-container,
-.card-shop-container {
+.header-container {
   img {
     width: 100%;
   }
@@ -254,8 +242,12 @@ export default {
 }
 
 .my-card-container {
-  & > img {
+  & > div {
     width: 30%;
+    height: 100px;
+    display: inline-block;
+    background: url(../img/new/my_card_title_ja.png) no-repeat;
+    background-size: 100% auto;
   }
   ul {
     width: 100%;
@@ -291,7 +283,7 @@ export default {
   margin: 0 auto;
   margin-top: 100px;
   height: 600px;
-  background: url(./../img/new/rank.png) no-repeat;
+  background: url(./../img/new/rank_ja.png) no-repeat;
   background-size: 100% auto;
   ul {
     margin-top: 110px;

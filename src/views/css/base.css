@@ -9,7 +9,7 @@ body {
   height: 100%;
   background: url(../img/bg.png), rgba(0, 0, 0, 0.9);
   /* background-attachment: fixed; */
-  min-width: 1000px;
+  min-width: 1200px;
   font-size: 62.5%;
   font-family: "game-font", "Arial", sans-serif;
 }

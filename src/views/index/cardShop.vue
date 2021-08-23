@@ -5,7 +5,7 @@
         <img src="../img/new/header.png" alt />
       </div>
       <div class="card-shop-container">
-        <img src="../img/new/card_shop.png" alt />
+        <!-- <img src="../img/new/card_shop.png" alt /> -->
       </div>
 
       <div class="my-card-container width_1200">
@@ -139,12 +139,10 @@
 </template>
 
 <script>
-// import "swiper/swiper-bundle.css";
 import CardItem from "@/components/CardItem";
-// import { Swiper, SwiperSlide } from "vue-awesome-swiper";
+import { contractConfig } from "./../../config/address";
 import CardShop from "./../../config/contracts/CardShop.json";
 import Web3 from "web3";
-// import BigNumber from "bignumber.js";
 export default {
   components: { CardItem },
   data() {
@@ -191,14 +189,16 @@ export default {
         //   urlIndex: "kelin2",
         // },
       ],
-      NETWORK: "https://exchaintestrpc.okex.org",
+      NETWORK: contractConfig.rpc,
       cardShop: {
         contract: "",
-        address: "0x9016c00f020B4030Ca726A5Cb41EF95bc8D0E92b",
+        address: contractConfig.CardShop,
       },
     };
   },
-  async mounted() {},
+  async mounted() {
+    console.log(contractConfig, "======");
+  },
   methods: {
     async lottery() {
       console.log(333);
@@ -317,6 +317,11 @@ export default {
     width: 100%;
   }
   cursor: pointer;
+}
+.card-shop-container{
+  height: 800px;
+  background: url(../img/new/card_shop_ja.png) no-repeat;
+  background-size: cover;
 }
 ::-webkit-scrollbar {
   display: none;

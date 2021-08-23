@@ -2,7 +2,7 @@
   <div class="header">
     <div class="content width_1200">
       <div class="l_box">
-        <div class="logo">ドラゴンボール(Dragon Ball)</div>
+        <div class="logo"><img src="./img/logo.png" alt /></div>
         <ul class="menu-container web-menu">
           <li
             class="item"
@@ -89,6 +89,11 @@ export default {
 </script>
 
 <style scoped lang="less">
+.logo {
+  img {
+    width: 105px;
+  }
+}
 .header {
   height: 68px;
   width: 100%;
