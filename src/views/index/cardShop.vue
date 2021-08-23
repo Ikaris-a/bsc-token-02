@@ -321,7 +321,7 @@ export default {
 .card-shop-container{
   height: 800px;
   background: url(../img/new/card_shop_ja.png) no-repeat;
-  background-size: cover;
+  background-size: 100% auto;
 }
 ::-webkit-scrollbar {
   display: none;
