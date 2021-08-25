@@ -34,30 +34,11 @@
       </div>
       <div class="title-info ti-1 width_1200">
         <img src="../img/fs_002.png" alt />
-        <!-- <h2>ドラゴンボールカード</h2> -->
         <p>
           特別なカード、1つの財布が7枚のカードを集めます、そしてあなたは主張することができます
           7日間連続のトークン
         </p>
       </div>
-      <!-- <div class="specal-card">
-        <img
-          class="animate__animated animate__rotateIn"
-          src="../../components/card/ball_1.png"
-          alt
-        />
-        <img src="../../components/card/ball_2.png" alt />
-        <img src="../../components/card/ball_3.png" alt />
-        <img src="../../components/card/ball_4.png" alt />
-        <img src="../../components/card/ball_5.png" alt />
-        <img src="../../components/card/ball_6.png" alt />
-        <img src="../../components/card/ball_7.png" alt />
-      </div> -->
-      <!-- <div class="container">
-        <template v-for="index in dataConfig">
-          <div class="lottery" :key="index"></div>
-        </template>
-      </div>-->
       <div class="title-info width_1200">
         <h2>DBFZ Token</h2>
         <div>
@@ -73,6 +54,7 @@
         class="lottery"
       ></div>
       <div
+        @click="exchangeCard"
         v-on:mouseover="changeActive($event)"
         v-on:mouseout="removeActive($event)"
         class="lottery"
@@ -141,11 +123,13 @@
 import CardItem from "@/components/CardItem";
 import { contractConfig } from "./../../config/address";
 import CardShop from "./../../config/contracts/CardShop.json";
+import Exchange from "./../../config/contracts/Exchange.json";
 import Web3 from "web3";
 export default {
   components: { CardItem },
   data() {
     return {
+      defaultAccount: "",
       dataConfig: [
         {
           name: "カカロット",
@@ -167,56 +151,80 @@ export default {
           desc: "",
           urlIndex: "dende",
         },
-        // {
-        //   name: "克林",
-        //   desc: "多林寺的弟子",
-        //   urlIndex: "kelin",
-        // },
-        // {
-        //   name: "北界王",
-        //   desc: "管理北银河的神",
-        //   urlIndex: "beijiewang",
-        // },
-        // {
-        //   name: "******",
-        //   desc: "",
-        //   urlIndex: "kelin1",
-        // },
-        // {
-        //   name: "******",
-        //   desc: "",
-        //   urlIndex: "kelin2",
-        // },
       ],
       NETWORK: contractConfig.rpc,
       cardShop: {
         contract: "",
         address: contractConfig.CardShop,
       },
+      exchange: { contract: "", address: contractConfig.Exchange },
     };
   },
   async mounted() {
-    console.log(contractConfig, "======");
+    await this.initWeb3();
+    await this.mountedFunc();
   },
   methods: {
     async lottery() {
-      console.log(333);
       await this.initContract();
     },
+    async exchangeCard() {
+      this.exchange.contract = new window.web3.eth.Contract(
+        Exchange.abi,
+        this.exchange.address
+      );
+      const account = await this.$store.state.defaultAccount;
+      console.log(this.exchange.contract, "222=====");
+      this.exchange.contract.methods
+        .redeemed("10141522758023257062239111549884")
+        .send({ from: account,gas: 200000 })
+        .then(function (res) {
+          console.log(res, "=====");
+        });
+    },
     async initContract() {
-      await this.initWeb3();
-      this.web3 = new Web3(new Web3.providers.HttpProvider(this.NETWORK));
-      this.cardShop.contract = new this.web3.eth.Contract(
+      this.cardShop.contract = new window.web3.eth.Contract(
         CardShop.abi,
         this.cardShop.address
       );
-
       const account = await this.$store.state.defaultAccount;
-      const input = await this.cardShop.contract.methods
+      console.log(this.defaultAccount, "222=====");
+      this.cardShop.contract.methods
         .buy("DBFZ")
-        .encodeABI();
-      const res = await this._promise(account, this.cardShop.address, input);
-      console.log(res, "res========");
+        .send({ from: account })
+        .then(function (res) {
+          console.log(res, "=====");
+        });
+    },
+    async mountedFunc() {
+      await this.initWeb3();
+      console.log(ethereum);
+      let ethereum = window.ethereum;
+      let web3 = window.web3;
+      const _that = this;
+      console.log(window.ethereum, "999999");
+      if (ethereum) {
+        try {
+          // metaMask连接钱包的方法
+          const accounts = await ethereum.request({
+            method: "eth_requestAccounts",
+          });
+          // 判断是否已经连接钱包
+          console.log(accounts, "=====111");
+          this.$store.commit("defaultAccountFun", accounts[0]);
+          _that.defaultAccount = accounts[0];
+          if (Array.isArray(accounts) && accounts.length > 0) {
+            web3.eth.defaultAccount = accounts[0];
+            console.log(this.$store.state.defaultAccount, "-------");
+            localStorage.removeItem("walletconnect");
+          }
+          // 此事件是在页面加载时触发的。
+          //如果帐户数组非空，则您已经连接
+          ethereum.on("accountsChanged", this.handleAccountsChanged);
+        } catch (error) {
+          console.log(error, "error");
+        }
+      }
     },
     _promise(from, to, input, value) {
       let web3 = window.web3;
@@ -257,13 +265,15 @@ export default {
       }
       let web3 = window.web3;
       if (typeof web3 !== "undefined") {
-        web3 = new Web3(web3.currentProvider);
-      } else if (window.web3) {
-        // 老版 MetaMask Legacy dapp browsers...
-        web3 = window.web3.currentProvider;
-      } else {
-        web3 = new Web3(new Web3.providers.HttpProvider(this.NETWORK));
+        web3 = new Web3(window.ethereum);
+        console.log(33332212, web3);
       }
+      // else if (window.web3) {
+      //   // 老版 MetaMask Legacy dapp browsers...
+      //   web3 = window.web3.currentProvider;
+      // } else {
+      //   web3 = new Web3(new Web3.providers.HttpProvider(this.NETWORK));
+      // }
       window.web3 = web3;
     },
     changeActive($event) {

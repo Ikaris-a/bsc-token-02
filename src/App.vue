@@ -10,6 +10,7 @@
 import "./views/css/base.css";
 import "./views/css/animate.css";
 import Web3 from "web3";
+import { contractConfig } from "./config/address";
 import necABI from "./config/abi.json";
 import Header from "./views/Header.vue";
 import Footer from "./views/Footer.vue";
@@ -17,7 +18,7 @@ export default {
   name: "App",
   data() {
     return {
-      NETWORK_ID: "https://http-testnet.hecochain.com",
+      NETWORK_ID: contractConfig.rpc,
       defaultAccount: "",
       necContract: "",
       contractAddress: "0x9390e410bBD6496072cAFf76A74bdaf013C85410",
@@ -26,20 +27,12 @@ export default {
   },
   components: { Header, Footer },
   async mounted() {
+        await this.initWeb3();
     await this.mountedFunc();
-    await this.upList();
   },
   created() {},
   computed: {},
   methods: {
-    async upList() {
-      await this.initContract();
-      const address = await this.necContract.methods
-        .getUpList(this.defaultAccount)
-        .call();
-      this.addressList = address;
-      console.log(address, "=======");
-    },
     async bindUpAddress() {
       await this.initContract();
       console.log(this.necContract);
@@ -63,7 +56,7 @@ export default {
               value: 0,
               input: input,
             },
-            function (error, res) {
+            function(error, res) {
               if (!error) {
                 const tval = setInterval(async () => {
                   const tx = await web3.eth.getTransactionReceipt(res);
@@ -93,19 +86,19 @@ export default {
       }, 100);
     },
     handleAccountsChanged(accounts) {
+      const _that = this;
       if (accounts.length === 0) {
         // MetaMask is locked or the user has not connected any accounts
       } else if (accounts[0] !== this.defaultAccount) {
-        this.defaultAccount = accounts[0];
+        _that.defaultAccount = accounts[0];
         this.$store.commit("defaultAccountFun", accounts[0]);
         window.location.reload();
       }
     },
     async mountedFunc() {
-      // await this.initWeb3();
-      console.log(ethereum);
       let ethereum = window.ethereum;
       let web3 = window.web3;
+      const _that = this;
       if (typeof ethereum !== "undefined" && web3) {
         try {
           // metaMask连接钱包的方法
@@ -113,12 +106,10 @@ export default {
             method: "eth_requestAccounts",
           });
           // 判断是否已经连接钱包
-          console.log(accounts, "=====");
           this.$store.commit("defaultAccountFun", accounts[0]);
-          this.defaultAccount = accounts[0];
+          _that.defaultAccount = accounts[0];
           if (Array.isArray(accounts) && accounts.length > 0) {
             web3.eth.defaultAccount = accounts[0];
-            console.log(this.$store.state.defaultAccount, "-------");
             localStorage.removeItem("walletconnect");
           }
           this.initContract();
@@ -136,7 +127,7 @@ export default {
       }
       let web3 = window.web3;
       if (typeof web3 !== "undefined") {
-        web3 = new Web3(web3.currentProvider);
+        web3 = new Web3(window.ethereum);
       } else if (window.web3) {
         // 老版 MetaMask Legacy dapp browsers...
         web3 = window.web3.currentProvider;
