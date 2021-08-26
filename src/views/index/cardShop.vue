@@ -7,6 +7,22 @@
       <div class="card-shop-container">
         <!-- <img src="../img/new/card_shop.png" alt /> -->
       </div>
+      <div class="card-shop-get" @click="lottery">
+        <img src="../img/new/getCard.png" alt />
+      </div>
+      <div class="card-modal" v-if="!loading">
+        <div class="loader">
+          <img
+            id="loading"
+            src="http://www.vitorazevedo.net/external_files/loading_small.png"
+          />
+          <div class="inner one"></div>
+          <div class="inner two"></div>
+          <div class="inner three"></div>
+        </div>
+
+        <div>カード取引、お待ちください</div>
+      </div>
       <div class="my-card-container width_1200">
         <ul>
           <li class="r">
@@ -117,11 +133,14 @@
         </ul>
       </div>
     </div>
+    <!-- <Modal></Modal><NewCardItem v-bind:cardInfo="cardInfo" /> -->
   </div>
 </template>
 
 <script>
 import CardItem from "@/components/CardItem";
+// import Modal from "@/components/Modal";
+// import NewCardItem from "@/components/NewCardItem";
 import { contractConfig } from "./../../config/address";
 import CardShop from "./../../config/contract/CardShop.json";
 import Exchange from "./../../config/contract/Exchange.json";
@@ -133,6 +152,8 @@ export default {
   data() {
     return {
       defaultAccount: "",
+      cardInfo: { name: 123, level: "r", hero: "hero-1" },
+      loading: false,
       dataConfig: [
         {
           name: "カカロット",
@@ -192,13 +213,9 @@ export default {
         this.exchange.address
       );
       const account = await this.$store.state.defaultAccount;
-      console.log(this.exchange.contract, "222=====");
       this.exchange.contract.methods
         .exchange("1")
-        .send({ from: account, gas: 200000 })
-        .then(function (res) {
-          console.log(res, "=====");
-        });
+        .send({ from: account, gas: 200000 });
     },
     async initContract() {
       this.cardShop.contract = new window.web3.eth.Contract(
@@ -210,34 +227,26 @@ export default {
         Token.abi,
         this.tokenContract.address
       );
-      console.log(
-        this.tokenContract.contract.methods,
-        window.web3.utils.toWei("10000"),
-        "===="
-      );
       const input = this.tokenContract.contract.methods
         .approve(this.cardShop.address, window.web3.utils.toWei("10000"))
         .encodeABI();
-      const approveRes = await this._promise(
-        account,
-        this.tokenContract.address,
-        input
-      );
-      console.log(approveRes, "====");
+      await this._promise(account, this.tokenContract.address, input);
+      const _that = this;
+      _that.loading = true;
       this.cardShop.contract.methods
         .buy("DBFZ")
         .send({ from: account })
         .then(function (res) {
-          console.log(res, "=====");
+          console.log(res,"dbfz-------res")
+          _that.loading = false;
+          _that.cardInfo = res.events.Buy;
         });
     },
     async mountedFunc() {
       await this.initWeb3();
-      console.log(ethereum);
       let ethereum = window.ethereum;
       let web3 = window.web3;
       const _that = this;
-      console.log(window.ethereum, "999999");
       if (ethereum) {
         try {
           // metaMask连接钱包的方法
@@ -245,12 +254,10 @@ export default {
             method: "eth_requestAccounts",
           });
           // 判断是否已经连接钱包
-          console.log(accounts, "=====111");
           this.$store.commit("defaultAccountFun", accounts[0]);
           _that.defaultAccount = accounts[0];
           if (Array.isArray(accounts) && accounts.length > 0) {
             web3.eth.defaultAccount = accounts[0];
-            console.log(this.$store.state.defaultAccount, "-------");
             localStorage.removeItem("walletconnect");
           }
           // 此事件是在页面加载时触发的。
@@ -301,14 +308,7 @@ export default {
       let web3 = window.web3;
       if (typeof web3 !== "undefined") {
         web3 = new Web3(window.ethereum);
-        console.log(33332212, web3);
       }
-      // else if (window.web3) {
-      //   // 老版 MetaMask Legacy dapp browsers...
-      //   web3 = window.web3.currentProvider;
-      // } else {
-      //   web3 = new Web3(new Web3.providers.HttpProvider(this.NETWORK));
-      // }
       window.web3 = web3;
     },
     changeActive($event) {
@@ -324,7 +324,113 @@ export default {
 
 <style scoped lang="less">
 /* Animate Background Image */
+@keyframes rotate-one {
+  0% {
+    transform: rotateX(35deg) rotateY(-45deg) rotateZ(0deg);
+  }
+  100% {
+    transform: rotateX(35deg) rotateY(-45deg) rotateZ(360deg);
+  }
+}
 
+@keyframes rotate-two {
+  0% {
+    transform: rotateX(50deg) rotateY(10deg) rotateZ(0deg);
+  }
+  100% {
+    transform: rotateX(50deg) rotateY(10deg) rotateZ(360deg);
+  }
+}
+
+@keyframes rotate-three {
+  0% {
+    transform: rotateX(35deg) rotateY(55deg) rotateZ(0deg);
+  }
+  100% {
+    transform: rotateX(35deg) rotateY(55deg) rotateZ(360deg);
+  }
+}
+.loader {
+  position: absolute;
+  width: 220px;
+  height: 220px;
+  display: inline-block;
+  left: 50%;
+  top: 0;
+  transform: translateX(-50%);
+}
+
+.inner {
+  position: absolute;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+
+.inner.one {
+  left: 0%;
+  top: 0%;
+  animation: rotate-one 1s linear infinite;
+  border-bottom: 10px solid #eabb0a;
+}
+
+.inner.two {
+  right: 0%;
+  top: 0%;
+  animation: rotate-two 1s linear infinite;
+  border-right: 10px solid #eabb0a;
+}
+
+.inner.three {
+  right: 0%;
+  bottom: 0%;
+  animation: rotate-three 1s linear infinite;
+  border-top: 10px solid #eabb0a;
+}
+
+.card-modal {
+  font-size: 30px;
+  text-align: center;
+  color: #eae50a;
+  padding-top: 220px;
+  width: 100%;
+  position: relative;
+  // background: rgba(0, 0, 0, 0.5);
+  // position: fixed;
+  // width: 100%;
+  // height: 100%;
+  // left: 0;
+  // top: 0;
+  // z-index: 9999;
+  // img{
+  //   position: absolute;
+  //   top: 20%;
+  //   left: 50%;
+  //   transform: translate(-50%,-50%);
+  // }
+}
+@-webkit-keyframes rotation {
+  from {
+    -webkit-transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(359deg);
+  }
+}
+#loading {
+  -webkit-animation: rotation 2s infinite linear;
+}
+
+.card-shop-get {
+  width: 200px;
+  margin: 0 auto;
+  margin-top: -180px;
+  cursor: pointer;
+  img {
+    width: 100%;
+  }
+}
 .my-card-container {
   & > img {
     width: 30%;

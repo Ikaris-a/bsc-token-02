@@ -96,9 +96,10 @@
 // import "swiper/swiper-bundle.css";
 // import CardItem from "@/components/CardItem";
 // import { Swiper, SwiperSlide } from "vue-awesome-swiper";
-// import CardShop from "./../../config/contracts/CardShop.json";
+import Fighter from "./../../config/contract/Fighter.json";
 import Web3 from "web3";
 // import BigNumber from "bignumber.js";
+import { contractConfig } from "./../../config/address";
 export default {
   // components: { CardItem },
   data() {
@@ -146,32 +147,60 @@ export default {
         // },
       ],
       NETWORK: "https://exchaintestrpc.okex.org",
-      cardShop: {
+      Fighter: {
         contract: "",
-        address: "0x9016c00f020B4030Ca726A5Cb41EF95bc8D0E92b",
+        address: contractConfig.Fighter,
       },
     };
   },
-  async mounted() {},
+  async mounted() {
+    await this.initWeb3();
+    await this.mountedFunc();
+    await this.initContract();
+  },
   methods: {
     async lottery() {
-      console.log(333);
       // await this.initContract();
     },
+    async mountedFunc() {
+      await this.initWeb3();
+      let ethereum = window.ethereum;
+      let web3 = window.web3;
+      const _that = this;
+      if (ethereum) {
+        try {
+          // metaMask连接钱包的方法
+          const accounts = await ethereum.request({
+            method: "eth_requestAccounts",
+          });
+          // 判断是否已经连接钱包
+          this.$store.commit("defaultAccountFun", accounts[0]);
+          _that.defaultAccount = accounts[0];
+          if (Array.isArray(accounts) && accounts.length > 0) {
+            web3.eth.defaultAccount = accounts[0];
+            localStorage.removeItem("walletconnect");
+          }
+          // 此事件是在页面加载时触发的。
+          //如果帐户数组非空，则您已经连接
+          ethereum.on("accountsChanged", this.handleAccountsChanged);
+        } catch (error) {
+          console.log(error, "error");
+        }
+      }
+    },
     async initContract() {
-      // await this.initWeb3();
-      // this.web3 = new Web3(new Web3.providers.HttpProvider(this.NETWORK));
-      // this.cardShop.contract = new this.web3.eth.Contract(
-      //   CardShop.abi,
-      //   this.cardShop.address
-      // );
+      this.Fighter.contract = new window.web3.eth.Contract(
+        Fighter.abi,
+        this.Fighter.address
+      );
+      const account = await this.$store.state.defaultAccount;
 
-      // const account = await this.$store.state.defaultAccount;
-      // const input = await this.cardShop.contract.methods
-      //   .buy("DBFZ")
-      //   .encodeABI();
-      // const res = await this._promise(account, this.cardShop.address, input);
-      // console.log(res, "res========");
+      console.log(account, "address=====");
+      const res = await this.Fighter.contract.methods
+        .getTokenList(account)
+        .call();
+      // const rankList = await this.Fighter.contract.methods.getRanking().call();
+      console.log(res, "res1========");
     },
     _promise(from, to, input, value) {
       let web3 = window.web3;
@@ -212,12 +241,7 @@ export default {
       }
       let web3 = window.web3;
       if (typeof web3 !== "undefined") {
-        web3 = new Web3(web3.currentProvider);
-      } else if (window.web3) {
-        // 老版 MetaMask Legacy dapp browsers...
-        web3 = window.web3.currentProvider;
-      } else {
-        web3 = new Web3(new Web3.providers.HttpProvider(this.NETWORK));
+        web3 = new Web3(window.ethereum);
       }
       window.web3 = web3;
     },
