@@ -125,28 +125,7 @@ export default {
           desc: "",
           urlIndex: "dende",
         },
-        // {
-        //   name: "克林",
-        //   desc: "多林寺的弟子",
-        //   urlIndex: "kelin",
-        // },
-        // {
-        //   name: "北界王",
-        //   desc: "管理北银河的神",
-        //   urlIndex: "beijiewang",
-        // },
-        // {
-        //   name: "******",
-        //   desc: "",
-        //   urlIndex: "kelin1",
-        // },
-        // {
-        //   name: "******",
-        //   desc: "",
-        //   urlIndex: "kelin2",
-        // },
       ],
-      NETWORK: "https://exchaintestrpc.okex.org",
       Fighter: {
         contract: "",
         address: contractConfig.Fighter,
@@ -195,7 +174,6 @@ export default {
       );
       const account = await this.$store.state.defaultAccount;
 
-      console.log(account, "address=====");
       const res = await this.Fighter.contract.methods
         .getTokenList(account)
         .call();
