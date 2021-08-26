@@ -10,7 +10,7 @@
       <div class="card-shop-get" @click="lottery">
         <img src="../img/new/getCard.png" alt />
       </div>
-      <div class="card-modal" v-if="loading">
+      <div class="card-modal" v-if="!loading">
         <div class="loader">
           <img
             id="loading"
