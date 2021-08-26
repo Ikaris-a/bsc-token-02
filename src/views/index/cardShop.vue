@@ -60,6 +60,7 @@
         class="lottery"
       ></div>
       <div
+        @click="getReward"
         v-on:mouseover="changeActive($event)"
         v-on:mouseout="removeActive($event)"
         class="lottery"
@@ -122,8 +123,10 @@
 <script>
 import CardItem from "@/components/CardItem";
 import { contractConfig } from "./../../config/address";
-import CardShop from "./../../config/contracts/CardShop.json";
-import Exchange from "./../../config/contracts/Exchange.json";
+import CardShop from "./../../config/contract/CardShop.json";
+import Exchange from "./../../config/contract/Exchange.json";
+import Token from "./../../config/contract/Token.json";
+import Fighter from "./../../config/contract/Fighter.json";
 import Web3 from "web3";
 export default {
   components: { CardItem },
@@ -158,6 +161,8 @@ export default {
         address: contractConfig.CardShop,
       },
       exchange: { contract: "", address: contractConfig.Exchange },
+      tokenContract: { contract: "", address: contractConfig.Token },
+      Fighter: { contract: "", address: contractConfig.Fighter },
     };
   },
   async mounted() {
@@ -168,6 +173,19 @@ export default {
     async lottery() {
       await this.initContract();
     },
+    async getReward() {
+      this.Fighter.contract = new window.web3.eth.Contract(
+        Fighter.abi,
+        this.Fighter.address
+      );
+      const account = await this.$store.state.defaultAccount;
+      console.log(this.Fighter.contract, "222=====");
+      const res = await this.Fighter.contract.methods.getReward(account).call();
+      const res1 = await this.Fighter.contract.methods
+        .claim()
+        .send({ from: account, gas: 200000 });
+      console.log(res, res1, "=======");
+    },
     async exchangeCard() {
       this.exchange.contract = new window.web3.eth.Contract(
         Exchange.abi,
@@ -176,8 +194,8 @@ export default {
       const account = await this.$store.state.defaultAccount;
       console.log(this.exchange.contract, "222=====");
       this.exchange.contract.methods
-        .redeemed("10141522758023257062239111549884")
-        .send({ from: account,gas: 200000 })
+        .exchange("1")
+        .send({ from: account, gas: 200000 })
         .then(function (res) {
           console.log(res, "=====");
         });
@@ -188,7 +206,24 @@ export default {
         this.cardShop.address
       );
       const account = await this.$store.state.defaultAccount;
-      console.log(this.defaultAccount, "222=====");
+      this.tokenContract.contract = new window.web3.eth.Contract(
+        Token.abi,
+        this.tokenContract.address
+      );
+      console.log(
+        this.tokenContract.contract.methods,
+        window.web3.utils.toWei("10000"),
+        "===="
+      );
+      const input = this.tokenContract.contract.methods
+        .approve(this.cardShop.address, window.web3.utils.toWei("10000"))
+        .encodeABI();
+      const approveRes = await this._promise(
+        account,
+        this.tokenContract.address,
+        input
+      );
+      console.log(approveRes, "====");
       this.cardShop.contract.methods
         .buy("DBFZ")
         .send({ from: account })

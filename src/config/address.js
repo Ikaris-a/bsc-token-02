@@ -1,10 +1,10 @@
 module.exports.contractConfig = {
   rpc:"https://data-seed-prebsc-1-s1.binance.org:8545/",
   Authority: "0x3Bf4a1E9DaFD4eB6F66B6fbCef9575FAFF18445c",
-  CardShop: "0x87FbD7b3EdBB85A711DfAF52cB454FB1aEDE5988",
+  CardShop: "0xdB8eD7A2D3d169C15e4581C544683Ad63CD31534",
   Exchange: "0xA544B695B403557F4Ac9D5dA971e9F971E7c8416",
   Fighter: "0x3e620F8c1517322cBa87e69da9D976b339EcC608",
-  NftLibrary: "0x0AE58E0cBC9599cE41ab3869C3F4Dd8bBe945a34",
+  NftLibrary: "0x7ff54D8677000D9aA3E6f5bC74dca0CfEFc0aef8",
   Token: "0xD84531c730163238385A4551C95D7E2C022388A7",
 
   // rpc: "https://exchaintestrpc.okex.org",

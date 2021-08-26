@@ -96,7 +96,7 @@
 // import "swiper/swiper-bundle.css";
 // import CardItem from "@/components/CardItem";
 // import { Swiper, SwiperSlide } from "vue-awesome-swiper";
-import CardShop from "./../../config/contracts/CardShop.json";
+// import CardShop from "./../../config/contracts/CardShop.json";
 import Web3 from "web3";
 // import BigNumber from "bignumber.js";
 export default {
@@ -156,22 +156,22 @@ export default {
   methods: {
     async lottery() {
       console.log(333);
-      await this.initContract();
+      // await this.initContract();
     },
     async initContract() {
-      await this.initWeb3();
-      this.web3 = new Web3(new Web3.providers.HttpProvider(this.NETWORK));
-      this.cardShop.contract = new this.web3.eth.Contract(
-        CardShop.abi,
-        this.cardShop.address
-      );
+      // await this.initWeb3();
+      // this.web3 = new Web3(new Web3.providers.HttpProvider(this.NETWORK));
+      // this.cardShop.contract = new this.web3.eth.Contract(
+      //   CardShop.abi,
+      //   this.cardShop.address
+      // );
 
-      const account = await this.$store.state.defaultAccount;
-      const input = await this.cardShop.contract.methods
-        .buy("DBFZ")
-        .encodeABI();
-      const res = await this._promise(account, this.cardShop.address, input);
-      console.log(res, "res========");
+      // const account = await this.$store.state.defaultAccount;
+      // const input = await this.cardShop.contract.methods
+      //   .buy("DBFZ")
+      //   .encodeABI();
+      // const res = await this._promise(account, this.cardShop.address, input);
+      // console.log(res, "res========");
     },
     _promise(from, to, input, value) {
       let web3 = window.web3;
