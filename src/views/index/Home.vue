@@ -76,11 +76,10 @@
         </ul>
       </div>
       <div class="specal-card width_1200">
-        <!-- <img
-          class="animate__animated animate__rotateIn"
+        <img
           src="../../components/card/ball_1.png"
           alt
-        /> -->
+        />
         <img src="../../components/card/ball_2.png" alt />
         <img src="../../components/card/ball_3.png" alt />
         <img src="../../components/card/ball_4.png" alt />
