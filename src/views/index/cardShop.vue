@@ -14,7 +14,7 @@
         <div class="loader">
           <img
             id="loading"
-            src="http://www.vitorazevedo.net/external_files/loading_small.png"
+            src="../img/new/loading_small.png"
           />
           <div class="inner one"></div>
           <div class="inner two"></div>
@@ -237,7 +237,7 @@ export default {
         .buy("DBFZ")
         .send({ from: account })
         .then(function (res) {
-          console.log(res,"dbfz-------res")
+          console.log(res, "dbfz-------res");
           _that.loading = false;
           _that.cardInfo = res.events.Buy;
         });
