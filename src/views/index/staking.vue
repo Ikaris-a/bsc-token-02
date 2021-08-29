@@ -4,11 +4,16 @@
       <div class="header-container">
         <img src="../img/new/header.png" alt />
       </div>
+      <div class="staking-container">
+        <img src="../img/ui/GuildWar_Flag01.png" alt />
+        <img src="../img/ui/GuildWar_Flag02.png" alt />
+        <img src="../img/ui/GuildWar_Flag03.png" alt />
+      </div>
       <div class="mining-container">
         <img src="../img/new/mining_bg.png" alt />
         <div class="mining-content">
-          <div>私の戦闘力:&nbsp;&nbsp;{{ myCombatPower }}</div>
-          <div>総戦闘力:&nbsp;&nbsp;{{ totalCombatPower }}</div>
+          <div>総戦闘力:&nbsp;&nbsp;{{ totalCombatPower }} &nbsp;&nbsp;CP</div>
+          <div>私の戦闘力:&nbsp;&nbsp;{{ myCombatPower }} &nbsp;&nbsp;CP</div>
           <div>私の収入:&nbsp;&nbsp;{{ rewardAmount }}&nbsp;&nbsp;DBFZ</div>
         </div>
         <div class="getDbfz" @click="getReward">収入を受け取る</div>
@@ -16,8 +21,7 @@
       <div class="title-info ti-1 width_1200">
         <img src="../img/fs_002.png" alt />
         <p>
-          特別なカード、1つの財布が7枚のカードを集めます、そしてあなたは主張することができます
-          7日間連続のトークン
+          この収入は、マイニングプール全体に対する戦闘力の比率です。年間1000wのDBFZマイニング報酬、カードをDBFZに交換すると、マイニング報酬はなくなります。
         </p>
       </div>
       <div class="title-info width_1200">
@@ -28,29 +32,6 @@
           段階。正式な契約アドレス：
         </div>
       </div>
-      <div
-        @click="lottery"
-        v-on:mouseover="changeActive($event)"
-        v-on:mouseout="removeActive($event)"
-        class="lottery"
-      ></div>
-      <div
-        @click="exchangeCard"
-        v-on:mouseover="changeActive($event)"
-        v-on:mouseout="removeActive($event)"
-        class="lottery"
-      ></div>
-      <div
-        @click="getReward"
-        v-on:mouseover="changeActive($event)"
-        v-on:mouseout="removeActive($event)"
-        class="lottery"
-      ></div>
-      <div
-        v-on:mouseover="changeActive($event)"
-        v-on:mouseout="removeActive($event)"
-        class="lottery"
-      ></div>
 
       <div class="title-info width_1200">
         <h2>私たちのチーム</h2>
@@ -205,7 +186,7 @@ export default {
       this.cardShop.contract.methods
         .buy("DBFZ")
         .send({ from: account })
-        .then(function (res) {
+        .then(function(res) {
           _that.loading = false;
           _that.cardInfo = res.events.Buy.returnValues;
           _that.showModal = true;
@@ -252,7 +233,7 @@ export default {
               input: input,
               // gas: 200000,
             },
-            function (error, res) {
+            function(error, res) {
               if (!error) {
                 console.log(res, "resdata==========");
                 const tval = setInterval(async () => {
