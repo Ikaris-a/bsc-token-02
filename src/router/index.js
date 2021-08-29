@@ -5,8 +5,8 @@ import Home from "./../views/index/Home.vue";
 import whitepaper from "./../views/index/whitepaper.vue";
 import cardShop from "./../views/index/cardShop.vue";
 import Mining from "./../views/index/staking.vue";
+import market from "./../views/index/market.vue";
 Vue.use(VueRouter);
-
 const routes = [
   {
     path: "/",
@@ -37,6 +37,10 @@ const routes = [
     path: "/mining",
     name: "Mining",
     component: Mining,
+  },  {
+    path: "/market",
+    name: "market",
+    component: market,
   },
   // {
   //   path: "/swap",
