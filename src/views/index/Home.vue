@@ -22,13 +22,22 @@
       </div>
       <div class="rank-container">
         <ul>
-          <li>0x18AA6E4D0Cb66787B9e3FCcc75Cf524aF799c73c <span>150</span></li>
-          <li>0xb3f9f61f2dbae19e6df53523cbb248afd0c8529c <span>142</span></li>
-          <li>0xc8dc6da781097a2be9854f69faed10e087da8ad3 <span>136</span></li>
-          <li>0xb3f9f61f2dbae19e6df53523cbb248afd0c8529c <span>119</span></li>
-          <li>0xc8dc6da781097a2be9854f69faed10e087da8ad3 <span>116</span></li>
-          <li>0x066ea6c41058512a16e28685d628b2d666abc88d <span>108</span></li>
-          <li>0x28e96f3fe5c3415b3024719c5c53fa9e27369083 <span>80</span></li>
+          <li>
+            {{ interceptAccount("0xb3f9f61f2dbae19e6df53523cbb248afd0c8529c") }}
+            <span>150</span>
+          </li>
+          <li>
+            {{ interceptAccount("0xc8dc6da781097a2be9854f69faed10e087da8ad3")
+            }}<span>136</span>
+          </li>
+          <li>
+            {{ interceptAccount("0x066ea6c41058512a16e28685d628b2d666abc88d") }}
+            <span>119</span>
+          </li>
+          <li>
+            {{ interceptAccount("0x766ea6c41058512a16e28685d628b2d666abc83d") }}
+            <span>89</span>
+          </li>
         </ul>
       </div>
       <div class="title-info width_1200">
@@ -143,13 +152,20 @@ export default {
     goClime() {
       this.$router.push("/cardShop");
     },
-
+    interceptAccount(account) {
+      return typeof account === "string"
+        ? `${account.substring(0, 4)}...${account.substr(
+            account.length - 4,
+            account.length
+          )}`
+        : "";
+    },
     async changeDBFZ(item) {
       const exchangeContract = new window.web3.eth.Contract(
         Exchange.abi,
         this.exchange.address
       );
-      console.log(exchangeContract,"exchangeContract====")
+      console.log(exchangeContract, "exchangeContract====");
       const account = await this.$store.state.defaultAccount;
       exchangeContract.methods
         .redeemed(item.heroId)
