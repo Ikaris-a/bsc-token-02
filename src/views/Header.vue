@@ -52,7 +52,7 @@ export default {
         // { text: "カードストア", path: "/index" },
         { text: "カードストア", path: "/cardShop" },
         { text: "白書", path: "/whitepaper" },
-        // { text: "捐赠", path: "/donate" },
+        { text: "鉱業", path: "/mining" },
         // { text: "分红", path: "/dividends" },
       ],
       menuStatus: true,

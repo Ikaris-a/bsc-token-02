@@ -4,7 +4,7 @@ import Home from "./../views/index/Home.vue";
 // import Nft from "./../views/index/Nft.vue";
 import whitepaper from "./../views/index/whitepaper.vue";
 import cardShop from "./../views/index/cardShop.vue";
-// import Dividends from "./../views/index/Dividends.vue";
+import Mining from "./../views/index/staking.vue";
 Vue.use(VueRouter);
 
 const routes = [
@@ -28,7 +28,16 @@ const routes = [
     name: "cardShop",
     component: cardShop,
   },
-
+  {
+    path: "/cardShop",
+    name: "cardShop",
+    component: cardShop,
+  },
+  {
+    path: "/mining",
+    name: "Mining",
+    component: Mining,
+  },
   // {
   //   path: "/swap",
   //   name: "Swap",
