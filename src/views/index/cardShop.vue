@@ -10,12 +10,9 @@
       <div class="card-shop-get" @click="lottery">
         <img src="../img/new/getCard.png" alt />
       </div>
-      <div class="card-modal" v-if="!loading">
+      <div class="card-modal" v-if="loading">
         <div class="loader">
-          <img
-            id="loading"
-            src="../img/new/loading_small.png"
-          />
+          <img id="loading" src="../img/new/loading_small.png" />
           <div class="inner one"></div>
           <div class="inner two"></div>
           <div class="inner three"></div>
@@ -133,14 +130,16 @@
         </ul>
       </div>
     </div>
-    <!-- <Modal></Modal><NewCardItem v-bind:cardInfo="cardInfo" /> -->
+    <template v-if="showModal">
+      <Modal><NewCardItem v-bind:cardInfo="cardInfo"/></Modal
+    ></template>
   </div>
 </template>
 
 <script>
 import CardItem from "@/components/CardItem";
-// import Modal from "@/components/Modal";
-// import NewCardItem from "@/components/NewCardItem";
+import Modal from "@/components/Modal";
+import NewCardItem from "@/components/NewCardItem";
 import { contractConfig } from "./../../config/address";
 import CardShop from "./../../config/contract/CardShop.json";
 import Exchange from "./../../config/contract/Exchange.json";
@@ -148,12 +147,13 @@ import Token from "./../../config/contract/Token.json";
 import Fighter from "./../../config/contract/Fighter.json";
 import Web3 from "web3";
 export default {
-  components: { CardItem },
+  components: { CardItem, NewCardItem, Modal },
   data() {
     return {
       defaultAccount: "",
-      cardInfo: { name: 123, level: "r", hero: "hero-1" },
+      cardInfo: { name: 123, quality: "5", heroId: "1" },
       loading: false,
+      showModal: false,
       dataConfig: [
         {
           name: "カカロット",
@@ -200,11 +200,11 @@ export default {
         this.Fighter.address
       );
       const account = await this.$store.state.defaultAccount;
-      console.log(this.Fighter.contract, "222=====");
       const res = await this.Fighter.contract.methods.getReward(account).call();
       const res1 = await this.Fighter.contract.methods
         .claim()
         .send({ from: account, gas: 200000 });
+
       console.log(res, res1, "=======");
     },
     async exchangeCard() {
@@ -236,10 +236,13 @@ export default {
       this.cardShop.contract.methods
         .buy("DBFZ")
         .send({ from: account })
-        .then(function (res) {
-          console.log(res, "dbfz-------res");
+        .then(function(res) {
           _that.loading = false;
-          _that.cardInfo = res.events.Buy;
+          _that.cardInfo = res.events.Buy.returnValues;
+          _that.showModal = true;
+          setTimeout(() => {
+            _that.showModal = false;
+          },3000);
         });
     },
     async mountedFunc() {
@@ -280,7 +283,7 @@ export default {
               input: input,
               // gas: 200000,
             },
-            function (error, res) {
+            function(error, res) {
               if (!error) {
                 console.log(res, "resdata==========");
                 const tval = setInterval(async () => {

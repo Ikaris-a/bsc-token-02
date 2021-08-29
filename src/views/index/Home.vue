@@ -5,25 +5,15 @@
         <img src="../img/new/header.png" alt />
       </div>
       <div class="my-card-container width_1200">
-        <div></div>
-        <ul>
-          <li class="r">
-            <img src="../img/cardList/1.png" alt />
-            <div>ヤキローブ</div>
-          </li>
-          <li class="s">
-            <img src="../img/cardList/2.png" alt />
-            <div>テンシンハン</div>
-          </li>
-          <li class="ssr">
-            <img src="../img/cardList/3.png" alt />
-            <div>カカロット</div>
-          </li>
-          <li class="ss">
-            <img src="../img/cardList/4.png" alt />
-            <div>タートルフェアリー</div>
-          </li>
-        </ul>
+        <div class="title"></div>
+        <div v-if="cardInfoList.length > 0">
+          <template v-for="(item, index) in cardInfoList">
+            <NewCardItem :cardInfo="item" :key="index" />
+          </template>
+        </div>
+        <div v-else>
+          <div class="go-clime" @click="goClime">カードを引く</div>
+        </div>
       </div>
       <div class="rank-container">
         <ul>
@@ -75,11 +65,9 @@
           </li>
         </ul>
       </div>
+
       <div class="specal-card width_1200">
-        <img
-          src="../../components/card/ball_1.png"
-          alt
-        />
+        <img src="../../components/card/ball_1.png" alt />
         <img src="../../components/card/ball_2.png" alt />
         <img src="../../components/card/ball_3.png" alt />
         <img src="../../components/card/ball_4.png" alt />
@@ -95,12 +83,13 @@
 // import "swiper/swiper-bundle.css";
 // import CardItem from "@/components/CardItem";
 // import { Swiper, SwiperSlide } from "vue-awesome-swiper";
+import NewCardItem from "@/components/NewCardItem";
 import Fighter from "./../../config/contract/Fighter.json";
 import Web3 from "web3";
 // import BigNumber from "bignumber.js";
 import { contractConfig } from "./../../config/address";
 export default {
-  // components: { CardItem },
+  components: { NewCardItem },
   data() {
     return {
       dataConfig: [
@@ -125,6 +114,12 @@ export default {
           urlIndex: "dende",
         },
       ],
+      cardInfo: {
+        heroId: "1",
+        quality: "5",
+        name: "123",
+      },
+      cardInfoList: [],
       Fighter: {
         contract: "",
         address: contractConfig.Fighter,
@@ -132,11 +127,15 @@ export default {
     };
   },
   async mounted() {
+    console.log(33333);
     await this.initWeb3();
     await this.mountedFunc();
     await this.initContract();
   },
   methods: {
+    goClime() {
+      this.$router.push("/cardShop");
+    },
     async lottery() {
       // await this.initContract();
     },
@@ -177,6 +176,7 @@ export default {
         .getTokenList(account)
         .call();
       // const rankList = await this.Fighter.contract.methods.getRanking().call();
+      this.cardInfoList = res;
       console.log(res, "res1========");
     },
     _promise(from, to, input, value) {
@@ -191,7 +191,7 @@ export default {
               input: input,
               // gas: 200000,
             },
-            function (error, res) {
+            function(error, res) {
               if (!error) {
                 console.log(res, "resdata==========");
                 const tval = setInterval(async () => {
@@ -241,9 +241,20 @@ export default {
   }
   cursor: pointer;
 }
-
+.go-clime {
+  background: url(../img/new/btn.png) no-repeat;
+  display: inline-block;
+  font-size: 30px;
+  padding: 0 40px;
+  color: #f1d723;
+  font-weight: bold;
+  height: 80px;
+  cursor: pointer;
+  line-height: 80px;
+  background-size: 100% 100%;
+}
 .my-card-container {
-  & > div {
+  & > .title {
     width: 30%;
     height: 100px;
     display: inline-block;
