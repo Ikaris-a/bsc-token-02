@@ -20,7 +20,23 @@ export default {
   },
   computed: {
     classObject: function() {
-      const key = "hero-" + this.cardInfo.heroId;
+      console.log(this.cardInfo.heroId, "this.cardInfo.heroId====");
+      let heroId = 0;
+      //七龙珠1～7。SSR 8～13。(SR，S, R,14～34)
+      if (this.cardInfo.quality === "1") {//LZ
+        heroId = this.cardInfo.heroId * 1;
+      }
+      if (this.cardInfo.quality === "2") {//SSR 8-12
+        heroId = this.cardInfo.heroId * 1 + 7;
+      }
+      if (//SR  1
+        this.cardInfo.quality === "3" ||
+        this.cardInfo.quality === "4" ||
+        this.cardInfo.quality === "5"
+      ) {
+        heroId = this.cardInfo.heroId * 1 + 12;
+      }
+      const key = "hero-" + heroId;
       return {
         [key]: true,
         r: this.cardInfo.quality === "5",
@@ -65,9 +81,9 @@ export default {
     top: 0 !important;
   }
   &.hero-1::after {
-    background: url(./../views/img/cardList/5.png) no-repeat;
-    background-size: 140px 140px;
-    background-position: center 20px;
+    background: url(./../components/card/ball_1.png) no-repeat;
+    background-size: 80px 80px;
+    background-position: center 40px;
     content: "";
     width: 100%;
     height: 200px;
@@ -77,9 +93,9 @@ export default {
   }
 
   &.hero-2::after {
-    background: url(./../views/img/cardList/5.png) no-repeat;
-    background-size: 140px 140px;
-    background-position: center 20px;
+    background: url(./../components/card/ball_2.png) no-repeat;
+    background-size: 80px 80px;
+    background-position: center 40px;
     content: "";
     width: 100%;
     height: 200px;
@@ -88,9 +104,9 @@ export default {
     top: 0;
   }
   &.hero-3::after {
-    background: url(./../views/img/cardList/5.png) no-repeat;
-    background-size: 140px 140px;
-    background-position: center 20px;
+    background: url(./../components/card/ball_3.png) no-repeat;
+    background-size: 80px 80px;
+    background-position: center 40px;
     content: "";
     width: 100%;
     height: 200px;
@@ -99,9 +115,9 @@ export default {
     top: 0;
   }
   &.hero-4::after {
-    background: url(./../views/img/cardList/5.png) no-repeat;
-    background-size: 140px 140px;
-    background-position: center 20px;
+    background: url(./../components/card/ball_4.png) no-repeat;
+    background-size: 80px 80px;
+    background-position: center 40px;
     content: "";
     width: 100%;
     height: 200px;
@@ -110,9 +126,9 @@ export default {
     top: 0;
   }
   &.hero-5::after {
-    background: url(./../views/img/cardList/5.png) no-repeat;
-    background-size: 140px 140px;
-    background-position: center 20px;
+    background: url(./../components/card/ball_5.png) no-repeat;
+    background-size: 80px 80px;
+    background-position: center 40px;
     content: "";
     width: 100%;
     height: 200px;
@@ -121,9 +137,9 @@ export default {
     top: 0;
   }
   &.hero-6::after {
-    background: url(./../views/img/cardList/5.png) no-repeat;
-    background-size: 140px 140px;
-    background-position: center 20px;
+    background: url(./../components/card/ball_6.png) no-repeat;
+    background-size: 80px 80px;
+    background-position: center 40px;
     content: "";
     width: 100%;
     height: 200px;
@@ -132,9 +148,9 @@ export default {
     top: 0;
   }
   &.hero-7::after {
-    background: url(./../views/img/cardList/7.png) no-repeat;
-    background-size: 140px 140px;
-    background-position: center 20px;
+    background: url(./../components/card/ball_7.png) no-repeat;
+    background-size: 80px 80px;
+    background-position: center 40px;
     content: "";
     width: 100%;
     height: 200px;
@@ -373,7 +389,7 @@ export default {
     left: 0;
     top: 0;
   }
-  &.hero-28::after {
+  &.hero-29::after {
     background: url(./../views/img/cardList/5.png) no-repeat;
     background-size: 140px 140px;
     background-position: center 20px;

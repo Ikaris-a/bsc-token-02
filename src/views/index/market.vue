@@ -7,9 +7,6 @@
       <div class="card-shop-container">
         <!-- <img src="../img/new/card_shop.png" alt /> -->
       </div>
-      <div class="card-shop-get" @click="lottery">
-        <img src="../img/new/getCard.png" alt />
-      </div>
       <div class="card-modal" v-if="loading">
         <div class="loader">
           <img id="loading" src="../img/new/loading_small.png" />
@@ -17,10 +14,9 @@
           <div class="inner two"></div>
           <div class="inner three"></div>
         </div>
-
         <div>カード取引、お待ちください</div>
       </div>
-      <div class="my-card-container width_1200">
+      <!-- <div class="my-card-container width_1200">
         <ul>
           <li class="r">
             <img src="../img/cardList/1.png" alt />
@@ -39,53 +35,7 @@
             <div>タートルフェアリー</div>
           </li>
         </ul>
-      </div>
-
-      <div class="title-info width_1200">
-        <h2>私たちのチーム</h2>
-        <ul class="te team">
-          <li>
-            <div class="thumb-icon">
-              <img src="../../components/card/character_13.png" alt />
-            </div>
-            <div>ひなた</div>
-            <p>
-              事業開発ディレクター
-              <br />@やまと <br />@ひろと (VRゲーム)
-            </p>
-          </li>
-          <li>
-            <div class="thumb-icon">
-              <img src="../../components/card/character_14.png" alt />
-            </div>
-            <div>ドロシー</div>
-            <p>
-              最高執行責任者
-              <br />ゲームプロデューサー
-            </p>
-          </li>
-          <li>
-            <div class="thumb-icon">
-              <img src="../../components/card/character_15.png" alt />
-            </div>
-            <div>パール</div>
-            <p>
-              発達
-              <br />プログラムマネージャー
-            </p>
-          </li>
-          <li>
-            <div class="thumb-icon">
-              <img src="../../components/card/character_16.png" alt />
-            </div>
-            <div>ウォレス</div>
-            <p>
-              ゲームプロダクトマネージャー
-              <br />
-            </p>
-          </li>
-        </ul>
-      </div>
+      </div> -->
     </div>
     <template v-if="showModal">
       <Modal><NewCardItem v-bind:cardInfo="cardInfo"/></Modal

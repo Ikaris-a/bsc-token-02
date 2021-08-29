@@ -228,7 +228,7 @@ export default {
         this.tokenContract.address
       );
       const input = this.tokenContract.contract.methods
-        .approve(this.cardShop.address, window.web3.utils.toWei("10000"))
+        .approve(this.cardShop.address, window.web3.utils.toWei("1000"))
         .encodeABI();
       await this._promise(account, this.tokenContract.address, input);
       const _that = this;

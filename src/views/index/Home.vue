@@ -8,7 +8,12 @@
         <div class="title"></div>
         <div v-if="cardInfoList.length > 0">
           <template v-for="(item, index) in cardInfoList">
-            <NewCardItem :cardInfo="item" :key="index" />
+            <div class="my-card-item" :key="index">
+              <NewCardItem :cardInfo="item" />
+              <div class="changeDBFZ" @click="changeDBFZ(item)">
+                両替{{ (item.amount * item.rate) / 100 }}DBFZ
+              </div>
+            </div>
           </template>
         </div>
         <div v-else>
@@ -86,12 +91,14 @@
 import NewCardItem from "@/components/NewCardItem";
 import Fighter from "./../../config/contract/Fighter.json";
 import Web3 from "web3";
+import Exchange from "./../../config/contract/Exchange.json";
 // import BigNumber from "bignumber.js";
 import { contractConfig } from "./../../config/address";
 export default {
   components: { NewCardItem },
   data() {
     return {
+      exchange: { contract: "", address: contractConfig.Exchange },
       dataConfig: [
         {
           name: "カカロット",
@@ -136,8 +143,17 @@ export default {
     goClime() {
       this.$router.push("/cardShop");
     },
-    async lottery() {
-      // await this.initContract();
+
+    async changeDBFZ(item) {
+      const exchangeContract = new window.web3.eth.Contract(
+        Exchange.abi,
+        this.exchange.address
+      );
+      console.log(exchangeContract,"exchangeContract====")
+      const account = await this.$store.state.defaultAccount;
+      exchangeContract.methods
+        .redeemed(item.heroId)
+        .send({ from: account, gas: 200000 });
     },
     async mountedFunc() {
       await this.initWeb3();
@@ -222,19 +238,24 @@ export default {
       }
       window.web3 = web3;
     },
-    changeActive($event) {
-      $event.currentTarget.className =
-        "lottery animate__animated animate__flip";
-    },
-    removeActive($event) {
-      $event.currentTarget.className = "lottery";
-    },
   },
 };
 </script>
 
 <style scoped lang="less">
 /* Animate Background Image */
+.my-card-item {
+  display: inline-block;
+  .changeDBFZ {
+    height: 70px;
+    line-height: 70px;
+    font-size: 22px;
+    color: #f1d723;
+    background: url(../img/new/btn.png) no-repeat;
+    background-size: 100% 100%;
+    cursor: pointer;
+  }
+}
 .header-container {
   img {
     width: 100%;
@@ -490,16 +511,6 @@ export default {
       -webkit-transform: translate3d(0, 0, 0);
       -webkit-backface-visibility: hidden;
     }
-  }
-
-  .lottery {
-    width: 258px;
-    height: 375px;
-    margin: 0 10px;
-    cursor: pointer;
-    display: inline-block;
-    background: url(../../views/img/card/fs_0001.jpg) no-repeat;
-    background-size: 100% auto;
   }
   .ti-1 {
     img {
