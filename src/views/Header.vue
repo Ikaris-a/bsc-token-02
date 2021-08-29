@@ -49,11 +49,10 @@ export default {
     return {
       menuList: [
         { text: "表紙", path: "/index" },
-        // { text: "カードストア", path: "/index" },
         { text: "カードストア", path: "/cardShop" },
         { text: "白書", path: "/whitepaper" },
         { text: "鉱業", path: "/mining" },
-        // { text: "分红", path: "/dividends" },
+        { text: "マーケットプレイス", path: "/market" },
       ],
       menuStatus: true,
     };

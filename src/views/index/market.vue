@@ -40,49 +40,6 @@
           </li>
         </ul>
       </div>
-      <div class="container">
-        <template v-for="(item, index) in dataConfig">
-          <CardItem :key="index" :dataItem="item"></CardItem>
-        </template>
-      </div>
-      <div class="title-info ti-1 width_1200">
-        <img src="../img/fs_002.png" alt />
-        <p>
-          特別なカード、1つの財布が7枚のカードを集めます、そしてあなたは主張することができます
-          7日間連続のトークン
-        </p>
-      </div>
-      <div class="title-info width_1200">
-        <h2>DBFZ Token</h2>
-        <div>
-          DBFZトークンはゲーム内の主要通貨です。それは取引に使用されます、
-          主に最初に交換し、彼らの特別な資質を向上させる
-          段階。正式な契約アドレス：
-        </div>
-      </div>
-      <div
-        @click="lottery"
-        v-on:mouseover="changeActive($event)"
-        v-on:mouseout="removeActive($event)"
-        class="lottery"
-      ></div>
-      <div
-        @click="exchangeCard"
-        v-on:mouseover="changeActive($event)"
-        v-on:mouseout="removeActive($event)"
-        class="lottery"
-      ></div>
-      <div
-        @click="getReward"
-        v-on:mouseover="changeActive($event)"
-        v-on:mouseout="removeActive($event)"
-        class="lottery"
-      ></div>
-      <div
-        v-on:mouseover="changeActive($event)"
-        v-on:mouseout="removeActive($event)"
-        class="lottery"
-      ></div>
 
       <div class="title-info width_1200">
         <h2>私たちのチーム</h2>
@@ -137,7 +94,6 @@
 </template>
 
 <script>
-import CardItem from "@/components/CardItem";
 import Modal from "@/components/Modal";
 import NewCardItem from "@/components/NewCardItem";
 import { contractConfig } from "./../../config/address";
@@ -147,7 +103,7 @@ import Token from "./../../config/contract/Token.json";
 import Fighter from "./../../config/contract/Fighter.json";
 import Web3 from "web3";
 export default {
-  components: { CardItem, NewCardItem, Modal },
+  components: { NewCardItem, Modal },
   data() {
     return {
       defaultAccount: "",
@@ -242,7 +198,7 @@ export default {
           _that.showModal = true;
           setTimeout(() => {
             _that.showModal = false;
-          },3000);
+          }, 3000);
         });
     },
     async mountedFunc() {
