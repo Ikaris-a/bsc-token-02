@@ -98,16 +98,16 @@
 // import CardItem from "@/components/CardItem";
 // import { Swiper, SwiperSlide } from "vue-awesome-swiper";
 import NewCardItem from "@/components/NewCardItem";
-import Fighter from "./../../config/contract/Fighter.json";
+// import Fighter from "./../../config/contract/Fighter.json";
 import Web3 from "web3";
-import Exchange from "./../../config/contract/Exchange.json";
+import CardReword from "./../../config/contract/CardReward.json";
 // import BigNumber from "bignumber.js";
 import { contractConfig } from "./../../config/address";
 export default {
   components: { NewCardItem },
   data() {
     return {
-      exchange: { contract: "", address: contractConfig.Exchange },
+      // cardReword: { contract: "", address: contractConfig.CardReword },
       dataConfig: [
         {
           name: "カカロット",
@@ -143,7 +143,6 @@ export default {
     };
   },
   async mounted() {
-    console.log(33333);
     await this.initWeb3();
     await this.mountedFunc();
     await this.initContract();
@@ -162,13 +161,13 @@ export default {
     },
     async changeDBFZ(item) {
       const exchangeContract = new window.web3.eth.Contract(
-        Exchange.abi,
-        this.exchange.address
+        CardReword.abi,
+        contractConfig.CardReword
       );
-      console.log(exchangeContract, "exchangeContract====");
+      console.log(exchangeContract,item, "exchangeContract====");
       const account = await this.$store.state.defaultAccount;
       exchangeContract.methods
-        .redeemed(item.heroId)
+        .redeemed(item.tokenId)
         .send({ from: account, gas: 200000 });
     },
     async mountedFunc() {
@@ -198,18 +197,19 @@ export default {
       }
     },
     async initContract() {
-      this.Fighter.contract = new window.web3.eth.Contract(
-        Fighter.abi,
-        this.Fighter.address
+      console.log(333444);
+      const CardRewordContract = new window.web3.eth.Contract(
+        CardReword.abi,
+        contractConfig.CardReword
       );
+      console.log(1333444);
       const account = await this.$store.state.defaultAccount;
 
-      const res = await this.Fighter.contract.methods
-        .getTokenList(account)
-        .call();
+      const res = await CardRewordContract.methods.getTokenList(account).call();
+       const res1 = await CardRewordContract.methods.getRanking().call();
       // const rankList = await this.Fighter.contract.methods.getRanking().call();
       this.cardInfoList = res;
-      console.log(res, "res1========");
+      console.log(res,res1, "res1========");
     },
     _promise(from, to, input, value) {
       let web3 = window.web3;

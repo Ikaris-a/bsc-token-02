@@ -16,6 +16,25 @@
         </div>
         <div>カード取引、お待ちください</div>
       </div>
+      <div class="market-filter">
+        <div class="mf-btn" @click="type = 0">すべてのカード</div>
+        <div class="mf-btn" @click="type = 1">私のカード</div>
+      </div>
+      <div class="market-container">
+        <div v-if="cardInfoList.length > 0 && type === 1">
+          <template v-for="(item, index) in cardInfoList">
+            <div class="my-card-item" :key="index">
+              <NewCardItem :cardInfo="item" />
+              <div class="mc-btn" @click="put(item)">
+                売る
+              </div>
+              <div class="mc-btn" @click="pull(item)">
+                既製
+              </div>
+            </div>
+          </template>
+        </div>
+      </div>
       <!-- <div class="my-card-container width_1200">
         <ul>
           <li class="r">
@@ -51,15 +70,18 @@ import CardShop from "./../../config/contract/CardShop.json";
 import Exchange from "./../../config/contract/Exchange.json";
 import Token from "./../../config/contract/Token.json";
 import Fighter from "./../../config/contract/Fighter.json";
+import CardReword from "./../../config/contract/CardReward.json";
 import Web3 from "web3";
 export default {
   components: { NewCardItem, Modal },
   data() {
     return {
       defaultAccount: "",
+      type: 1,
       cardInfo: { name: 123, quality: "5", heroId: "1" },
       loading: false,
       showModal: false,
+      cardInfoList: [],
       dataConfig: [
         {
           name: "カカロット",
@@ -95,10 +117,42 @@ export default {
   async mounted() {
     await this.initWeb3();
     await this.mountedFunc();
+    this.exchangeCard();
+    this.myCard();
   },
   methods: {
     async lottery() {
       await this.initContract();
+    },
+    async put(item) {
+      const ExchangeContract = new window.web3.eth.Contract(
+        Exchange.abi,
+        contractConfig.Exchange
+      );
+      const FighterContract = new window.web3.eth.Contract(
+        Fighter.abi,
+        contractConfig.Fighter
+      );
+      const account = await this.$store.state.defaultAccount;
+      console.log(FighterContract, "=====");
+      const input = FighterContract.methods
+        .approve(contractConfig.Exchange,item.tokenId)
+        .encodeABI();
+      await this._promise(account, contractConfig.Fighter, input);
+      const res1 = await ExchangeContract.methods
+        .put(item.tokenId, window.web3.utils.toWei("1000"))
+        .send({ from: account, gas: 200000 });
+      console.log(res1, "======res1");
+    },
+    async myCard() {
+      const CardRewordContract = new window.web3.eth.Contract(
+        CardReword.abi,
+        contractConfig.CardReword
+      );
+      const account = await this.$store.state.defaultAccount;
+      const res = await CardRewordContract.methods.getTokenList(account).call();
+      console.log(res, "res=====");
+      this.cardInfoList = res;
     },
     async getReward() {
       this.Fighter.contract = new window.web3.eth.Contract(
@@ -118,10 +172,11 @@ export default {
         Exchange.abi,
         this.exchange.address
       );
-      const account = await this.$store.state.defaultAccount;
-      this.exchange.contract.methods
-        .exchange("1")
-        .send({ from: account, gas: 200000 });
+      console.log(this.exchange.contract, "=====");
+      // const account = await this.$store.state.defaultAccount;
+      // this.exchange.contract.methods
+      //   .exchange("1")
+      //   .send({ from: account, gas: 200000 });
     },
     async initContract() {
       this.cardShop.contract = new window.web3.eth.Contract(
@@ -233,6 +288,36 @@ export default {
 
 <style scoped lang="less">
 /* Animate Background Image */
+.market-filter {
+  .mf-btn {
+    height: 70px;
+    line-height: 70px;
+    font-size: 22px;
+    color: #f1d723;
+    background: url(../img/new/btn.png) no-repeat;
+    background-size: 100% 100%;
+    cursor: pointer;
+    display: inline-block;
+    width: 200px;
+  }
+}
+.my-card-item {
+  display: inline-block;
+  width: 245px;
+}
+.market-container {
+  .mc-btn {
+    height: 70px;
+    line-height: 70px;
+    font-size: 22px;
+    color: #f1d723;
+    background: url(../img/new/btn.png) no-repeat;
+    background-size: 100% 100%;
+    cursor: pointer;
+    display: inline-block;
+    width: 200px;
+  }
+}
 @keyframes rotate-one {
   0% {
     transform: rotateX(35deg) rotateY(-45deg) rotateZ(0deg);

@@ -4,12 +4,12 @@
       <div class="header-container">
         <img src="../img/new/header.png" alt />
       </div>
-      <div class="card-shop-container">
+      <div class="card-shop-container"  @click="lottery">
         <!-- <img src="../img/new/card_shop.png" alt /> -->
       </div>
-      <div class="card-shop-get" @click="lottery">
+      <!-- <div class="card-shop-get" @click="lottery">
         <img src="../img/new/getCard.png" alt />
-      </div>
+      </div> -->
       <div class="card-modal" v-if="loading">
         <div class="loader">
           <img id="loading" src="../img/new/loading_small.png" />
@@ -142,7 +142,7 @@ import Modal from "@/components/Modal";
 import NewCardItem from "@/components/NewCardItem";
 import { contractConfig } from "./../../config/address";
 import CardShop from "./../../config/contract/CardShop.json";
-import Exchange from "./../../config/contract/Exchange.json";
+import CardReward from "./../../config/contract/CardReward.json";
 import Token from "./../../config/contract/Token.json";
 import Fighter from "./../../config/contract/Fighter.json";
 import Web3 from "web3";
@@ -181,7 +181,7 @@ export default {
         contract: "",
         address: contractConfig.CardShop,
       },
-      exchange: { contract: "", address: contractConfig.Exchange },
+      CardReward: { contract: "", address: contractConfig.CardReward },
       tokenContract: { contract: "", address: contractConfig.Token },
       Fighter: { contract: "", address: contractConfig.Fighter },
     };
@@ -208,12 +208,12 @@ export default {
       console.log(res, res1, "=======");
     },
     async exchangeCard() {
-      this.exchange.contract = new window.web3.eth.Contract(
-        Exchange.abi,
-        this.exchange.address
+      this.CardReward.contract = new window.web3.eth.Contract(
+        CardReward.abi,
+        this.CardReward.address
       );
       const account = await this.$store.state.defaultAccount;
-      this.exchange.contract.methods
+      this.CardReward.contract.methods
         .exchange("1")
         .send({ from: account, gas: 200000 });
     },
