@@ -167,10 +167,13 @@ export default {
         .toFixed(6);
     },
     async getReward() {
+      const CardRewordContract = new window.web3.eth.Contract(
+        CardReword.abi,
+        contractConfig.CardReword
+      );
       const account = await this.$store.state.defaultAccount;
-      await this.Fighter.contract.methods
-        .claim()
-        .send({ from: account });
+      await CardRewordContract.methods.claim().send({ from: account });
+      this.initData();
     },
     async exchangeCard() {
       this.exchange.contract = new window.web3.eth.Contract(
@@ -178,9 +181,7 @@ export default {
         this.exchange.address
       );
       const account = await this.$store.state.defaultAccount;
-      this.exchange.contract.methods
-        .exchange("1")
-        .send({ from: account });
+      this.exchange.contract.methods.exchange("1").send({ from: account });
     },
     async initContract() {
       this.cardShop.contract = new window.web3.eth.Contract(
