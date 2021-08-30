@@ -22,22 +22,12 @@
       </div>
       <div class="rank-container">
         <ul>
-          <li>
-            {{ interceptAccount("0xb3f9f61f2dbae19e6df53523cbb248afd0c8529c") }}
-            <span>150</span>
-          </li>
-          <li>
-            {{ interceptAccount("0xc8dc6da781097a2be9854f69faed10e087da8ad3")
-            }}<span>136</span>
-          </li>
-          <li>
-            {{ interceptAccount("0x066ea6c41058512a16e28685d628b2d666abc88d") }}
-            <span>119</span>
-          </li>
-          <li>
-            {{ interceptAccount("0x766ea6c41058512a16e28685d628b2d666abc83d") }}
-            <span>89</span>
-          </li>
+          <template v-for="(item, index) in rankList">
+            <li :key="'rank_' + index">
+              {{ interceptAccount(item.address) }}
+              <span>{{ item.power }}</span>
+            </li>
+          </template>
         </ul>
       </div>
       <div class="title-info width_1200">
@@ -108,6 +98,7 @@ export default {
   data() {
     return {
       // cardReword: { contract: "", address: contractConfig.CardReword },
+      rankList: [],
       dataConfig: [
         {
           name: "カカロット",
@@ -164,7 +155,7 @@ export default {
         CardReword.abi,
         contractConfig.CardReword
       );
-      console.log(exchangeContract,item, "exchangeContract====");
+      console.log(exchangeContract, item, "exchangeContract====");
       const account = await this.$store.state.defaultAccount;
       exchangeContract.methods
         .redeemed(item.tokenId)
@@ -196,20 +187,40 @@ export default {
         }
       }
     },
+    compare(p) {
+      //这是比较函数
+      return function (m, n) {
+        var a = m[p];
+        var b = n[p];
+        return b - a; //降序
+      };
+    },
     async initContract() {
-      console.log(333444);
       const CardRewordContract = new window.web3.eth.Contract(
         CardReword.abi,
         contractConfig.CardReword
       );
-      console.log(1333444);
       const account = await this.$store.state.defaultAccount;
-
       const res = await CardRewordContract.methods.getTokenList(account).call();
-       const res1 = await CardRewordContract.methods.getRanking().call();
-      // const rankList = await this.Fighter.contract.methods.getRanking().call();
+      const res1 = await CardRewordContract.methods.getRanking().call();
       this.cardInfoList = res;
-      console.log(res,res1, "res1========");
+      let newArr = [];
+      let rankAddress = [];
+      if (res1.length > 0) {
+        res1.forEach((item, index) => {
+          // console.log(item[0], "123123===");
+          // if (rankAddress.includes(item[0])) {
+          //   // return;
+          // } else {
+          rankAddress.push(item[0]);
+          newArr[index] = {};
+          newArr[index].address = item[0];
+          newArr[index].power = item[1];
+          // }
+        });
+        newArr.sort(this.compare("power"));
+      }
+      this.rankList = newArr;
     },
     _promise(from, to, input, value) {
       let web3 = window.web3;
@@ -223,7 +234,7 @@ export default {
               input: input,
               // gas: 200000,
             },
-            function(error, res) {
+            function (error, res) {
               if (!error) {
                 console.log(res, "resdata==========");
                 const tval = setInterval(async () => {

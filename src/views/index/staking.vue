@@ -88,7 +88,9 @@ import CardShop from "./../../config/contract/CardShop.json";
 import Exchange from "./../../config/contract/Exchange.json";
 import Token from "./../../config/contract/Token.json";
 import Fighter from "./../../config/contract/Fighter.json";
+import CardReword from "./../../config/contract/CardReward.json";
 import Web3 from "web3";
+import BigNumber from "bignumber.js";
 export default {
   components: {},
   data() {
@@ -147,15 +149,28 @@ export default {
     },
     async initData() {
       const account = await this.$store.state.defaultAccount;
-      const res = await this.Fighter.contract.methods.getReward(account).call();
-      this.rewardAmount = res;
+      const CardRewordContract = new window.web3.eth.Contract(
+        CardReword.abi,
+        contractConfig.CardReword
+      );
+      this.totalCombatPower = await CardRewordContract.methods
+        .getTotalPower()
+        .call();
+      this.myCombatPower = await CardRewordContract.methods
+        .getUserPower(account)
+        .call();
+      console.log(CardRewordContract, "=====111");
+      this.rewardAmount = new BigNumber(
+        await CardRewordContract.methods.getReward(account).call()
+      )
+        .div(1e18)
+        .toFixed(6);
     },
     async getReward() {
       const account = await this.$store.state.defaultAccount;
-      const res1 = await this.Fighter.contract.methods
+      await this.Fighter.contract.methods
         .claim()
-        .send({ from: account, gas: 200000 });
-      console.log(res1, "=======");
+        .send({ from: account });
     },
     async exchangeCard() {
       this.exchange.contract = new window.web3.eth.Contract(
@@ -165,7 +180,7 @@ export default {
       const account = await this.$store.state.defaultAccount;
       this.exchange.contract.methods
         .exchange("1")
-        .send({ from: account, gas: 200000 });
+        .send({ from: account });
     },
     async initContract() {
       this.cardShop.contract = new window.web3.eth.Contract(
@@ -186,7 +201,7 @@ export default {
       this.cardShop.contract.methods
         .buy("DBFZ")
         .send({ from: account })
-        .then(function(res) {
+        .then(function (res) {
           _that.loading = false;
           _that.cardInfo = res.events.Buy.returnValues;
           _that.showModal = true;
@@ -233,7 +248,7 @@ export default {
               input: input,
               // gas: 200000,
             },
-            function(error, res) {
+            function (error, res) {
               if (!error) {
                 console.log(res, "resdata==========");
                 const tval = setInterval(async () => {
