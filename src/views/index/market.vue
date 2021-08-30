@@ -25,12 +25,17 @@
           <template v-for="(item, index) in cardInfoList">
             <div class="my-card-item" :key="index">
               <NewCardItem :cardInfo="item" />
-              <div class="mc-btn" @click="put(item)">
-                売る
-              </div>
-              <div class="mc-btn" @click="pull(item)">
-                既製
-              </div>
+              <div class="mc-btn" @click="put(item)">売る</div>
+              <div class="mc-btn" @click="pull(item)">既製</div>
+            </div>
+          </template>
+        </div>
+          <div v-if="marketCardInfoList.length > 0 && type === 0">
+          <template v-for="(item, index) in marketCardInfoList">
+            <div class="my-card-item" :key="index">
+              <NewCardItem :cardInfo="item" />
+              <!-- <div class="mc-btn" @click="put(item)">売る</div> -->
+              <div class="mc-btn" @click="pull(item)">既製</div>
             </div>
           </template>
         </div>
@@ -57,7 +62,7 @@
       </div> -->
     </div>
     <template v-if="showModal">
-      <Modal><NewCardItem v-bind:cardInfo="cardInfo"/></Modal
+      <Modal><NewCardItem v-bind:cardInfo="cardInfo" /></Modal
     ></template>
   </div>
 </template>
@@ -77,11 +82,12 @@ export default {
   data() {
     return {
       defaultAccount: "",
-      type: 1,
+      type: 0,
       cardInfo: { name: 123, quality: "5", heroId: "1" },
       loading: false,
       showModal: false,
       cardInfoList: [],
+      marketCardInfoList:[],
       dataConfig: [
         {
           name: "カカロット",
@@ -119,10 +125,22 @@ export default {
     await this.mountedFunc();
     this.exchangeCard();
     this.myCard();
+    this.marketList();
   },
   methods: {
     async lottery() {
       await this.initContract();
+    },
+    async marketList() {
+       const ExchangeContract = new window.web3.eth.Contract(
+        Exchange.abi,
+        contractConfig.Exchange
+      );
+       console.log(ExchangeContract, "res=====23");
+      // const account = await this.$store.state.defaultAccount;
+      const res = await ExchangeContract.methods.getExchangeList().call();
+      console.log(res, "res=====2");
+      this.marketCardInfoList = res;
     },
     async put(item) {
       const ExchangeContract = new window.web3.eth.Contract(
@@ -136,12 +154,12 @@ export default {
       const account = await this.$store.state.defaultAccount;
       console.log(FighterContract, "=====");
       const input = FighterContract.methods
-        .approve(contractConfig.Exchange,item.tokenId)
+        .approve(contractConfig.Exchange, item.tokenId)
         .encodeABI();
       await this._promise(account, contractConfig.Fighter, input);
       const res1 = await ExchangeContract.methods
-        .put(item.tokenId, window.web3.utils.toWei("1000"))
-        .send({ from: account, gas: 200000 });
+        .put(item.tokenId, window.web3.utils.toWei("1300"))
+        .send({ from: account });
       console.log(res1, "======res1");
     },
     async myCard() {
@@ -197,7 +215,7 @@ export default {
       this.cardShop.contract.methods
         .buy("DBFZ")
         .send({ from: account })
-        .then(function(res) {
+        .then(function (res) {
           _that.loading = false;
           _that.cardInfo = res.events.Buy.returnValues;
           _that.showModal = true;
@@ -244,7 +262,7 @@ export default {
               input: input,
               // gas: 200000,
             },
-            function(error, res) {
+            function (error, res) {
               if (!error) {
                 console.log(res, "resdata==========");
                 const tval = setInterval(async () => {
