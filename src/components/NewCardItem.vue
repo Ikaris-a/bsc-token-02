@@ -2,21 +2,27 @@
   <div class="card-item-container" v-bind:class="classObject">
     <div class="card-item-container-bg-filter"></div>
     <div class="card-item-container-bg"></div>
-    <div class="card-item-container-desc">{{ cardName }}</div>
+    <div class="card-item-container-desc">{{ cardName }}
+      <i>Id:{{cardId}}</i>
+    </div>
   </div>
 </template>
-
 <script>
 import cardConfig from "./../config/cardConfig.json";
 export default {
   name: "NewCardItem",
   props: ["cardInfo"],
   data() {
-    return { cardName: "" };
+    return { cardName: "",cardId:"" };
   },
   mounted() {
     console.log(cardConfig[this.cardInfo.heroId].name, "name======");
     this.cardName = cardConfig[this.cardInfo.heroId].name;
+    this.cardId = 
+        this.cardInfo.tokenId.substr(
+            this.cardInfo.tokenId.length - 6,
+            this.cardInfo.tokenId.length
+          )
   },
   computed: {
     classObject: function() {
@@ -37,6 +43,7 @@ export default {
         heroId = this.cardInfo.heroId * 1 + 12;
       }
       const key = "hero-" + heroId;
+  
       return {
         [key]: true,
         r: this.cardInfo.quality === "5",
