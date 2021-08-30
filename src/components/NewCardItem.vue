@@ -2,8 +2,11 @@
   <div class="card-item-container" v-bind:class="classObject">
     <div class="card-item-container-bg-filter"></div>
     <div class="card-item-container-bg"></div>
-    <div class="card-item-container-desc">{{ cardName }}
-      <i>Id:{{cardId}}</i>
+    <div class="card-item-container-desc">
+      {{ cardName }}
+      DBFT
+      <br />
+      <i>#{{ cardId }}</i>
     </div>
   </div>
 </template>
@@ -13,29 +16,31 @@ export default {
   name: "NewCardItem",
   props: ["cardInfo"],
   data() {
-    return { cardName: "",cardId:"" };
+    return { cardName: "", cardId: "" };
   },
   mounted() {
     console.log(cardConfig[this.cardInfo.heroId].name, "name======");
     this.cardName = cardConfig[this.cardInfo.heroId].name;
-    this.cardId = 
-        this.cardInfo.tokenId.substr(
-            this.cardInfo.tokenId.length - 6,
-            this.cardInfo.tokenId.length
-          )
+    this.cardId = this.cardInfo.tokenId.substr(
+      this.cardInfo.tokenId.length - 7,
+      this.cardInfo.tokenId.length
+    );
   },
   computed: {
     classObject: function() {
       console.log(this.cardInfo.heroId, "this.cardInfo.heroId====");
       let heroId = 0;
       //七龙珠1～7。SSR 8～13。(SR，S, R,14～34)
-      if (this.cardInfo.quality === "1") {//LZ
+      if (this.cardInfo.quality === "1") {
+        //LZ
         heroId = this.cardInfo.heroId * 1;
       }
-      if (this.cardInfo.quality === "2") {//SSR 8-12
+      if (this.cardInfo.quality === "2") {
+        //SSR 8-12
         heroId = this.cardInfo.heroId * 1 + 7;
       }
-      if (//SR  1
+      if (
+        //SR  1
         this.cardInfo.quality === "3" ||
         this.cardInfo.quality === "4" ||
         this.cardInfo.quality === "5"
@@ -43,7 +48,7 @@ export default {
         heroId = this.cardInfo.heroId * 1 + 12;
       }
       const key = "hero-" + heroId;
-  
+
       return {
         [key]: true,
         r: this.cardInfo.quality === "5",
@@ -486,7 +491,7 @@ export default {
     z-index: 88;
     width: 160px;
     padding: 20px;
-    left: 10px;
+    left: 6px;
     bottom: 20px;
   }
 }
