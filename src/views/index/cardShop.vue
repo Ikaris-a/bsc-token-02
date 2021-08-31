@@ -21,7 +21,7 @@
         <div>カード取引、お待ちください</div>
       </div>
       <div class="my-card-container width_1200">
-        <img src="../img/logo/lz.png" class="lz" alt /><br />
+        <!-- <img src="../img/logo/lz.png" class="lz" alt /><br /> -->
         <img src="../img/logo/logo.png" alt />
       </div>
       <div class="container">
