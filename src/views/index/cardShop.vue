@@ -195,7 +195,7 @@ export default {
   },
   methods: {
     async lottery() {
-      await this.initContract();
+      await this.buyCard();
     },
     async getReward() {
       this.Fighter.contract = new window.web3.eth.Contract(
@@ -220,7 +220,7 @@ export default {
         .exchange("1")
         .send({ from: account, gas: 200000 });
     },
-    async initContract() {
+    async buyCard() {
       this.cardShop.contract = new window.web3.eth.Contract(
         CardShop.abi,
         this.cardShop.address

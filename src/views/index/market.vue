@@ -19,19 +19,28 @@
       <div class="market-filter">
         <div class="mf-btn" @click="type = 0">すべてのカード</div>
         <div class="mf-btn" @click="type = 1">私のカード</div>
+        <div class="mf-btn" @click="type = 2">に追加されました</div>
       </div>
       <div class="market-container">
         <div v-if="cardInfoList.length > 0 && type === 1">
           <template v-for="(item, index) in cardInfoList">
             <div class="my-card-item" :key="index">
               <NewCardItem :cardInfo="item" />
-              <div class="mc-btn" @click="put(item)">売る</div>
-              <div class="mc-btn" @click="pull(item)">既製</div>
+              <div class="mc-btn" @click="put(item)">棚の上の</div>
             </div>
           </template>
         </div>
-          <div v-if="marketCardInfoList.length > 0 && type === 0">
+        <div v-if="marketCardInfoList.length > 0 && type === 0">
           <template v-for="(item, index) in marketCardInfoList">
+            <div class="my-card-item" :key="index">
+              <NewCardItem :cardInfo="item" />
+              <div class="price">価格：{{ getPrice(item.amount) }} DBFZ</div>
+              <div class="mc-btn" @click="buy(item)">買う</div>
+            </div>
+          </template>
+        </div>
+        <div v-if="marketPutCardInfoList.length > 0 && type === 2">
+          <template v-for="(item, index) in marketPutCardInfoList">
             <div class="my-card-item" :key="index">
               <NewCardItem :cardInfo="item" />
               <!-- <div class="mc-btn" @click="put(item)">売る</div> -->
@@ -40,26 +49,6 @@
           </template>
         </div>
       </div>
-      <!-- <div class="my-card-container width_1200">
-        <ul>
-          <li class="r">
-            <img src="../img/cardList/1.png" alt />
-            <div>ヤキローブ</div>
-          </li>
-          <li class="s">
-            <img src="../img/cardList/2.png" alt />
-            <div>テンシンハン</div>
-          </li>
-          <li class="ssr">
-            <img src="../img/cardList/3.png" alt />
-            <div>カカロット</div>
-          </li>
-          <li class="ss">
-            <img src="../img/cardList/4.png" alt />
-            <div>タートルフェアリー</div>
-          </li>
-        </ul>
-      </div> -->
     </div>
     <template v-if="showModal">
       <Modal><NewCardItem v-bind:cardInfo="cardInfo" /></Modal
@@ -71,12 +60,12 @@
 import Modal from "@/components/Modal";
 import NewCardItem from "@/components/NewCardItem";
 import { contractConfig } from "./../../config/address";
-import CardShop from "./../../config/contract/CardShop.json";
 import Exchange from "./../../config/contract/Exchange.json";
 import Token from "./../../config/contract/Token.json";
 import Fighter from "./../../config/contract/Fighter.json";
 import CardReword from "./../../config/contract/CardReward.json";
 import Web3 from "web3";
+import BigNumber from "bignumber.js";
 export default {
   components: { NewCardItem, Modal },
   data() {
@@ -87,7 +76,8 @@ export default {
       loading: false,
       showModal: false,
       cardInfoList: [],
-      marketCardInfoList:[],
+      marketCardInfoList: [],
+      marketPutCardInfoList: [],
       dataConfig: [
         {
           name: "カカロット",
@@ -123,24 +113,37 @@ export default {
   async mounted() {
     await this.initWeb3();
     await this.mountedFunc();
-    this.exchangeCard();
-    this.myCard();
-    this.marketList();
+    this.initList();
   },
   methods: {
-    async lottery() {
-      await this.initContract();
+    getPrice(e) {
+      return new BigNumber(e).div(1e18).toFixed(4);
+    },
+    async initList() {
+      this.myCard();
+      this.marketList();
+      this.putList();
     },
     async marketList() {
-       const ExchangeContract = new window.web3.eth.Contract(
+      const ExchangeContract = new window.web3.eth.Contract(
         Exchange.abi,
         contractConfig.Exchange
       );
-       console.log(ExchangeContract, "res=====23");
       // const account = await this.$store.state.defaultAccount;
       const res = await ExchangeContract.methods.getExchangeList().call();
-      console.log(res, "res=====2");
       this.marketCardInfoList = res;
+    },
+    async putList() {
+      const ExchangeContract = new window.web3.eth.Contract(
+        Exchange.abi,
+        contractConfig.Exchange
+      );
+      console.log(ExchangeContract, "res=====23");
+      const account = await this.$store.state.defaultAccount;
+      const res = await ExchangeContract.methods
+        .getMyExchangeList(account)
+        .call();
+      this.marketPutCardInfoList = res;
     },
     async put(item) {
       const ExchangeContract = new window.web3.eth.Contract(
@@ -152,15 +155,56 @@ export default {
         contractConfig.Fighter
       );
       const account = await this.$store.state.defaultAccount;
-      console.log(FighterContract, "=====");
       const input = FighterContract.methods
         .approve(contractConfig.Exchange, item.tokenId)
         .encodeABI();
       await this._promise(account, contractConfig.Fighter, input);
-      const res1 = await ExchangeContract.methods
+      await ExchangeContract.methods
         .put(item.tokenId, window.web3.utils.toWei("1300"))
         .send({ from: account });
-      console.log(res1, "======res1");
+      this.initList();
+    },
+    async buy(item) {
+      const ExchangeContract = new window.web3.eth.Contract(
+        Exchange.abi,
+        contractConfig.Exchange
+      );
+      const account = await this.$store.state.defaultAccount;
+      const tokenContract = new window.web3.eth.Contract(
+        Token.abi,
+        this.tokenContract.address
+      );
+      const input = tokenContract.methods
+        .approve(contractConfig.Exchange, window.web3.utils.toWei("1300"))
+        .encodeABI();
+      await this._promise(account, this.tokenContract.address, input);
+      const _that = this;
+      _that.loading = true;
+      console.log(ExchangeContract, item, "3123123123");
+      ExchangeContract.methods
+        .buy(item.tokenId)
+        .send({ from: account })
+        .then(function (res) {
+          console.log(res, "=====");
+        });
+      this.initList();
+    },
+    async pull(item) {
+      const ExchangeContract = new window.web3.eth.Contract(
+        Exchange.abi,
+        contractConfig.Exchange
+      );
+      const FighterContract = new window.web3.eth.Contract(
+        Fighter.abi,
+        contractConfig.Fighter
+      );
+      const account = await this.$store.state.defaultAccount;
+      const input = FighterContract.methods
+        .approve(contractConfig.Exchange, item.tokenId)
+        .encodeABI();
+      await this._promise(account, contractConfig.Fighter, input);
+      await ExchangeContract.methods.pull(item.tokenId).send({ from: account });
+      this.initList();
     },
     async myCard() {
       const CardRewordContract = new window.web3.eth.Contract(
@@ -169,60 +213,7 @@ export default {
       );
       const account = await this.$store.state.defaultAccount;
       const res = await CardRewordContract.methods.getTokenList(account).call();
-      console.log(res, "res=====");
       this.cardInfoList = res;
-    },
-    async getReward() {
-      this.Fighter.contract = new window.web3.eth.Contract(
-        Fighter.abi,
-        this.Fighter.address
-      );
-      const account = await this.$store.state.defaultAccount;
-      const res = await this.Fighter.contract.methods.getReward(account).call();
-      const res1 = await this.Fighter.contract.methods
-        .claim()
-        .send({ from: account, gas: 200000 });
-
-      console.log(res, res1, "=======");
-    },
-    async exchangeCard() {
-      this.exchange.contract = new window.web3.eth.Contract(
-        Exchange.abi,
-        this.exchange.address
-      );
-      console.log(this.exchange.contract, "=====");
-      // const account = await this.$store.state.defaultAccount;
-      // this.exchange.contract.methods
-      //   .exchange("1")
-      //   .send({ from: account, gas: 200000 });
-    },
-    async initContract() {
-      this.cardShop.contract = new window.web3.eth.Contract(
-        CardShop.abi,
-        this.cardShop.address
-      );
-      const account = await this.$store.state.defaultAccount;
-      this.tokenContract.contract = new window.web3.eth.Contract(
-        Token.abi,
-        this.tokenContract.address
-      );
-      const input = this.tokenContract.contract.methods
-        .approve(this.cardShop.address, window.web3.utils.toWei("10000"))
-        .encodeABI();
-      await this._promise(account, this.tokenContract.address, input);
-      const _that = this;
-      _that.loading = true;
-      this.cardShop.contract.methods
-        .buy("DBFZ")
-        .send({ from: account })
-        .then(function (res) {
-          _that.loading = false;
-          _that.cardInfo = res.events.Buy.returnValues;
-          _that.showModal = true;
-          setTimeout(() => {
-            _that.showModal = false;
-          }, 3000);
-        });
     },
     async mountedFunc() {
       await this.initWeb3();
@@ -324,6 +315,11 @@ export default {
   width: 245px;
 }
 .market-container {
+  .price {
+    font-size: 18px;
+    color: #f1d723;
+    margin-bottom: 20px;
+  }
   .mc-btn {
     height: 70px;
     line-height: 70px;
