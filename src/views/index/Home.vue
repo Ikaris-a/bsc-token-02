@@ -155,11 +155,11 @@ export default {
         CardReword.abi,
         contractConfig.CardReword
       );
-      console.log(exchangeContract, item, "exchangeContract====");
       const account = await this.$store.state.defaultAccount;
       exchangeContract.methods
         .redeemed(item.tokenId)
         .send({ from: account, gas: 200000 });
+      this.initContract();
     },
     async mountedFunc() {
       await this.initWeb3();
@@ -203,8 +203,6 @@ export default {
       const account = await this.$store.state.defaultAccount;
       const res = await CardRewordContract.methods.getTokenList(account).call();
       const res1 = await CardRewordContract.methods.getRanking().call();
-      // const arr = [];
-      console.log(res,"=====re")
       this.cardInfoList = res;
       let newArr = [];
       let rankAddress = [];
