@@ -18,6 +18,26 @@
         </div>
         <div class="getDbfz" @click="getReward">収入を受け取る</div>
       </div>
+      <div class="change-container">
+        <div class="mining-container">
+          <img src="../img/new/mining_bg.png" alt />
+          <div class="mining-content">
+            <div>
+              総戦闘力:&nbsp;&nbsp;{{ totalCombatPower }} &nbsp;&nbsp;CP
+            </div>
+            <div class="getDbfz-card" @click="getExchange(4)">Sとの交換</div>
+            <div class="getDbfz-card" @click="getExchange(3)">SRとの交換</div>
+            <br />
+            <div class="getDbfz-card" @click="getExchange(2)">
+              SSR収入を受け取る
+            </div>
+            <br />
+            <div class="getDbfz-card" @click="getExchange(1)">
+              ドラゴンボール交換
+            </div>
+          </div>
+        </div>
+      </div>
       <div class="title-info ti-1 width_1200">
         <img src="../img/fs_002.png" alt />
         <p>
@@ -166,6 +186,14 @@ export default {
         .div(1e18)
         .toFixed(6);
     },
+    async getExchange(e) {
+      const CardRewordContract = new window.web3.eth.Contract(
+        CardReword.abi,
+        contractConfig.CardReword
+      );
+      const account = await this.$store.state.defaultAccount;
+      await CardRewordContract.methods.exchange(e).send({ from: account });
+    },
     async getReward() {
       const CardRewordContract = new window.web3.eth.Contract(
         CardReword.abi,
@@ -292,6 +320,22 @@ export default {
 </script>
 
 <style scoped lang="less">
+.change-container {
+  position: relative;
+  display: inline-block;
+  .getDbfz-card {
+    background: url(./../img/new/btn.png) no-repeat;
+    background-size: 100% 100%;
+    height: 60px;
+    width: 66%;
+    line-height: 60px;
+    font-size: 24px;
+    text-align: center !important;
+    padding: 0 40px;
+    display: inline-block;
+    cursor: pointer;
+  }
+}
 .mining-container {
   position: relative;
   display: inline-block;
@@ -307,6 +351,7 @@ export default {
     position: absolute;
     bottom: 160px;
     cursor: pointer;
+
     left: 50%;
     transform: translateX(-50%);
   }

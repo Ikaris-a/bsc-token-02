@@ -203,7 +203,22 @@ export default {
       const account = await this.$store.state.defaultAccount;
       const res = await CardRewordContract.methods.getTokenList(account).call();
       const res1 = await CardRewordContract.methods.getRanking().call();
-      this.cardInfoList = res;
+      console.log(res, "res======");
+      const arr = [];
+      for (var i = 0; i < 25; i++) {
+        arr.push({
+          0: "5",
+          1: "10",
+          2: "90",
+          3: "1000",
+          4: "2596547670976372654447979462978534",
+          amount: "1000",
+          heroId: i,
+          quality: "2",
+          rate: "90",
+        });
+      }
+      this.cardInfoList = arr;
       let newArr = [];
       let rankAddress = [];
       if (res1.length > 0) {

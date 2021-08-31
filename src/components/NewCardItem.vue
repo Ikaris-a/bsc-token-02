@@ -27,7 +27,7 @@ export default {
     );
   },
   computed: {
-    classObject: function() {
+    classObject: function () {
       console.log(this.cardInfo.heroId, "this.cardInfo.heroId====");
       let heroId = 0;
       //七龙珠1～7。SSR 8～13。(SR，S, R,14～34)
@@ -72,7 +72,8 @@ export default {
   .card-item-container-bg-filter {
     width: 100%;
     height: 200px;
-    background: rgba(0, 0, 0, 0.2);
+    background: url(./../views/img/new/item_bg.png) no-repeat;
+    background-size: 100% auto;
     z-index: 0;
     position: absolute;
   }
@@ -171,7 +172,7 @@ export default {
     top: 0;
   }
   &.hero-8::after {
-    background: url(./../views/img/cardList/8.png) no-repeat;
+    background: url(./../views/img/cardList/10.png) no-repeat;
     background-size: 140px 140px;
     background-position: center 20px;
     content: "";
@@ -182,8 +183,8 @@ export default {
     top: 0;
   }
   &.hero-9::after {
-    background: url(./../views/img/cardList/9.png) no-repeat;
-    background-size: 140px 140px;
+    background: url(./../views/img/cardList/2.png) no-repeat;
+    background-size: 140px auto;
     background-position: center 20px;
     content: "";
     width: 100%;
@@ -193,8 +194,8 @@ export default {
     top: 0;
   }
   &.hero-10::after {
-    background: url(./../views/img/cardList/10.png) no-repeat;
-    background-size: 140px 140px;
+    background: url(./../views/img/cardList/3.png) no-repeat;
+    background-size: 140px auto;
     background-position: center 20px;
     content: "";
     width: 100%;
@@ -204,8 +205,8 @@ export default {
     top: 0;
   }
   &.hero-11::after {
-    background: url(./../views/img/cardList/11.png) no-repeat;
-    background-size: 140px 140px;
+    background: url(./../views/img/cardList/4.png) no-repeat;
+    background-size: 140px auto;
     background-position: center 20px;
     content: "";
     width: 100%;
@@ -216,7 +217,7 @@ export default {
   }
   &.hero-12::after {
     background: url(./../views/img/cardList/12.png) no-repeat;
-    background-size: 140px 140px;
+    background-size: 140px auto;
     background-position: center 20px;
     content: "";
     width: 100%;
@@ -226,8 +227,8 @@ export default {
     top: 0;
   }
   &.hero-13::after {
-    background: url(./../views/img/cardList/12.png) no-repeat;
-    background-size: 140px 140px;
+    background: url(./../views/img/cardList/13.png) no-repeat;
+    background-size: 100% auto;
     background-position: center 20px;
     content: "";
     width: 100%;
@@ -237,8 +238,8 @@ export default {
     top: 0;
   }
   &.hero-14::after {
-    background: url(./../views/img/cardList/11.png) no-repeat;
-    background-size: 140px 140px;
+    background: url(./../views/img/cardList/14.png) no-repeat;
+   background-size: 120px auto;
     background-position: center 20px;
     content: "";
     width: 100%;
@@ -248,8 +249,8 @@ export default {
     top: 0;
   }
   &.hero-15::after {
-    background: url(./../views/img/cardList/10.png) no-repeat;
-    background-size: 140px 140px;
+    background: url(./../views/img/cardList/15.png) no-repeat;
+    background-size: 140px auto;
     background-position: center 20px;
     content: "";
     width: 100%;
@@ -259,8 +260,8 @@ export default {
     top: 0;
   }
   &.hero-16::after {
-    background: url(./../views/img/cardList/9.png) no-repeat;
-    background-size: 140px 140px;
+    background: url(./../views/img/cardList/16.png) no-repeat;
+    background-size: 140px auto;
     background-position: center 20px;
     content: "";
     width: 100%;
@@ -270,8 +271,8 @@ export default {
     top: 0;
   }
   &.hero-17::after {
-    background: url(./../views/img/cardList/8.png) no-repeat;
-    background-size: 140px 140px;
+    background: url(./../views/img/cardList/17.png) no-repeat;
+    background-size: 140px auto;
     background-position: center 20px;
     content: "";
     width: 100%;
@@ -281,8 +282,8 @@ export default {
     top: 0;
   }
   &.hero-18::after {
-    background: url(./../views/img/cardList/7.png) no-repeat;
-    background-size: 140px 140px;
+    background: url(./../views/img/cardList/18.png) no-repeat;
+    background-size: 140px auto;
     background-position: center 20px;
     content: "";
     width: 100%;
@@ -292,8 +293,8 @@ export default {
     top: 0;
   }
   &.hero-19::after {
-    background: url(./../views/img/cardList/6.png) no-repeat;
-    background-size: 140px 140px;
+    background: url(./../views/img/cardList/19.png) no-repeat;
+    background-size: 140px auto;
     background-position: center 20px;
     content: "";
     width: 100%;
@@ -303,8 +304,8 @@ export default {
     top: 0;
   }
   &.hero-20::after {
-    background: url(./../views/img/cardList/5.png) no-repeat;
-    background-size: 140px 140px;
+    background: url(./../views/img/cardList/20.png) no-repeat;
+    background-size: 140px auto;
     background-position: center 20px;
     content: "";
     width: 100%;
@@ -314,8 +315,8 @@ export default {
     top: 0;
   }
   &.hero-21::after {
-    background: url(./../views/img/cardList/5.png) no-repeat;
-    background-size: 140px 140px;
+    background: url(./../views/img/cardList/21.png) no-repeat;
+    background-size: 140px auto;
     background-position: center 20px;
     content: "";
     width: 100%;
@@ -325,8 +326,8 @@ export default {
     top: 0;
   }
   &.hero-22::after {
-    background: url(./../views/img/cardList/5.png) no-repeat;
-    background-size: 140px 140px;
+    background: url(./../views/img/cardList/22.png) no-repeat;
+    background-size: 140px auto;
     background-position: center 20px;
     content: "";
     width: 100%;
@@ -336,8 +337,8 @@ export default {
     top: 0;
   }
   &.hero-23::after {
-    background: url(./../views/img/cardList/5.png) no-repeat;
-    background-size: 140px 140px;
+    background: url(./../views/img/cardList/23.png) no-repeat;
+    background-size: 140px auto;
     background-position: center 20px;
     content: "";
     width: 100%;
@@ -347,8 +348,8 @@ export default {
     top: 0;
   }
   &.hero-24::after {
-    background: url(./../views/img/cardList/5.png) no-repeat;
-    background-size: 140px 140px;
+    background: url(./../views/img/cardList/24.png) no-repeat;
+    background-size: 140px auto;
     background-position: center 20px;
     content: "";
     width: 100%;
@@ -358,8 +359,8 @@ export default {
     top: 0;
   }
   &.hero-25::after {
-    background: url(./../views/img/cardList/5.png) no-repeat;
-    background-size: 140px 140px;
+    background: url(./../views/img/cardList/25.png) no-repeat;
+    background-size: 140px auto;
     background-position: center 20px;
     content: "";
     width: 100%;
@@ -369,8 +370,8 @@ export default {
     top: 0;
   }
   &.hero-26::after {
-    background: url(./../views/img/cardList/5.png) no-repeat;
-    background-size: 140px 140px;
+    background: url(./../views/img/cardList/26.png) no-repeat;
+    background-size: 140px auto;
     background-position: center 20px;
     content: "";
     width: 100%;
@@ -380,8 +381,8 @@ export default {
     top: 0;
   }
   &.hero-27::after {
-    background: url(./../views/img/cardList/5.png) no-repeat;
-    background-size: 140px 140px;
+    background: url(./../views/img/cardList/27.png) no-repeat;
+    background-size: 100px auto;
     background-position: center 20px;
     content: "";
     width: 100%;
@@ -391,8 +392,8 @@ export default {
     top: 0;
   }
   &.hero-28::after {
-    background: url(./../views/img/cardList/5.png) no-repeat;
-    background-size: 140px 140px;
+    background: url(./../views/img/cardList/28.png) no-repeat;
+    background-size: 140px auto;
     background-position: center 20px;
     content: "";
     width: 100%;
@@ -402,8 +403,8 @@ export default {
     top: 0;
   }
   &.hero-29::after {
-    background: url(./../views/img/cardList/5.png) no-repeat;
-    background-size: 140px 140px;
+    background: url(./../views/img/cardList/29.png) no-repeat;
+    background-size: 140px auto;
     background-position: center 20px;
     content: "";
     width: 100%;
@@ -413,8 +414,8 @@ export default {
     top: 0;
   }
   &.hero-30::after {
-    background: url(./../views/img/cardList/5.png) no-repeat;
-    background-size: 140px 140px;
+    background: url(./../views/img/cardList/30.png) no-repeat;
+    background-size: 140px auto;
     background-position: center 20px;
     content: "";
     width: 100%;
@@ -424,8 +425,8 @@ export default {
     top: 0;
   }
   &.hero-31::after {
-    background: url(./../views/img/cardList/5.png) no-repeat;
-    background-size: 140px 140px;
+    background: url(./../views/img/cardList/31.png) no-repeat;
+    background-size: 140px auto;
     background-position: center 20px;
     content: "";
     width: 100%;
@@ -435,8 +436,8 @@ export default {
     top: 0;
   }
   &.hero-32::after {
-    background: url(./../views/img/cardList/5.png) no-repeat;
-    background-size: 140px 140px;
+    background: url(./../views/img/cardList/32.png) no-repeat;
+    background-size: 140px auto;
     background-position: center 20px;
     content: "";
     width: 100%;
