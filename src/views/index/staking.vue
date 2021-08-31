@@ -20,20 +20,19 @@
       </div>
       <div class="change-container">
         <div class="mining-container">
-          <img src="../img/new/mining_bg.png" alt />
+          <img src="../img/long/long.png" alt />
           <div class="mining-content">
             <div>
-              総戦闘力:&nbsp;&nbsp;{{ totalCombatPower }} &nbsp;&nbsp;CP
+              トータルボーナス<br/>{{ totalRewardDbfz }}
+              &nbsp;&nbsp;DBFZ
             </div>
-            <div class="getDbfz-card" @click="getExchange(4)">Sとの交換</div>
-            <div class="getDbfz-card" @click="getExchange(3)">SRとの交換</div>
+            <div class="getDbfz-card" @click="getExchange(4)">S</div>
+            <div class="getDbfz-card" @click="getExchange(3)">SR</div>
             <br />
-            <div class="getDbfz-card" @click="getExchange(2)">
-              SSR収入を受け取る
-            </div>
+            <div class="getDbfz-card" @click="getExchange(2)">SSR</div>
             <br />
             <div class="getDbfz-card" @click="getExchange(1)">
-              ドラゴンボール交換
+              ドラゴンボール
             </div>
           </div>
         </div>
@@ -122,6 +121,7 @@ export default {
       cardInfo: { name: 123, quality: "5", heroId: "1" },
       loading: false,
       showModal: false,
+      totalRewardDbfz: 0,
       dataConfig: [
         {
           name: "カカロット",
@@ -173,6 +173,16 @@ export default {
         CardReword.abi,
         contractConfig.CardReword
       );
+      const TokenContract = new window.web3.eth.Contract(
+        Token.abi,
+        this.tokenContract.address
+      );
+      const totalRewardDbfz = await TokenContract.methods
+        .balanceOf(account)
+        .call();
+      this.totalRewardDbfz = new BigNumber(totalRewardDbfz)
+        .div(1e18)
+        .toFixed(2);
       this.totalCombatPower = await CardRewordContract.methods
         .getTotalPower()
         .call();
@@ -323,11 +333,17 @@ export default {
 .change-container {
   position: relative;
   display: inline-block;
+  width: 100%;
+  img {
+    width: 400px;
+    position: relative;
+    left: -200px;
+  }
   .getDbfz-card {
     background: url(./../img/new/btn.png) no-repeat;
     background-size: 100% 100%;
     height: 60px;
-    width: 66%;
+    width: 200px;
     line-height: 60px;
     font-size: 24px;
     text-align: center !important;
@@ -360,7 +376,7 @@ export default {
     font-size: 32px;
     line-height: 50px;
     top: 120px;
-    left: 120px;
+    left: 200px;
     div {
       text-align: left;
     }

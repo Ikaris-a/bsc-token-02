@@ -4,7 +4,7 @@
       <div class="header-container">
         <img src="../img/new/header.png" alt />
       </div>
-      <div class="card-shop-container"  @click="lottery">
+      <div class="card-shop-container" @click="lottery">
         <!-- <img src="../img/new/card_shop.png" alt /> -->
       </div>
       <!-- <div class="card-shop-get" @click="lottery">
@@ -21,29 +21,23 @@
         <div>カード取引、お待ちください</div>
       </div>
       <div class="my-card-container width_1200">
-        <ul>
-          <li class="r">
-            <img src="../img/cardList/1.png" alt />
-            <div>ヤキローブ</div>
-          </li>
-          <li class="s">
-            <img src="../img/cardList/2.png" alt />
-            <div>テンシンハン</div>
-          </li>
-          <li class="ssr">
-            <img src="../img/cardList/3.png" alt />
-            <div>カカロット</div>
-          </li>
-          <li class="ss">
-            <img src="../img/cardList/4.png" alt />
-            <div>タートルフェアリー</div>
-          </li>
-        </ul>
+        <img src="../img/logo/lz.png" class="lz" alt /><br />
+        <img src="../img/logo/logo.png" alt />
       </div>
       <div class="container">
-        <template v-for="(item, index) in dataConfig">
+        <!-- <div v-if="cardInfoList.length > 0">
+          <template v-for="(item, index) in cardInfoList">
+            <div class="my-card-item" :key="index">
+              <NewCardItem :cardInfo="item" />
+              <div class="changeDBFZ" @click="changeDBFZ(item)">
+                両替{{ (item.amount * item.rate) / 100 }}DBFZ
+              </div>
+            </div>
+          </template>
+        </div> -->
+        <!-- <template v-for="(item, index) in dataConfig">
           <CardItem :key="index" :dataItem="item"></CardItem>
-        </template>
+        </template> -->
       </div>
       <div class="title-info ti-1 width_1200">
         <img src="../img/fs_002.png" alt />
@@ -131,13 +125,12 @@
       </div>
     </div>
     <template v-if="showModal">
-      <Modal><NewCardItem v-bind:cardInfo="cardInfo"/></Modal
+      <Modal><NewCardItem v-bind:cardInfo="cardInfo" /></Modal
     ></template>
   </div>
 </template>
 
 <script>
-import CardItem from "@/components/CardItem";
 import Modal from "@/components/Modal";
 import NewCardItem from "@/components/NewCardItem";
 import { contractConfig } from "./../../config/address";
@@ -147,7 +140,7 @@ import Token from "./../../config/contract/Token.json";
 import Fighter from "./../../config/contract/Fighter.json";
 import Web3 from "web3";
 export default {
-  components: { CardItem, NewCardItem, Modal },
+  components: { NewCardItem, Modal },
   data() {
     return {
       defaultAccount: "",
@@ -187,6 +180,16 @@ export default {
     };
   },
   async mounted() {
+    const arr = [];
+    for (var i = 0; i < 32; i++) {
+      arr.push({
+        amount: "1000",
+        heroId: i + 1,
+        quality: "5",
+        rate: "90",
+      });
+    }
+    this.cardInfoList = arr;
     await this.initWeb3();
     await this.mountedFunc();
   },
@@ -236,16 +239,17 @@ export default {
       this.cardShop.contract.methods
         .buy("DBFZ")
         .send({ from: account })
-        .then(function(res) {
+        .then(function (res) {
           _that.loading = false;
           _that.cardInfo = res.events.Buy.returnValues;
           _that.showModal = true;
           setTimeout(() => {
             _that.showModal = false;
-          },3000);
+          }, 3000);
         });
     },
     async mountedFunc() {
+      console.log(this.cardInfoList, "this.cardInfoList=====");
       await this.initWeb3();
       let ethereum = window.ethereum;
       let web3 = window.web3;
@@ -283,7 +287,7 @@ export default {
               input: input,
               // gas: 200000,
             },
-            function(error, res) {
+            function (error, res) {
               if (!error) {
                 console.log(res, "resdata==========");
                 const tval = setInterval(async () => {
@@ -435,6 +439,10 @@ export default {
   }
 }
 .my-card-container {
+  .lz {
+    position: relative;
+    top: -100px;
+  }
   & > img {
     width: 30%;
   }
