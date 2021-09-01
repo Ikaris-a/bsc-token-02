@@ -53,7 +53,7 @@ export default {
         [key]: true,
         r: this.cardInfo.quality === "5",
         s: this.cardInfo.quality === "4",
-        sr: this.cardInfo.quality === "3",
+        ss: this.cardInfo.quality === "3",
         ssr: this.cardInfo.quality === "2",
         b: this.cardInfo.quality === "1",
       };

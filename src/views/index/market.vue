@@ -2,11 +2,9 @@
   <div class="index_main">
     <div class="width_12001">
       <div class="header-container">
-        <img src="../img/new/header.png" alt />
+        <img src="../img/new/marketHeader.png" alt />
       </div>
-      <div class="card-shop-container">
-        <!-- <img src="../img/new/card_shop.png" alt /> -->
-      </div>
+
       <div class="card-modal" v-if="loading">
         <div class="loader">
           <img id="loading" src="../img/new/loading_small.png" />
@@ -23,9 +21,18 @@
       </div>
       <div class="market-container">
         <div v-if="cardInfoList.length > 0 && type === 1">
+          <div class="set-price">
+            <input
+              type="text"
+              placeholder="カードの価格を入力してください"
+              v-model="cardPrice"
+              @blur="changePrice"
+            />
+          </div>
           <template v-for="(item, index) in cardInfoList">
             <div class="my-card-item" :key="index">
               <NewCardItem :cardInfo="item" />
+
               <div class="mc-btn" @click="put(item)">棚の上の</div>
             </div>
           </template>
@@ -72,6 +79,8 @@ export default {
     return {
       defaultAccount: "",
       type: 0,
+      cardPrice: "",
+      burCardPrice: "",
       cardInfo: { name: 123, quality: "5", heroId: "1" },
       loading: false,
       showModal: false,
@@ -116,6 +125,9 @@ export default {
     this.initList();
   },
   methods: {
+    changePrice(e) {
+      this.cardPrice = e.target.value;
+    },
     getPrice(e) {
       return new BigNumber(e).div(1e18).toFixed(4);
     },
@@ -160,9 +172,10 @@ export default {
         .encodeABI();
       await this._promise(account, contractConfig.Fighter, input);
       await ExchangeContract.methods
-        .put(item.tokenId, window.web3.utils.toWei("1300"))
+        .put(item.tokenId, window.web3.utils.toWei(this.cardPrice))
         .send({ from: account });
       this.initList();
+      this.cardPrice = "";
     },
     async buy(item) {
       const ExchangeContract = new window.web3.eth.Contract(
@@ -175,7 +188,12 @@ export default {
         this.tokenContract.address
       );
       const input = tokenContract.methods
-        .approve(contractConfig.Exchange, window.web3.utils.toWei("1300"))
+        .approve(
+          contractConfig.Exchange,
+          window.web3.utils.toWei(
+            new BigNumber(item.amount).div(1e18).toFixed()
+          )
+        )
         .encodeABI();
       await this._promise(account, this.tokenContract.address, input);
       const _that = this;
@@ -296,14 +314,34 @@ export default {
 </script>
 
 <style scoped lang="less">
+.set-price {
+  padding: 20px 0;
+  input {
+    &::placeholder {
+      color: #fff;
+    }
+    height: 40px;
+    width: 330px;
+    color: #fff;
+    padding: 0 20px;
+    font-size: 30px;
+    border-radius: 20px;
+    background: #beac9b;
+  }
+}
 /* Animate Background Image */
 .market-filter {
+  margin-bottom: 30px;
   .mf-btn {
-    height: 70px;
-    line-height: 70px;
+    height: 60px;
+    line-height: 60px;
     font-size: 22px;
-    color: #f1d723;
-    background: url(../img/new/btn.png) no-repeat;
+    color: #6b250c;
+    margin: 0 20px;
+    background: linear-gradient(164deg, #fd9109, #ffe434);
+    // box-shadow: 0px 5px 0px 0px rgba(14, 10, 5, 0.6), 0px -5px 0px 0px rgba(177, 76, 26, 0.81), 0px 0px 10px 4px rgba(255, 228, 52, 0.62), 0px 0px 10px 4px rgba(255, 228, 52, 0.62);
+    border-radius: 60px;
+    // background: url(../img/new/btn.png) no-repeat;
     background-size: 100% 100%;
     cursor: pointer;
     display: inline-block;
