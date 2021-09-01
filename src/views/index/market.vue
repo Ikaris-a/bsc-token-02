@@ -58,7 +58,7 @@
       </div>
     </div>
     <template v-if="showModal">
-      <Modal><NewCardItem v-bind:cardInfo="cardInfo" /></Modal
+      <Modal><NewCardItem v-bind:cardInfo="cardInfo"/></Modal
     ></template>
   </div>
 </template>
@@ -150,7 +150,6 @@ export default {
         Exchange.abi,
         contractConfig.Exchange
       );
-      console.log(ExchangeContract, "res=====23");
       const account = await this.$store.state.defaultAccount;
       const res = await ExchangeContract.methods
         .getMyExchangeList(account)
@@ -176,6 +175,11 @@ export default {
         .send({ from: account });
       this.initList();
       this.cardPrice = "";
+      this.$notify({
+        title: "おめでとう",
+        dangerouslyUseHTMLString: true,
+        message: "<strong>オンチェーントランザクションが完了しました</strong>",
+      });
     },
     async buy(item) {
       const ExchangeContract = new window.web3.eth.Contract(
@@ -202,10 +206,15 @@ export default {
       ExchangeContract.methods
         .buy(item.tokenId)
         .send({ from: account })
-        .then(function (res) {
+        .then(function(res) {
           console.log(res, "=====");
         });
       this.initList();
+      this.$notify({
+        title: "おめでとう",
+        dangerouslyUseHTMLString: true,
+        message: "<strong>オンチェーントランザクションが完了しました</strong>",
+      });
     },
     async pull(item) {
       const ExchangeContract = new window.web3.eth.Contract(
@@ -223,6 +232,11 @@ export default {
       await this._promise(account, contractConfig.Fighter, input);
       await ExchangeContract.methods.pull(item.tokenId).send({ from: account });
       this.initList();
+      this.$notify({
+        title: "おめでとう",
+        dangerouslyUseHTMLString: true,
+        message: "<strong>オンチェーントランザクションが完了しました</strong>",
+      });
     },
     async myCard() {
       const CardRewordContract = new window.web3.eth.Contract(
@@ -271,7 +285,7 @@ export default {
               input: input,
               // gas: 200000,
             },
-            function (error, res) {
+            function(error, res) {
               if (!error) {
                 console.log(res, "resdata==========");
                 const tval = setInterval(async () => {

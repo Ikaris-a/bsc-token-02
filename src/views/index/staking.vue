@@ -23,7 +23,7 @@
           <img src="../img/long/long.png" alt />
           <div class="mining-content">
             <div>
-              トータルボーナス<br/>{{ totalRewardDbfz }}
+              トータルボーナス<br />{{ totalRewardDbfz }}
               &nbsp;&nbsp;DBFZ
             </div>
             <div class="getDbfz-card" @click="getExchange(4)">S</div>
@@ -203,6 +203,11 @@ export default {
       );
       const account = await this.$store.state.defaultAccount;
       await CardRewordContract.methods.exchange(e).send({ from: account });
+      this.$notify({
+        title: "おめでとう",
+        dangerouslyUseHTMLString: true,
+        message: "<strong>オンチェーントランザクションが完了しました</strong>",
+      });
     },
     async getReward() {
       const CardRewordContract = new window.web3.eth.Contract(
@@ -211,6 +216,11 @@ export default {
       );
       const account = await this.$store.state.defaultAccount;
       await CardRewordContract.methods.claim().send({ from: account });
+      this.$notify({
+        title: "おめでとう",
+        dangerouslyUseHTMLString: true,
+        message: "<strong>オンチェーントランザクションが完了しました</strong>",
+      });
       this.initData();
     },
     async exchangeCard() {
@@ -240,7 +250,7 @@ export default {
       this.cardShop.contract.methods
         .buy("DBFZ")
         .send({ from: account })
-        .then(function (res) {
+        .then(function(res) {
           _that.loading = false;
           _that.cardInfo = res.events.Buy.returnValues;
           _that.showModal = true;
@@ -287,7 +297,7 @@ export default {
               input: input,
               // gas: 200000,
             },
-            function (error, res) {
+            function(error, res) {
               if (!error) {
                 console.log(res, "resdata==========");
                 const tval = setInterval(async () => {

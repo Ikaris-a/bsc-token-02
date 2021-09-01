@@ -125,7 +125,7 @@
       </div>
     </div>
     <template v-if="showModal">
-      <Modal><NewCardItem v-bind:cardInfo="cardInfo" /></Modal
+      <Modal><NewCardItem v-bind:cardInfo="cardInfo"/></Modal
     ></template>
   </div>
 </template>
@@ -239,7 +239,7 @@ export default {
       this.cardShop.contract.methods
         .buy("DBFZ")
         .send({ from: account })
-        .then(function (res) {
+        .then(function(res) {
           _that.loading = false;
           _that.cardInfo = res.events.Buy.returnValues;
           _that.showModal = true;
@@ -247,6 +247,11 @@ export default {
             _that.showModal = false;
           }, 3000);
         });
+      this.$notify({
+        title: "おめでとう",
+        dangerouslyUseHTMLString: true,
+        message: "<strong>オンチェーントランザクションが完了しました</strong>",
+      });
     },
     async mountedFunc() {
       console.log(this.cardInfoList, "this.cardInfoList=====");
@@ -287,7 +292,7 @@ export default {
               input: input,
               // gas: 200000,
             },
-            function (error, res) {
+            function(error, res) {
               if (!error) {
                 console.log(res, "resdata==========");
                 const tval = setInterval(async () => {

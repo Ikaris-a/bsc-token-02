@@ -151,15 +151,27 @@ export default {
         : "";
     },
     async changeDBFZ(item) {
+      // const loading = this.$loading({
+      //   lock: true,
+      //   text: "読み込み中",
+      //   spinner: "el-icon-loading",
+      //   background: "rgb(163, 117, 56, 0.3)",
+      // });
       const exchangeContract = new window.web3.eth.Contract(
         CardReword.abi,
         contractConfig.CardReword
       );
       const account = await this.$store.state.defaultAccount;
-      exchangeContract.methods
+      await exchangeContract.methods
         .redeemed(item.tokenId)
         .send({ from: account, gas: 200000 });
       this.initContract();
+      this.$notify({
+        title: "おめでとう",
+        dangerouslyUseHTMLString: true,
+        message: "<strong>オンチェーントランザクションが完了しました</strong>",
+      });
+      // loading.close();
     },
     async mountedFunc() {
       await this.initWeb3();
