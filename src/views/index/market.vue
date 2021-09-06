@@ -58,7 +58,7 @@
       </div>
     </div>
     <template v-if="showModal">
-      <Modal><NewCardItem v-bind:cardInfo="cardInfo"/></Modal
+      <Modal><NewCardItem v-bind:cardInfo="cardInfo" /></Modal
     ></template>
   </div>
 </template>
@@ -206,7 +206,7 @@ export default {
       ExchangeContract.methods
         .buy(item.tokenId)
         .send({ from: account })
-        .then(function(res) {
+        .then(function (res) {
           console.log(res, "=====");
         });
       this.initList();
@@ -221,16 +221,10 @@ export default {
         Exchange.abi,
         contractConfig.Exchange
       );
-      const FighterContract = new window.web3.eth.Contract(
-        Fighter.abi,
-        contractConfig.Fighter
-      );
       const account = await this.$store.state.defaultAccount;
-      const input = FighterContract.methods
-        .approve(contractConfig.Exchange, item.tokenId)
-        .encodeABI();
-      await this._promise(account, contractConfig.Fighter, input);
-      await ExchangeContract.methods.pull(item.tokenId).send({ from: account });
+      await ExchangeContract.methods
+        .pull(item.tokenId)
+        .send({ from: account });
       this.initList();
       this.$notify({
         title: "おめでとう",
@@ -285,7 +279,7 @@ export default {
               input: input,
               // gas: 200000,
             },
-            function(error, res) {
+            function (error, res) {
               if (!error) {
                 console.log(res, "resdata==========");
                 const tval = setInterval(async () => {
