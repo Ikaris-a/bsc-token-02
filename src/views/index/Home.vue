@@ -162,6 +162,7 @@ export default {
         contractConfig.CardReword
       );
       const account = await this.$store.state.defaultAccount;
+      console.log(item.tokenId,"======");
       await exchangeContract.methods
         .redeemed(item.tokenId)
         .send({ from: account, gas: 200000 });

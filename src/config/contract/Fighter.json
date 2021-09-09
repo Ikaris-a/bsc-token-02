@@ -17711,7 +17711,7 @@
         3086
       ],
       "Fighter": [
-        5986
+        5959
       ],
       "IERC165": [
         2259
@@ -17741,12 +17741,12 @@
         2223
       ]
     },
-    "id": 5987,
+    "id": 5960,
     "license": "SimPL-2.0",
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 5926,
+        "id": 5899,
         "literals": [
           "solidity",
           "^",
@@ -17757,7 +17757,7 @@
         "src": "39:23:27"
       },
       {
-        "id": 5927,
+        "id": 5900,
         "literals": [
           "experimental",
           "ABIEncoderV2"
@@ -17768,9 +17768,9 @@
       {
         "absolutePath": "project:/contracts/authority/Member.sol",
         "file": "../authority/Member.sol",
-        "id": 5928,
+        "id": 5901,
         "nodeType": "ImportDirective",
-        "scope": 5987,
+        "scope": 5960,
         "sourceUnit": 3290,
         "src": "98:33:27",
         "symbolAliases": [],
@@ -17779,9 +17779,9 @@
       {
         "absolutePath": "@openzeppelin/contracts/token/ERC721/ERC721.sol",
         "file": "@openzeppelin/contracts/token/ERC721/ERC721.sol",
-        "id": 5929,
+        "id": 5902,
         "nodeType": "ImportDirective",
-        "scope": 5987,
+        "scope": 5960,
         "sourceUnit": 1510,
         "src": "133:57:27",
         "symbolAliases": [],
@@ -17790,9 +17790,9 @@
       {
         "absolutePath": "@openzeppelin/contracts/utils/math/SafeMath.sol",
         "file": "@openzeppelin/contracts/utils/math/SafeMath.sol",
-        "id": 5930,
+        "id": 5903,
         "nodeType": "ImportDirective",
-        "scope": 5987,
+        "scope": 5960,
         "sourceUnit": 2572,
         "src": "191:57:27",
         "symbolAliases": [],
@@ -17801,9 +17801,9 @@
       {
         "absolutePath": "@openzeppelin/contracts/utils/structs/EnumerableSet.sol",
         "file": "@openzeppelin/contracts/utils/structs/EnumerableSet.sol",
-        "id": 5931,
+        "id": 5904,
         "nodeType": "ImportDirective",
-        "scope": 5987,
+        "scope": 5960,
         "sourceUnit": 3087,
         "src": "249:65:27",
         "symbolAliases": [],
@@ -17814,25 +17814,25 @@
         "baseContracts": [
           {
             "baseName": {
-              "id": 5933,
+              "id": 5906,
               "name": "Member",
               "nodeType": "IdentifierPath",
               "referencedDeclaration": 3289,
               "src": "449:6:27"
             },
-            "id": 5934,
+            "id": 5907,
             "nodeType": "InheritanceSpecifier",
             "src": "449:6:27"
           },
           {
             "baseName": {
-              "id": 5935,
+              "id": 5908,
               "name": "ERC721",
               "nodeType": "IdentifierPath",
               "referencedDeclaration": 1509,
               "src": "457:6:27"
             },
-            "id": 5936,
+            "id": 5909,
             "nodeType": "InheritanceSpecifier",
             "src": "457:6:27"
           }
@@ -17849,15 +17849,15 @@
         ],
         "contractKind": "contract",
         "documentation": {
-          "id": 5932,
+          "id": 5905,
           "nodeType": "StructuredDocumentation",
           "src": "316:111:27",
           "text": " @title Fighter Z Token - ERC721\n @author Bit Lighthouse. Ace\n AT: 2021-3-28 | VERSION: v1.0.2"
         },
         "fullyImplemented": true,
-        "id": 5986,
+        "id": 5959,
         "linearizedBaseContracts": [
-          5986,
+          5959,
           1509,
           1701,
           1625,
@@ -17871,9 +17871,9 @@
         "nodeType": "ContractDefinition",
         "nodes": [
           {
-            "id": 5939,
+            "id": 5912,
             "libraryName": {
-              "id": 5937,
+              "id": 5910,
               "name": "SafeMath",
               "nodeType": "IdentifierPath",
               "referencedDeclaration": 2571,
@@ -17882,7 +17882,7 @@
             "nodeType": "UsingForDirective",
             "src": "470:27:27",
             "typeName": {
-              "id": 5938,
+              "id": 5911,
               "name": "uint256",
               "nodeType": "ElementaryTypeName",
               "src": "489:7:27",
@@ -17893,9 +17893,9 @@
             }
           },
           {
-            "id": 5943,
+            "id": 5916,
             "libraryName": {
-              "id": 5940,
+              "id": 5913,
               "name": "EnumerableSet",
               "nodeType": "IdentifierPath",
               "referencedDeclaration": 3086,
@@ -17904,10 +17904,10 @@
             "nodeType": "UsingForDirective",
             "src": "502:46:27",
             "typeName": {
-              "id": 5942,
+              "id": 5915,
               "nodeType": "UserDefinedTypeName",
               "pathNode": {
-                "id": 5941,
+                "id": 5914,
                 "name": "EnumerableSet.UintSet",
                 "nodeType": "IdentifierPath",
                 "referencedDeclaration": 2986,
@@ -17923,23 +17923,23 @@
           },
           {
             "body": {
-              "id": 5955,
+              "id": 5928,
               "nodeType": "Block",
               "src": "632:8:27",
               "statements": []
             },
-            "id": 5956,
+            "id": 5929,
             "implemented": true,
             "kind": "constructor",
             "modifiers": [
               {
                 "arguments": [
                   {
-                    "id": 5948,
+                    "id": 5921,
                     "name": "auth_",
                     "nodeType": "Identifier",
                     "overloadedDeclarations": [],
-                    "referencedDeclaration": 5945,
+                    "referencedDeclaration": 5918,
                     "src": "588:5:27",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -17947,9 +17947,9 @@
                     }
                   }
                 ],
-                "id": 5949,
+                "id": 5922,
                 "modifierName": {
-                  "id": 5947,
+                  "id": 5920,
                   "name": "Member",
                   "nodeType": "IdentifierPath",
                   "referencedDeclaration": 3289,
@@ -17962,7 +17962,7 @@
                 "arguments": [
                   {
                     "hexValue": "46696768746572205a",
-                    "id": 5951,
+                    "id": 5924,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": true,
@@ -17978,7 +17978,7 @@
                   },
                   {
                     "hexValue": "44424e4654",
-                    "id": 5952,
+                    "id": 5925,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": true,
@@ -17993,9 +17993,9 @@
                     "value": "DBNFT"
                   }
                 ],
-                "id": 5953,
+                "id": 5926,
                 "modifierName": {
-                  "id": 5950,
+                  "id": 5923,
                   "name": "ERC721",
                   "nodeType": "IdentifierPath",
                   "referencedDeclaration": 1509,
@@ -18008,16 +18008,16 @@
             "name": "",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 5946,
+              "id": 5919,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 5945,
+                  "id": 5918,
                   "mutability": "mutable",
                   "name": "auth_",
                   "nodeType": "VariableDeclaration",
-                  "scope": 5956,
+                  "scope": 5929,
                   "src": "566:13:27",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -18026,7 +18026,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 5944,
+                    "id": 5917,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "566:7:27",
@@ -18042,12 +18042,12 @@
               "src": "565:15:27"
             },
             "returnParameters": {
-              "id": 5954,
+              "id": 5927,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "632:0:27"
             },
-            "scope": 5986,
+            "scope": 5959,
             "src": "554:86:27",
             "stateMutability": "nonpayable",
             "virtual": false,
@@ -18055,7 +18055,7 @@
           },
           {
             "body": {
-              "id": 5971,
+              "id": 5944,
               "nodeType": "Block",
               "src": "731:42:27",
               "statements": [
@@ -18063,11 +18063,11 @@
                   "expression": {
                     "arguments": [
                       {
-                        "id": 5967,
+                        "id": 5940,
                         "name": "to_",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 5958,
+                        "referencedDeclaration": 5931,
                         "src": "752:3:27",
                         "typeDescriptions": {
                           "typeIdentifier": "t_address",
@@ -18075,11 +18075,11 @@
                         }
                       },
                       {
-                        "id": 5968,
+                        "id": 5941,
                         "name": "tokenId_",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 5960,
+                        "referencedDeclaration": 5933,
                         "src": "757:8:27",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint112",
@@ -18098,7 +18098,7 @@
                           "typeString": "uint112"
                         }
                       ],
-                      "id": 5966,
+                      "id": 5939,
                       "name": "_safeMint",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
@@ -18112,7 +18112,7 @@
                         "typeString": "function (address,uint256)"
                       }
                     },
-                    "id": 5969,
+                    "id": 5942,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -18127,14 +18127,14 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 5970,
+                  "id": 5943,
                   "nodeType": "ExpressionStatement",
                   "src": "742:24:27"
                 }
               ]
             },
             "functionSelector": "f9d526d3",
-            "id": 5972,
+            "id": 5945,
             "implemented": true,
             "kind": "function",
             "modifiers": [
@@ -18142,7 +18142,7 @@
                 "arguments": [
                   {
                     "hexValue": "4341524453484f50",
-                    "id": 5963,
+                    "id": 5936,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": true,
@@ -18157,9 +18157,9 @@
                     "value": "CARDSHOP"
                   }
                 ],
-                "id": 5964,
+                "id": 5937,
                 "modifierName": {
-                  "id": 5962,
+                  "id": 5935,
                   "name": "CheckPermit",
                   "nodeType": "IdentifierPath",
                   "referencedDeclaration": 3209,
@@ -18172,16 +18172,16 @@
             "name": "doBuy",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 5961,
+              "id": 5934,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 5958,
+                  "id": 5931,
                   "mutability": "mutable",
                   "name": "to_",
                   "nodeType": "VariableDeclaration",
-                  "scope": 5972,
+                  "scope": 5945,
                   "src": "661:11:27",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -18190,7 +18190,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 5957,
+                    "id": 5930,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "661:7:27",
@@ -18204,11 +18204,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 5960,
+                  "id": 5933,
                   "mutability": "mutable",
                   "name": "tokenId_",
                   "nodeType": "VariableDeclaration",
-                  "scope": 5972,
+                  "scope": 5945,
                   "src": "674:16:27",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -18217,7 +18217,7 @@
                     "typeString": "uint112"
                   },
                   "typeName": {
-                    "id": 5959,
+                    "id": 5932,
                     "name": "uint112",
                     "nodeType": "ElementaryTypeName",
                     "src": "674:7:27",
@@ -18232,12 +18232,12 @@
               "src": "660:31:27"
             },
             "returnParameters": {
-              "id": 5965,
+              "id": 5938,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "731:0:27"
             },
-            "scope": 5986,
+            "scope": 5959,
             "src": "646:127:27",
             "stateMutability": "nonpayable",
             "virtual": false,
@@ -18245,7 +18245,7 @@
           },
           {
             "body": {
-              "id": 5984,
+              "id": 5957,
               "nodeType": "Block",
               "src": "846:32:27",
               "statements": [
@@ -18253,11 +18253,11 @@
                   "expression": {
                     "arguments": [
                       {
-                        "id": 5981,
+                        "id": 5954,
                         "name": "tokenId_",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 5974,
+                        "referencedDeclaration": 5947,
                         "src": "862:8:27",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint112",
@@ -18272,7 +18272,7 @@
                           "typeString": "uint112"
                         }
                       ],
-                      "id": 5980,
+                      "id": 5953,
                       "name": "_burn",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
@@ -18283,7 +18283,7 @@
                         "typeString": "function (uint256)"
                       }
                     },
-                    "id": 5982,
+                    "id": 5955,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -18298,14 +18298,14 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 5983,
+                  "id": 5956,
                   "nodeType": "ExpressionStatement",
                   "src": "856:15:27"
                 }
               ]
             },
             "functionSelector": "cae02df5",
-            "id": 5985,
+            "id": 5958,
             "implemented": true,
             "kind": "function",
             "modifiers": [
@@ -18313,7 +18313,7 @@
                 "arguments": [
                   {
                     "hexValue": "43415244524557415244",
-                    "id": 5977,
+                    "id": 5950,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": true,
@@ -18328,9 +18328,9 @@
                     "value": "CARDREWARD"
                   }
                 ],
-                "id": 5978,
+                "id": 5951,
                 "modifierName": {
-                  "id": 5976,
+                  "id": 5949,
                   "name": "CheckPermit",
                   "nodeType": "IdentifierPath",
                   "referencedDeclaration": 3209,
@@ -18343,16 +18343,16 @@
             "name": "doBurn",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 5975,
+              "id": 5948,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 5974,
+                  "id": 5947,
                   "mutability": "mutable",
                   "name": "tokenId_",
                   "nodeType": "VariableDeclaration",
-                  "scope": 5985,
+                  "scope": 5958,
                   "src": "795:16:27",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -18361,7 +18361,7 @@
                     "typeString": "uint112"
                   },
                   "typeName": {
-                    "id": 5973,
+                    "id": 5946,
                     "name": "uint112",
                     "nodeType": "ElementaryTypeName",
                     "src": "795:7:27",
@@ -18376,19 +18376,19 @@
               "src": "794:18:27"
             },
             "returnParameters": {
-              "id": 5979,
+              "id": 5952,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "846:0:27"
             },
-            "scope": 5986,
+            "scope": 5959,
             "src": "779:99:27",
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "public"
           }
         ],
-        "scope": 5987,
+        "scope": 5960,
         "src": "429:451:27"
       }
     ],
@@ -18416,7 +18416,7 @@
         3086
       ],
       "Fighter": [
-        5986
+        5959
       ],
       "IERC165": [
         2259
@@ -18446,12 +18446,12 @@
         2223
       ]
     },
-    "id": 5987,
+    "id": 5960,
     "license": "SimPL-2.0",
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 5926,
+        "id": 5899,
         "literals": [
           "solidity",
           "^",
@@ -18462,7 +18462,7 @@
         "src": "39:23:27"
       },
       {
-        "id": 5927,
+        "id": 5900,
         "literals": [
           "experimental",
           "ABIEncoderV2"
@@ -18473,9 +18473,9 @@
       {
         "absolutePath": "project:/contracts/authority/Member.sol",
         "file": "../authority/Member.sol",
-        "id": 5928,
+        "id": 5901,
         "nodeType": "ImportDirective",
-        "scope": 5987,
+        "scope": 5960,
         "sourceUnit": 3290,
         "src": "98:33:27",
         "symbolAliases": [],
@@ -18484,9 +18484,9 @@
       {
         "absolutePath": "@openzeppelin/contracts/token/ERC721/ERC721.sol",
         "file": "@openzeppelin/contracts/token/ERC721/ERC721.sol",
-        "id": 5929,
+        "id": 5902,
         "nodeType": "ImportDirective",
-        "scope": 5987,
+        "scope": 5960,
         "sourceUnit": 1510,
         "src": "133:57:27",
         "symbolAliases": [],
@@ -18495,9 +18495,9 @@
       {
         "absolutePath": "@openzeppelin/contracts/utils/math/SafeMath.sol",
         "file": "@openzeppelin/contracts/utils/math/SafeMath.sol",
-        "id": 5930,
+        "id": 5903,
         "nodeType": "ImportDirective",
-        "scope": 5987,
+        "scope": 5960,
         "sourceUnit": 2572,
         "src": "191:57:27",
         "symbolAliases": [],
@@ -18506,9 +18506,9 @@
       {
         "absolutePath": "@openzeppelin/contracts/utils/structs/EnumerableSet.sol",
         "file": "@openzeppelin/contracts/utils/structs/EnumerableSet.sol",
-        "id": 5931,
+        "id": 5904,
         "nodeType": "ImportDirective",
-        "scope": 5987,
+        "scope": 5960,
         "sourceUnit": 3087,
         "src": "249:65:27",
         "symbolAliases": [],
@@ -18519,25 +18519,25 @@
         "baseContracts": [
           {
             "baseName": {
-              "id": 5933,
+              "id": 5906,
               "name": "Member",
               "nodeType": "IdentifierPath",
               "referencedDeclaration": 3289,
               "src": "449:6:27"
             },
-            "id": 5934,
+            "id": 5907,
             "nodeType": "InheritanceSpecifier",
             "src": "449:6:27"
           },
           {
             "baseName": {
-              "id": 5935,
+              "id": 5908,
               "name": "ERC721",
               "nodeType": "IdentifierPath",
               "referencedDeclaration": 1509,
               "src": "457:6:27"
             },
-            "id": 5936,
+            "id": 5909,
             "nodeType": "InheritanceSpecifier",
             "src": "457:6:27"
           }
@@ -18554,15 +18554,15 @@
         ],
         "contractKind": "contract",
         "documentation": {
-          "id": 5932,
+          "id": 5905,
           "nodeType": "StructuredDocumentation",
           "src": "316:111:27",
           "text": " @title Fighter Z Token - ERC721\n @author Bit Lighthouse. Ace\n AT: 2021-3-28 | VERSION: v1.0.2"
         },
         "fullyImplemented": true,
-        "id": 5986,
+        "id": 5959,
         "linearizedBaseContracts": [
-          5986,
+          5959,
           1509,
           1701,
           1625,
@@ -18576,9 +18576,9 @@
         "nodeType": "ContractDefinition",
         "nodes": [
           {
-            "id": 5939,
+            "id": 5912,
             "libraryName": {
-              "id": 5937,
+              "id": 5910,
               "name": "SafeMath",
               "nodeType": "IdentifierPath",
               "referencedDeclaration": 2571,
@@ -18587,7 +18587,7 @@
             "nodeType": "UsingForDirective",
             "src": "470:27:27",
             "typeName": {
-              "id": 5938,
+              "id": 5911,
               "name": "uint256",
               "nodeType": "ElementaryTypeName",
               "src": "489:7:27",
@@ -18598,9 +18598,9 @@
             }
           },
           {
-            "id": 5943,
+            "id": 5916,
             "libraryName": {
-              "id": 5940,
+              "id": 5913,
               "name": "EnumerableSet",
               "nodeType": "IdentifierPath",
               "referencedDeclaration": 3086,
@@ -18609,10 +18609,10 @@
             "nodeType": "UsingForDirective",
             "src": "502:46:27",
             "typeName": {
-              "id": 5942,
+              "id": 5915,
               "nodeType": "UserDefinedTypeName",
               "pathNode": {
-                "id": 5941,
+                "id": 5914,
                 "name": "EnumerableSet.UintSet",
                 "nodeType": "IdentifierPath",
                 "referencedDeclaration": 2986,
@@ -18628,23 +18628,23 @@
           },
           {
             "body": {
-              "id": 5955,
+              "id": 5928,
               "nodeType": "Block",
               "src": "632:8:27",
               "statements": []
             },
-            "id": 5956,
+            "id": 5929,
             "implemented": true,
             "kind": "constructor",
             "modifiers": [
               {
                 "arguments": [
                   {
-                    "id": 5948,
+                    "id": 5921,
                     "name": "auth_",
                     "nodeType": "Identifier",
                     "overloadedDeclarations": [],
-                    "referencedDeclaration": 5945,
+                    "referencedDeclaration": 5918,
                     "src": "588:5:27",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -18652,9 +18652,9 @@
                     }
                   }
                 ],
-                "id": 5949,
+                "id": 5922,
                 "modifierName": {
-                  "id": 5947,
+                  "id": 5920,
                   "name": "Member",
                   "nodeType": "IdentifierPath",
                   "referencedDeclaration": 3289,
@@ -18667,7 +18667,7 @@
                 "arguments": [
                   {
                     "hexValue": "46696768746572205a",
-                    "id": 5951,
+                    "id": 5924,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": true,
@@ -18683,7 +18683,7 @@
                   },
                   {
                     "hexValue": "44424e4654",
-                    "id": 5952,
+                    "id": 5925,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": true,
@@ -18698,9 +18698,9 @@
                     "value": "DBNFT"
                   }
                 ],
-                "id": 5953,
+                "id": 5926,
                 "modifierName": {
-                  "id": 5950,
+                  "id": 5923,
                   "name": "ERC721",
                   "nodeType": "IdentifierPath",
                   "referencedDeclaration": 1509,
@@ -18713,16 +18713,16 @@
             "name": "",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 5946,
+              "id": 5919,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 5945,
+                  "id": 5918,
                   "mutability": "mutable",
                   "name": "auth_",
                   "nodeType": "VariableDeclaration",
-                  "scope": 5956,
+                  "scope": 5929,
                   "src": "566:13:27",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -18731,7 +18731,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 5944,
+                    "id": 5917,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "566:7:27",
@@ -18747,12 +18747,12 @@
               "src": "565:15:27"
             },
             "returnParameters": {
-              "id": 5954,
+              "id": 5927,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "632:0:27"
             },
-            "scope": 5986,
+            "scope": 5959,
             "src": "554:86:27",
             "stateMutability": "nonpayable",
             "virtual": false,
@@ -18760,7 +18760,7 @@
           },
           {
             "body": {
-              "id": 5971,
+              "id": 5944,
               "nodeType": "Block",
               "src": "731:42:27",
               "statements": [
@@ -18768,11 +18768,11 @@
                   "expression": {
                     "arguments": [
                       {
-                        "id": 5967,
+                        "id": 5940,
                         "name": "to_",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 5958,
+                        "referencedDeclaration": 5931,
                         "src": "752:3:27",
                         "typeDescriptions": {
                           "typeIdentifier": "t_address",
@@ -18780,11 +18780,11 @@
                         }
                       },
                       {
-                        "id": 5968,
+                        "id": 5941,
                         "name": "tokenId_",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 5960,
+                        "referencedDeclaration": 5933,
                         "src": "757:8:27",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint112",
@@ -18803,7 +18803,7 @@
                           "typeString": "uint112"
                         }
                       ],
-                      "id": 5966,
+                      "id": 5939,
                       "name": "_safeMint",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
@@ -18817,7 +18817,7 @@
                         "typeString": "function (address,uint256)"
                       }
                     },
-                    "id": 5969,
+                    "id": 5942,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -18832,14 +18832,14 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 5970,
+                  "id": 5943,
                   "nodeType": "ExpressionStatement",
                   "src": "742:24:27"
                 }
               ]
             },
             "functionSelector": "f9d526d3",
-            "id": 5972,
+            "id": 5945,
             "implemented": true,
             "kind": "function",
             "modifiers": [
@@ -18847,7 +18847,7 @@
                 "arguments": [
                   {
                     "hexValue": "4341524453484f50",
-                    "id": 5963,
+                    "id": 5936,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": true,
@@ -18862,9 +18862,9 @@
                     "value": "CARDSHOP"
                   }
                 ],
-                "id": 5964,
+                "id": 5937,
                 "modifierName": {
-                  "id": 5962,
+                  "id": 5935,
                   "name": "CheckPermit",
                   "nodeType": "IdentifierPath",
                   "referencedDeclaration": 3209,
@@ -18877,16 +18877,16 @@
             "name": "doBuy",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 5961,
+              "id": 5934,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 5958,
+                  "id": 5931,
                   "mutability": "mutable",
                   "name": "to_",
                   "nodeType": "VariableDeclaration",
-                  "scope": 5972,
+                  "scope": 5945,
                   "src": "661:11:27",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -18895,7 +18895,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 5957,
+                    "id": 5930,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "661:7:27",
@@ -18909,11 +18909,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 5960,
+                  "id": 5933,
                   "mutability": "mutable",
                   "name": "tokenId_",
                   "nodeType": "VariableDeclaration",
-                  "scope": 5972,
+                  "scope": 5945,
                   "src": "674:16:27",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -18922,7 +18922,7 @@
                     "typeString": "uint112"
                   },
                   "typeName": {
-                    "id": 5959,
+                    "id": 5932,
                     "name": "uint112",
                     "nodeType": "ElementaryTypeName",
                     "src": "674:7:27",
@@ -18937,12 +18937,12 @@
               "src": "660:31:27"
             },
             "returnParameters": {
-              "id": 5965,
+              "id": 5938,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "731:0:27"
             },
-            "scope": 5986,
+            "scope": 5959,
             "src": "646:127:27",
             "stateMutability": "nonpayable",
             "virtual": false,
@@ -18950,7 +18950,7 @@
           },
           {
             "body": {
-              "id": 5984,
+              "id": 5957,
               "nodeType": "Block",
               "src": "846:32:27",
               "statements": [
@@ -18958,11 +18958,11 @@
                   "expression": {
                     "arguments": [
                       {
-                        "id": 5981,
+                        "id": 5954,
                         "name": "tokenId_",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 5974,
+                        "referencedDeclaration": 5947,
                         "src": "862:8:27",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint112",
@@ -18977,7 +18977,7 @@
                           "typeString": "uint112"
                         }
                       ],
-                      "id": 5980,
+                      "id": 5953,
                       "name": "_burn",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
@@ -18988,7 +18988,7 @@
                         "typeString": "function (uint256)"
                       }
                     },
-                    "id": 5982,
+                    "id": 5955,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -19003,14 +19003,14 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 5983,
+                  "id": 5956,
                   "nodeType": "ExpressionStatement",
                   "src": "856:15:27"
                 }
               ]
             },
             "functionSelector": "cae02df5",
-            "id": 5985,
+            "id": 5958,
             "implemented": true,
             "kind": "function",
             "modifiers": [
@@ -19018,7 +19018,7 @@
                 "arguments": [
                   {
                     "hexValue": "43415244524557415244",
-                    "id": 5977,
+                    "id": 5950,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": true,
@@ -19033,9 +19033,9 @@
                     "value": "CARDREWARD"
                   }
                 ],
-                "id": 5978,
+                "id": 5951,
                 "modifierName": {
-                  "id": 5976,
+                  "id": 5949,
                   "name": "CheckPermit",
                   "nodeType": "IdentifierPath",
                   "referencedDeclaration": 3209,
@@ -19048,16 +19048,16 @@
             "name": "doBurn",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 5975,
+              "id": 5948,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 5974,
+                  "id": 5947,
                   "mutability": "mutable",
                   "name": "tokenId_",
                   "nodeType": "VariableDeclaration",
-                  "scope": 5985,
+                  "scope": 5958,
                   "src": "795:16:27",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -19066,7 +19066,7 @@
                     "typeString": "uint112"
                   },
                   "typeName": {
-                    "id": 5973,
+                    "id": 5946,
                     "name": "uint112",
                     "nodeType": "ElementaryTypeName",
                     "src": "795:7:27",
@@ -19081,19 +19081,19 @@
               "src": "794:18:27"
             },
             "returnParameters": {
-              "id": 5979,
+              "id": 5952,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "846:0:27"
             },
-            "scope": 5986,
+            "scope": 5959,
             "src": "779:99:27",
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "public"
           }
         ],
-        "scope": 5987,
+        "scope": 5960,
         "src": "429:451:27"
       }
     ],
@@ -19107,18 +19107,12 @@
     "97": {
       "events": {},
       "links": {},
-      "address": "0x41541880d9aC54400272Ed7E15B7cc2583B5f9Df",
-      "transactionHash": "0x621a6e93e435836a8b70b9d04ac0f8dd70b1cf3c9ba9e6c3823ef817fc3f56d9"
-    },
-    "5777": {
-      "events": {},
-      "links": {},
-      "address": "0x4baE24A6F001B675BEa39d6a591773EC5B84d9E1",
-      "transactionHash": "0xab9f4df94a7a2ac0c7a3e78d69428c921271a0befc14af6cc195bf4af2098c15"
+      "address": "0xc50c9ACE6aAf9AB299B64E37574Df2BE6C47a305",
+      "transactionHash": "0xde2d3c55a33817bdce049534bb67fe84d5d665135a78bfd8e7cac6b9126d87e6"
     }
   },
   "schemaVersion": "3.4.3",
-  "updatedAt": "2021-09-09T06:56:40.472Z",
+  "updatedAt": "2021-09-09T09:34:15.347Z",
   "networkType": "ethereum",
   "devdoc": {
     "author": "Bit Lighthouse. Ace AT: 2021-3-28 | VERSION: v1.0.2",
