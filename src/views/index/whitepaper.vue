@@ -1,11 +1,11 @@
 <template>
   <div class="index_main">
     <div class="width_1200">
-      <div class="white-paper">
+      <div class="white-paper" v-if="this.$store.state.lang === 'JP'">
         <p>
           I. ドラゴンボール ファイターズ」とは？
           <br />Dragon Ball Fighter
-          Z（中文名：龙珠斗士Z）是BSCのDEFI+NFTプロジェクトがメタスペースの概念を中心に展開しているのに対し、DBFZはマイニング、NFT、GameFi、メタスペースといったポピュラーな概念を経済モデルやゲームプレイに取り入れています。
+          Z是BSCのDEFI+NFTプロジェクトがメタスペースの概念を中心に展開しているのに対し、DBFZはマイニング、NFT、GameFi、メタスペースといったポピュラーな概念を経済モデルやゲームプレイに取り入れています。
           合計：1,00000000 <br />トレーディングポジション：10%
           <br />5%のトレーディングボーナスプール <br />3%のマーケティング
           <br />2%のブラックホール破壊 <br />3.2 DBFZデッキプレイ
@@ -16,27 +16,32 @@
           <br />カードタイプはSR、カード総数は1000枚、入手できるトークンは200％～1000％です。
           <br />カードタイプSSRタイプ、合計：25枚、入手できるもの：2000%トークン
           <br />カードの種類 ドラゴンボールカード7枚
-          合計：7枚、獲得できる：3000%トークン <br />I. ドラゴンボール
-          ファイターズ」とは？ <br />Dragon Ball Fighter
-          Z（中文名：龙珠斗士Z）是BSCのDEFI+NFTプロジェクトがメタスペースの概念を中心に展開しているのに対し、DBFZはマイニング、NFT、GameFi、メタスペースといったポピュラーな概念を経済モデルやゲームプレイに取り入れています。
-          <br />合計：1,00000000 <br />トレーディングポジション：10%
-          <br />5%のトレーディングボーナスプール <br />3%のマーケティング
-          <br />2%のブラックホール破壊 <br />3.2 DBFZデッキプレイ
-          <br />1000トークンでカードタイプRを1枚購入。 合計：6968枚
-          最小のオープニングカードで50%～200%のトークンが入手可能
-          R,S,SR,SSR(7つの一つ星スペシャル)のキャラクターを破壊してトークンと交換可能(1000W/1000カード価格=10000枚)
-          カードタイプS、合計：2000、獲得トークン：90％～500％トークン
-          カードタイプはSR、カード総数は1000枚、入手できるトークンは200％～1000％です。
-          カードタイプSSRタイプ、合計：25枚、入手できるもの：2000%トークン
-          カードの種類 ドラゴンボールカード7枚
-          合計：7枚、獲得できる：3000%トークン
+          合計：7枚、獲得できる：3000%トークン <br />
         </p>
       </div>
-
-      <div class="white-paper">
+      <div class="white-paper" v-if="this.$store.state.lang === 'EN'">
         <p>
-          DBFZカードパックのゲーム性 1 スターバトルパワー：
-          SR（20キャラクター
+          I. What is "Dragon Ball FighterZ"?
+          <br />Dragon Ball Fighter Z While BSC's DEFI + NFT project revolves
+          around the concept of metaspace, DBFZ uses popular concepts such as
+          mining, NFT, GameFi, and metaspace as economic models. Incorporated
+          into gameplay. Total: 1,00000000<br />Trading position：10% <br />5%
+          Trading Bonus Pool <br />3%Marketing <br />2%Black hole destruction
+          <br />3.2 DBFZ deck play <br />Purchase one Card Type R with 1000
+          tokens. Total: 6968 sheets 50% -200% tokens available with the
+          smallest opening card R, S, SR, SSR (7 1-star special) characters can
+          be destroyed and exchanged for tokens (1000W / 1000 card price = 10000
+          cards) <br />Card type S, total: 2000, earned tokens: 90% -500% tokens
+          <br />The card type is SR, the total number of cards is 1000, and the
+          available tokens are 200% to 1000%. <br />Card type SSR type, total:
+          25, available: 2000% token
+          <br />
+          Card type 7 Dragon Ball cards Total: 7 cards, earnable: 3000% tokens
+        </p>
+      </div>
+      <div class="white-paper" v-if="this.$store.state.lang === 'JP'">
+        <p>
+          DBFZカードパックのゲーム性 1 スターバトルパワー： SR（20キャラクター
           合計：50セット）いずれかの5枚<br />
           マイニングプールの3％を必要とする（カードは交換後にプールに戻され、交換されない場合はマイニングにコミットするオプションがある）。
           2 スターパワー：<br />
@@ -54,6 +59,36 @@
           今日の市場では、デジタルトランスフォーメーションは避けて通れないものですが、技術的な障壁や差別化されたニーズなど、さまざまな要因によってトランスフォーメーションの旅が制限されるため、単一のサードパーティだけでは、デジタルトランスフォーメーション全体を成功に導くことができないことは明らかです。
           しかし、技術的な障壁や差別化されたニーズなど、さまざまな要因によって変革の旅は制限されるため、単一のサードパーティだけでは、デジタルトランスフォーメーション全体を成功に導くことはできないことは明らかです。
           Win-Winの状況は、フィジカルチェーンのすべてのプレーヤーと、業界全体のパートナーとのオープンなコラボレーションによってのみ達成されます。
+        </p>
+      </div>
+      <div class="white-paper" v-if="this.$store.state.lang === 'EN'">
+        <p>
+          DBFZ Card Pack Game 1 Star Battle Power: SR (20 characters) Total: 50
+          sets) Any 5 sheets<br />
+          Requires 3% of the mining pool (cards are returned to the pool after
+          exchange, with the option to commit to mining if not exchanged). 2
+          Star power:<br />
+          SSR (25 cards, 5 characters total: 5 sets) Dragon Ball receiving 10%
+          of the pool Collect 7 tickets once a day and get 30% prizes in a row
+          Automatically repooled after 7 days
+          <br />
+          Pledge Card Mining DBFZ Pledge Card Mining Token The total amount to
+          be mined is 1000W (the amount mined in one year) Pledge mining is
+          allocated in proportion to the number of user battle values ​​relative
+          to the total battle value Details on how to play are explained in the
+          second addition of the white paper.
+          <br />
+          Realization of decentralized finance by NFT and Decentralized Finance
+          Digital transformation is inevitable in today's market, but a single
+          third party alone limits the transformation journey due to a variety
+          of factors, including technical barriers and differentiated needs. It
+          is clear that the entire digital transformation cannot be successful.
+          However, it is clear that a single third party alone cannot lead to
+          the success of the entire digital transformation, as various factors,
+          such as technical barriers and differentiated needs, limit the journey
+          of transformation. .. A win-win situation can only be achieved through
+          open collaboration with all players in the physical chain and partners
+          throughout the industry.
         </p>
       </div>
     </div>
@@ -76,8 +111,8 @@ export default {
     },
     removeActive($event) {
       $event.currentTarget.className = "lottery";
-    },
-  },
+    }
+  }
 };
 </script>
 
@@ -92,7 +127,7 @@ export default {
   background: url(./../img/jz/fs_0002.png) no-repeat;
   p {
     text-align: left;
-    padding: 160px 200px;
+    padding: 220px 200px;
     color: #6b250c;
   }
 }

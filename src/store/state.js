@@ -1,8 +1,12 @@
-const state = {
+export const state = {
   defaultAccount: "",
+  lang: "JP",
   balacne: "",
-  walletClose:false,
+  walletClose: false,
   waning: false
 };
-
-export default state;
+export const mutations = {
+  changeLanguage(state) {
+    state.lang = state.lang === "JP" ? "EN" : "JP";
+  }
+};1

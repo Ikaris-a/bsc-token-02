@@ -3,7 +3,7 @@ import Vuex from "vuex";
 
 Vue.use(Vuex);
 const state = {
-  lang: "",
+  lang: "JP",
   defaultAccount: "",
   balacne: "",
   waning: false,
@@ -12,7 +12,7 @@ const state = {
   walletClose: false,
   promiseStatusList: null,
   mobileHamburger: false,
-  clientWidth: 0,
+  clientWidth: 0
 };
 const mutations = {
   langFun(state, res) {
@@ -20,6 +20,9 @@ const mutations = {
   },
   defaultAccountFun(state, res) {
     state.defaultAccount = res;
+  },
+  changeLanguage() {
+    state.lang = state.lang === "JP" ? "EN" : "JP";
   },
   balacnefun(state, res) {
     state.balacne = res;
@@ -44,7 +47,7 @@ const mutations = {
   },
   clientWidthfun(state, res) {
     state.clientWidth = res;
-  },
+  }
 };
 const actions = {};
 // const store = () =>

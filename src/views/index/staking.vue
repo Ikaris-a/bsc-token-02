@@ -12,18 +12,39 @@
       <div class="mining-container">
         <img src="../img/new/mining_bg.png" alt />
         <div class="mining-content">
-          <div>総戦闘力:&nbsp;&nbsp;{{ totalCombatPower }} &nbsp;&nbsp;CP</div>
-          <div>私の戦闘力:&nbsp;&nbsp;{{ myCombatPower }} &nbsp;&nbsp;CP</div>
-          <div>私の収入:&nbsp;&nbsp;{{ rewardAmount }}&nbsp;&nbsp;DBFZ</div>
+          <div>
+            <span v-if="this.$store.state.lang === 'JP'">総戦闘力:</span>
+            <span v-if="this.$store.state.lang === 'EN'"
+              >Total combat power:</span
+            >
+            &nbsp;&nbsp;{{ totalCombatPower }} &nbsp;&nbsp;CP
+          </div>
+          <div>
+            <span v-if="this.$store.state.lang === 'JP'">私の戦闘力:</span>
+            <span v-if="this.$store.state.lang === 'EN'">My combat power:</span>
+            &nbsp;&nbsp;{{ myCombatPower }} &nbsp;&nbsp;CP
+          </div>
+          <div>
+            <span v-if="this.$store.state.lang === 'JP'">私の収入:</span>
+            <span v-if="this.$store.state.lang === 'EN'">My income:</span
+            >&nbsp;&nbsp;{{ rewardAmount }}&nbsp;&nbsp;DBFZ
+          </div>
         </div>
-        <div class="getDbfz" @click="getReward">収入を受け取る</div>
+        <div class="getDbfz" @click="getReward">
+          <span v-if="this.$store.state.lang === 'JP'">収入を受け取る</span>
+          <span v-if="this.$store.state.lang === 'EN'">Receive income </span>
+        </div>
       </div>
       <div class="change-container">
         <div class="mining-container">
           <img src="../img/long/long.png" alt />
           <div class="mining-content">
             <div>
-              トータルボーナス<br />{{ totalRewardDbfz }}
+              <span v-if="this.$store.state.lang === 'JP'"
+                >トータルボーナス</span
+              >
+              <span v-if="this.$store.state.lang === 'EN'">Total bonus</span>
+              <br />{{ totalRewardDbfz }}
               &nbsp;&nbsp;DBFZ
             </div>
             <div class="getDbfz-card" @click="getExchange(4)">S</div>
@@ -32,66 +53,99 @@
             <div class="getDbfz-card" @click="getExchange(2)">SSR</div>
             <br />
             <div class="getDbfz-card" @click="getExchange(1)">
-              ドラゴンボール
+              <span v-if="this.$store.state.lang === 'JP'">ドラゴンボール</span>
+              <span v-if="this.$store.state.lang === 'EN'">Dragon Ball</span>
             </div>
           </div>
         </div>
       </div>
       <div class="title-info ti-1 width_1200">
         <img src="../img/fs_002.png" alt />
-        <p>
+        <p v-if="this.$store.state.lang === 'JP'">
           この収入は、マイニングプール全体に対する戦闘力の比率です。年間1000wのDBFZマイニング報酬、カードをDBFZに交換すると、マイニング報酬はなくなります。
+        </p>
+        <p v-if="this.$store.state.lang === 'EN'">
+          This income is the ratio of combat power to the entire mining pool. If
+          you exchange 1000w of DBFZ mining rewards and cards for DBFZ per year,
+          the mining rewards will disappear.
         </p>
       </div>
       <div class="title-info width_1200">
         <h2>DBFZ Token</h2>
-        <div>
+        <div v-if="this.$store.state.lang === 'JP'">
           DBFZトークンはゲーム内の主要通貨です。それは取引に使用されます、
           主に最初に交換し、彼らの特別な資質を向上させる
           段階。正式な契約アドレス：
         </div>
+        <div v-if="this.$store.state.lang === 'EN'">
+          DBFZ tokens are the main currency in the game. It is used for
+          transactions, Mainly exchange first and improve their special
+          qualities step. Formal contract address:
+        </div>
       </div>
 
       <div class="title-info width_1200">
-        <h2>私たちのチーム</h2>
+        <h2 v-if="this.$store.state.lang === 'JP'">私たちのチーム</h2>
+        <h2 v-if="this.$store.state.lang === 'EN'">Our team</h2>
         <ul class="te team">
           <li>
             <div class="thumb-icon">
               <img src="../../components/card/character_13.png" alt />
             </div>
-            <div>ひなた</div>
-            <p>
+            <div v-if="this.$store.state.lang === 'JP'">ひなた</div>
+            <div v-if="this.$store.state.lang === 'EN'">Hinata</div>
+
+            <p v-if="this.$store.state.lang === 'JP'">
               事業開発ディレクター
               <br />@やまと <br />@ひろと (VRゲーム)
+            </p>
+            <p v-if="this.$store.state.lang === 'EN'">
+              Business Development Director
+              <br />@Yamato <br />@Hiroto (VR game)
             </p>
           </li>
           <li>
             <div class="thumb-icon">
               <img src="../../components/card/character_14.png" alt />
             </div>
-            <div>ドロシー</div>
-            <p>
+            <div v-if="this.$store.state.lang === 'JP'">ドロシー</div>
+            <div v-if="this.$store.state.lang === 'EN'">Dorothy</div>
+            <p v-if="this.$store.state.lang === 'JP'">
               最高執行責任者
               <br />ゲームプロデューサー
+            </p>
+            <p v-if="this.$store.state.lang === 'EN'">
+              Highest executive responsibility
+              <br />Game producer
             </p>
           </li>
           <li>
             <div class="thumb-icon">
               <img src="../../components/card/character_15.png" alt />
             </div>
-            <div>パール</div>
-            <p>
+            <div v-if="this.$store.state.lang === 'JP'">パール</div>
+            <div v-if="this.$store.state.lang === 'EN'">Pearl</div>
+            <p v-if="this.$store.state.lang === 'JP'">
               発達
               <br />プログラムマネージャー
+            </p>
+            <p v-if="this.$store.state.lang === 'EN'">
+              development
+              <br />Program manager
             </p>
           </li>
           <li>
             <div class="thumb-icon">
               <img src="../../components/card/character_16.png" alt />
             </div>
-            <div>ウォレス</div>
-            <p>
+            <div v-if="this.$store.state.lang === 'JP'">ウォレス</div>
+            <div v-if="this.$store.state.lang === 'EN'">Wallace</div>
+            <p v-if="this.$store.state.lang === 'JP'">
               ゲームプロダクトマネージャー
+              <br />
+            </p>
+            <p v-if="this.$store.state.lang === 'EN'">
+              Game product manager
               <br />
             </p>
           </li>
@@ -122,37 +176,41 @@ export default {
       loading: false,
       showModal: false,
       totalRewardDbfz: 0,
-      dataConfig: [
-        {
-          name: "カカロット",
-          desc: "",
-          urlIndex: "sunwukong",
-        },
-        {
-          name: "ベジット",
-          desc: "",
-          urlIndex: "beijita",
-        },
-        {
-          name: "ウーブ",
-          desc: "",
-          urlIndex: "buou",
-        },
-        {
-          name: "ピッコロ",
-          desc: "",
-          urlIndex: "dende",
-        },
-      ],
       NETWORK: contractConfig.rpc,
       cardShop: {
         contract: "",
-        address: contractConfig.CardShop,
+        address: contractConfig.CardShop
       },
       exchange: { contract: "", address: contractConfig.Exchange },
       tokenContract: { contract: "", address: contractConfig.Token },
-      Fighter: { contract: "", address: contractConfig.Fighter },
+      Fighter: { contract: "", address: contractConfig.Fighter }
     };
+  },
+   computed: {
+    dataConfig() {
+      return [
+        {
+          name: this.$store.state.lang === "JP"?"カカロット":"Kakarot",
+          desc: "",
+          urlIndex: "sunwukong"
+        },
+        {
+          name: this.$store.state.lang === "JP"?"ベジット":"Vegetto",
+          desc: "",
+          urlIndex: "beijita"
+        },
+        {
+          name: this.$store.state.lang === "JP"?"ウーブ":"Uub",
+          desc: "",
+          urlIndex: "buou"
+        },
+        {
+          name: this.$store.state.lang === "JP"?"ピッコロ":"Piccolo",
+          desc: "",
+          urlIndex: "dende"
+        }
+      ];
+    }
   },
   async mounted() {
     await this.initWeb3();
@@ -206,7 +264,7 @@ export default {
       this.$notify({
         title: "おめでとう",
         dangerouslyUseHTMLString: true,
-        message: "<strong>オンチェーントランザクションが完了しました</strong>",
+        message: "<strong>オンチェーントランザクションが完了しました</strong>"
       });
     },
     async getReward() {
@@ -219,7 +277,7 @@ export default {
       this.$notify({
         title: "おめでとう",
         dangerouslyUseHTMLString: true,
-        message: "<strong>オンチェーントランザクションが完了しました</strong>",
+        message: "<strong>オンチェーントランザクションが完了しました</strong>"
       });
       this.initData();
     },
@@ -268,7 +326,7 @@ export default {
         try {
           // metaMask连接钱包的方法
           const accounts = await ethereum.request({
-            method: "eth_requestAccounts",
+            method: "eth_requestAccounts"
           });
           // 判断是否已经连接钱包
           this.$store.commit("defaultAccountFun", accounts[0]);
@@ -294,7 +352,7 @@ export default {
               from: from,
               to: to,
               value: value || 0,
-              input: input,
+              input: input
               // gas: 200000,
             },
             function(error, res) {
@@ -334,8 +392,8 @@ export default {
     },
     removeActive($event) {
       $event.currentTarget.className = "lottery";
-    },
-  },
+    }
+  }
 };
 </script>
 

@@ -12,19 +12,68 @@
           <div class="inner two"></div>
           <div class="inner three"></div>
         </div>
-        <div>カード取引、お待ちください</div>
+        <div v-if="this.$store.state.lang === 'JP'">
+          カード取引、お待ちください
+        </div>
+        <div v-if="this.$store.state.lang === 'EN'">
+          Card transaction, please wait
+        </div>
       </div>
       <div class="market-filter">
-        <div class="mf-btn" @click="type = 0">すべてのカード</div>
-        <div class="mf-btn" @click="type = 1">私のカード</div>
-        <div class="mf-btn" @click="type = 2">に追加されました</div>
+        <div
+          class="mf-btn"
+          @click="type = 0"
+          v-if="this.$store.state.lang === 'JP'"
+        >
+          すべてのカード
+        </div>
+        <div
+          class="mf-btn"
+          @click="type = 0"
+          v-if="this.$store.state.lang === 'EN'"
+        >
+          All cards
+        </div>
+        <div
+          class="mf-btn"
+          @click="type = 1"
+          v-if="this.$store.state.lang === 'JP'"
+        >
+          私のカード
+        </div>
+        <div
+          class="mf-btn"
+          @click="type = 1"
+          v-if="this.$store.state.lang === 'EN'"
+        >
+          My card
+        </div>
+
+        <div
+          class="mf-btn"
+          @click="type = 2"
+          v-if="this.$store.state.lang === 'JP'"
+        >
+          に追加されました
+        </div>
+        <div
+          class="mf-btn"
+          @click="type = 2"
+          v-if="this.$store.state.lang === 'EN'"
+        >
+          Was added to
+        </div>
       </div>
       <div class="market-container">
         <div v-if="cardInfoList.length > 0 && type === 1">
           <div class="set-price">
             <input
               type="text"
-              placeholder="カードの価格を入力してください"
+              :placeholder="
+                this.$store.state.lang === 'JP'
+                  ? 'カードの価格を入力してください'
+                  : 'Please enter the price of the card'
+              "
               v-model="cardPrice"
               @blur="changePrice"
             />
@@ -33,7 +82,10 @@
             <div class="my-card-item" :key="index">
               <NewCardItem :cardInfo="item" />
 
-              <div class="mc-btn" @click="put(item)">棚の上の</div>
+              <div class="mc-btn" @click="put(item)">
+                <span v-if="this.$store.state.lang === 'JP'">棚の上の</span>
+                <span v-if="this.$store.state.lang === 'EN'">On the shelf</span>
+              </div>
             </div>
           </template>
         </div>
@@ -41,8 +93,15 @@
           <template v-for="(item, index) in marketCardInfoList">
             <div class="my-card-item" :key="index">
               <NewCardItem :cardInfo="item" />
-              <div class="price">価格：{{ getPrice(item.amount) }} DBFZ</div>
-              <div class="mc-btn" @click="buy(item)">買う</div>
+              <div class="price">
+                <span v-if="this.$store.state.lang === 'JP'">価格：</span>
+                <span v-if="this.$store.state.lang === 'EN'">price:</span>
+                {{ getPrice(item.amount) }} DBFZ
+              </div>
+              <div class="mc-btn" @click="buy(item)">
+                <span v-if="this.$store.state.lang === 'JP'">買う</span>
+                <span v-if="this.$store.state.lang === 'EN'">buy</span>
+              </div>
             </div>
           </template>
         </div>
@@ -51,14 +110,17 @@
             <div class="my-card-item" :key="index">
               <NewCardItem :cardInfo="item" />
               <!-- <div class="mc-btn" @click="put(item)">売る</div> -->
-              <div class="mc-btn" @click="pull(item)">既製</div>
+              <div class="mc-btn" @click="pull(item)">
+                <span v-if="this.$store.state.lang === 'JP'">既製</span>
+                <span v-if="this.$store.state.lang === 'EN'">Ready-made</span>
+              </div>
             </div>
           </template>
         </div>
       </div>
     </div>
     <template v-if="showModal">
-      <Modal><NewCardItem v-bind:cardInfo="cardInfo" /></Modal
+      <Modal><NewCardItem v-bind:cardInfo="cardInfo"/></Modal
     ></template>
   </div>
 </template>
@@ -87,37 +149,41 @@ export default {
       cardInfoList: [],
       marketCardInfoList: [],
       marketPutCardInfoList: [],
-      dataConfig: [
-        {
-          name: "カカロット",
-          desc: "",
-          urlIndex: "sunwukong",
-        },
-        {
-          name: "ベジット",
-          desc: "",
-          urlIndex: "beijita",
-        },
-        {
-          name: "ウーブ",
-          desc: "",
-          urlIndex: "buou",
-        },
-        {
-          name: "ピッコロ",
-          desc: "",
-          urlIndex: "dende",
-        },
-      ],
       NETWORK: contractConfig.rpc,
       cardShop: {
         contract: "",
-        address: contractConfig.CardShop,
+        address: contractConfig.CardShop
       },
       exchange: { contract: "", address: contractConfig.Exchange },
       tokenContract: { contract: "", address: contractConfig.Token },
-      Fighter: { contract: "", address: contractConfig.Fighter },
+      Fighter: { contract: "", address: contractConfig.Fighter }
     };
+  },
+  computed: {
+    dataConfig() {
+      return [
+        {
+          name: this.$store.state.lang === "JP" ? "カカロット" : "Kakarot",
+          desc: "",
+          urlIndex: "sunwukong"
+        },
+        {
+          name: this.$store.state.lang === "JP" ? "ベジット" : "Vegetto",
+          desc: "",
+          urlIndex: "beijita"
+        },
+        {
+          name: this.$store.state.lang === "JP" ? "ウーブ" : "Uub",
+          desc: "",
+          urlIndex: "buou"
+        },
+        {
+          name: this.$store.state.lang === "JP" ? "ピッコロ" : "Piccolo",
+          desc: "",
+          urlIndex: "dende"
+        }
+      ];
+    }
   },
   async mounted() {
     await this.initWeb3();
@@ -176,9 +242,12 @@ export default {
       this.initList();
       this.cardPrice = "";
       this.$notify({
-        title: "おめでとう",
+        title: this.$store.state.lang === "JP" ? "おめでとう" : "Congrats",
         dangerouslyUseHTMLString: true,
-        message: "<strong>オンチェーントランザクションが完了しました</strong>",
+        message:
+          this.$store.state.lang === "JP"
+            ? "<strong>オンチェーントランザクションが完了しました</strong>"
+            : "<strong>On-chain transaction completed</strong>"
       });
     },
     async buy(item) {
@@ -206,14 +275,17 @@ export default {
       ExchangeContract.methods
         .buy(item.tokenId)
         .send({ from: account })
-        .then(function (res) {
+        .then(function(res) {
           console.log(res, "=====");
         });
       this.initList();
       this.$notify({
-        title: "おめでとう",
+        title: this.$store.state.lang === "JP" ? "おめでとう" : "Congrats",
         dangerouslyUseHTMLString: true,
-        message: "<strong>オンチェーントランザクションが完了しました</strong>",
+        message:
+          this.$store.state.lang === "JP"
+            ? "<strong>オンチェーントランザクションが完了しました</strong>"
+            : "<strong>On-chain transaction completed</strong>"
       });
     },
     async pull(item) {
@@ -222,14 +294,15 @@ export default {
         contractConfig.Exchange
       );
       const account = await this.$store.state.defaultAccount;
-      await ExchangeContract.methods
-        .pull(item.tokenId)
-        .send({ from: account });
+      await ExchangeContract.methods.pull(item.tokenId).send({ from: account });
       this.initList();
       this.$notify({
-        title: "おめでとう",
+        title: this.$store.state.lang === "JP" ? "おめでとう" : "Congrats",
         dangerouslyUseHTMLString: true,
-        message: "<strong>オンチェーントランザクションが完了しました</strong>",
+        message:
+          this.$store.state.lang === "JP"
+            ? "<strong>オンチェーントランザクションが完了しました</strong>"
+            : "<strong>On-chain transaction completed</strong>"
       });
     },
     async myCard() {
@@ -250,7 +323,7 @@ export default {
         try {
           // metaMask连接钱包的方法
           const accounts = await ethereum.request({
-            method: "eth_requestAccounts",
+            method: "eth_requestAccounts"
           });
           // 判断是否已经连接钱包
           this.$store.commit("defaultAccountFun", accounts[0]);
@@ -276,10 +349,10 @@ export default {
               from: from,
               to: to,
               value: value || 0,
-              input: input,
+              input: input
               // gas: 200000,
             },
-            function (error, res) {
+            function(error, res) {
               if (!error) {
                 console.log(res, "resdata==========");
                 const tval = setInterval(async () => {
@@ -316,8 +389,8 @@ export default {
     },
     removeActive($event) {
       $event.currentTarget.className = "lottery";
-    },
-  },
+    }
+  }
 };
 </script>
 

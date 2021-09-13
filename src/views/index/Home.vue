@@ -11,13 +11,20 @@
             <div class="my-card-item" :key="index">
               <NewCardItem :cardInfo="item" />
               <div class="changeDBFZ" @click="changeDBFZ(item)">
-                両替{{ (item.amount * item.rate) / 100 }}DBFZ
+                <span v-if="this.$store.state.lang === 'JP'">両替 </span>
+                <span v-if="this.$store.state.lang === 'EN'"
+                  >Currency exchange
+                </span>
+                {{ (item.amount * item.rate) / 100 }}DBFZ
               </div>
             </div>
           </template>
         </div>
         <div v-else>
-          <div class="go-clime" @click="goClime">カードを引く</div>
+          <div class="go-clime" @click="goClime">
+            <span v-if="this.$store.state.lang === 'JP'">カードを引く </span>
+            <span v-if="this.$store.state.lang === 'EN'">Draw a card </span>
+          </div>
         </div>
       </div>
       <div class="rank-container">
@@ -31,40 +38,80 @@
         </ul>
       </div>
       <div class="title-info width_1200">
-        <h2>トークンエコノミー</h2>
+        <h2>
+          <span v-if="this.$store.state.lang === 'JP'"
+            >トークンエコノミー
+          </span>
+          <span v-if="this.$store.state.lang === 'EN'">Token economy </span>
+        </h2>
         <ul class="te">
           <li>
             <img src="../../components/card/character_17.png" alt />
 
-            <div>ゲーム内通貨</div>
+            <div>
+              <span v-if="this.$store.state.lang === 'JP'">ゲーム内通貨 </span>
+              <span v-if="this.$store.state.lang === 'EN'">
+                In-game currency
+              </span>
+            </div>
             <p>
-              ゲーム内のほとんどのアイテムは、DBFZトークンを使用して支払われます。
+              <span v-if="this.$store.state.lang === 'JP'"
+                >ゲーム内のほとんどのアイテムは、DBFZトークンを使用して支払われます。
+              </span>
+              <span v-if="this.$store.state.lang === 'EN'">
+                Most items in the game are paid using DBFZ tokens.
+              </span>
             </p>
           </li>
 
           <li>
             <img src="../../components/card/character_18.png" alt />
-            <div>ガバナンス</div>
-            <p>
+            <div>
+              <span v-if="this.$store.state.lang === 'JP'">ガバナンス </span>
+              <span v-if="this.$store.state.lang === 'EN'">Governance </span>
+            </div>
+            <p v-if="this.$store.state.lang === 'JP'">
               ゲームの新機能と設定に投票して、特別な賞金を獲得しましょう 報酬。
               DBFZトークンを一定時間ロックして、投票権を獲得します。
+            </p>
+            <p v-if="this.$store.state.lang === 'EN'">
+              Vote for new features and settings in the game to win special
+              prizes. Lock the DBFZ token for a certain period of time to get
+              the right to vote.
             </p>
           </li>
           <li>
             <img src="../../components/card/character_19.png" alt />
-            <div>ステーキング</div>
-            <p>
+            <div>
+              <span v-if="this.$store.state.lang === 'JP'">ステーキング </span>
+              <span v-if="this.$store.state.lang === 'EN'">Staking </span>
+            </div>
+            <p v-if="this.$store.state.lang === 'JP'">
               DBFZトークンをプールにステーキングして、ゲームの一部になりましょう。
               プールが異なれば、新しいアイテムなどの収益も異なります。
               DBFZトークン。
             </p>
+            <p v-if="this.$store.state.lang === 'EN'">
+              Steak your DBFZ tokens into the pool and become part of the game.
+              Different pools have different revenues, such as new items. DBFZ
+              token.
+            </p>
           </li>
           <li>
             <img src="../../components/card/character_20.png" alt />
-            <div>プレイ2獲得</div>
-            <p>
+            <div>
+              <span v-if="this.$store.state.lang === 'JP'">プレイ2獲得 </span>
+              <span v-if="this.$store.state.lang === 'EN'"
+                >Play 2 acquisition
+              </span>
+            </div>
+            <p v-if="this.$store.state.lang === 'JP'">
               プレイするだけで、ミッションやソーシャルを介してDBFZトークンを取得することもできます
               鉱業。
+            </p>
+            <p v-if="this.$store.state.lang === 'EN'">
+              You can also get DBFZ tokens via missions and social just by
+              playing Mining.
             </p>
           </li>
         </ul>
@@ -99,39 +146,43 @@ export default {
     return {
       // cardReword: { contract: "", address: contractConfig.CardReword },
       rankList: [],
-      dataConfig: [
-        {
-          name: "カカロット",
-          desc: "",
-          urlIndex: "sunwukong",
-        },
-        {
-          name: "ベジット",
-          desc: "",
-          urlIndex: "beijita",
-        },
-        {
-          name: "ウーブ",
-          desc: "",
-          urlIndex: "buou",
-        },
-        {
-          name: "ピッコロ",
-          desc: "",
-          urlIndex: "dende",
-        },
-      ],
       cardInfo: {
         heroId: "1",
         quality: "5",
-        name: "123",
+        name: "123"
       },
       cardInfoList: [],
       Fighter: {
         contract: "",
-        address: contractConfig.Fighter,
-      },
+        address: contractConfig.Fighter
+      }
     };
+  },
+  computed: {
+    dataConfig() {
+      return [
+        {
+          name: this.$store.state.lang === "JP" ? "カカロット" : "Kakarot",
+          desc: "",
+          urlIndex: "sunwukong"
+        },
+        {
+          name: this.$store.state.lang === "JP" ? "ベジット" : "Vegetto",
+          desc: "",
+          urlIndex: "beijita"
+        },
+        {
+          name: this.$store.state.lang === "JP" ? "ウーブ" : "Uub",
+          desc: "",
+          urlIndex: "buou"
+        },
+        {
+          name: this.$store.state.lang === "JP" ? "ピッコロ" : "Piccolo",
+          desc: "",
+          urlIndex: "dende"
+        }
+      ];
+    }
   },
   async mounted() {
     await this.initWeb3();
@@ -162,15 +213,18 @@ export default {
         contractConfig.CardReword
       );
       const account = await this.$store.state.defaultAccount;
-      console.log(item.tokenId,"======");
+      console.log(item.tokenId, "======");
       await exchangeContract.methods
         .redeemed(item.tokenId)
         .send({ from: account, gas: 200000 });
       this.initContract();
       this.$notify({
-        title: "おめでとう",
+        title: this.$store.state.lang === "JP" ? "おめでとう" : "Congrats",
         dangerouslyUseHTMLString: true,
-        message: "<strong>オンチェーントランザクションが完了しました</strong>",
+        message:
+          this.$store.state.lang === "JP"
+            ? "<strong>オンチェーントランザクションが完了しました</strong>"
+            : "<strong>On-chain transaction completed</strong>"
       });
       // loading.close();
     },
@@ -183,7 +237,7 @@ export default {
         try {
           // metaMask连接钱包的方法
           const accounts = await ethereum.request({
-            method: "eth_requestAccounts",
+            method: "eth_requestAccounts"
           });
           // 判断是否已经连接钱包
           this.$store.commit("defaultAccountFun", accounts[0]);
@@ -202,7 +256,7 @@ export default {
     },
     compare(p) {
       //这是比较函数
-      return function (m, n) {
+      return function(m, n) {
         var a = m[p];
         var b = n[p];
         return b - a; //降序
@@ -244,10 +298,10 @@ export default {
               from: from,
               to: to,
               value: value || 0,
-              input: input,
+              input: input
               // gas: 200000,
             },
-            function (error, res) {
+            function(error, res) {
               if (!error) {
                 console.log(res, "resdata==========");
                 const tval = setInterval(async () => {
@@ -277,8 +331,8 @@ export default {
         web3 = new Web3(window.ethereum);
       }
       window.web3 = web3;
-    },
-  },
+    }
+  }
 };
 </script>
 
