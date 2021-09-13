@@ -11,8 +11,8 @@
             <div class="my-card-item" :key="index">
               <NewCardItem :cardInfo="item" />
               <div class="changeDBFZ" @click="changeDBFZ(item)">
-                <span v-if="this.$store.state.lang === 'JP'">両替 </span>
-                <span v-if="this.$store.state.lang === 'EN'"
+                <span v-if="language === 'JP'">両替 </span>
+                <span v-if="language === 'EN'"
                   >Currency exchange
                 </span>
                 {{ (item.amount * item.rate) / 100 }}DBFZ
@@ -22,8 +22,8 @@
         </div>
         <div v-else>
           <div class="go-clime" @click="goClime">
-            <span v-if="this.$store.state.lang === 'JP'">カードを引く </span>
-            <span v-if="this.$store.state.lang === 'EN'">Draw a card </span>
+            <span v-if="language === 'JP'">カードを引く </span>
+            <span v-if="language === 'EN'">Draw a card </span>
           </div>
         </div>
       </div>
@@ -159,6 +159,9 @@ export default {
     };
   },
   computed: {
+    language(){
+      return this.$store.state.lang;
+    },
     dataConfig() {
       return [
         {

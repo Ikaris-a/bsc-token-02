@@ -83,8 +83,8 @@
               <NewCardItem :cardInfo="item" />
 
               <div class="mc-btn" @click="put(item)">
-                <span v-if="this.$store.state.lang === 'JP'">棚の上の</span>
-                <span v-if="this.$store.state.lang === 'EN'">On the shelf</span>
+                <span v-if="language === 'JP'">棚の上の</span>
+                <span v-if="language === 'EN'">On the shelf</span>
               </div>
             </div>
           </template>
@@ -94,13 +94,13 @@
             <div class="my-card-item" :key="index">
               <NewCardItem :cardInfo="item" />
               <div class="price">
-                <span v-if="this.$store.state.lang === 'JP'">価格：</span>
-                <span v-if="this.$store.state.lang === 'EN'">price:</span>
+                <span v-if="language === 'JP'">価格：</span>
+                <span v-if="language === 'EN'">price:</span>
                 {{ getPrice(item.amount) }} DBFZ
               </div>
               <div class="mc-btn" @click="buy(item)">
-                <span v-if="this.$store.state.lang === 'JP'">買う</span>
-                <span v-if="this.$store.state.lang === 'EN'">buy</span>
+                <span v-if="language === 'JP'">買う</span>
+                <span v-if="language === 'EN'">buy</span>
               </div>
             </div>
           </template>
@@ -111,8 +111,8 @@
               <NewCardItem :cardInfo="item" />
               <!-- <div class="mc-btn" @click="put(item)">売る</div> -->
               <div class="mc-btn" @click="pull(item)">
-                <span v-if="this.$store.state.lang === 'JP'">既製</span>
-                <span v-if="this.$store.state.lang === 'EN'">Ready-made</span>
+                <span v-if="language === 'JP'">既製</span>
+                <span v-if="language === 'EN'">Ready-made</span>
               </div>
             </div>
           </template>
@@ -160,6 +160,9 @@ export default {
     };
   },
   computed: {
+    language() {
+      return this.$store.state.lang;
+    },
     dataConfig() {
       return [
         {
