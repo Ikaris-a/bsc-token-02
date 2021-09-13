@@ -35,7 +35,12 @@
       </ul>
     </div>
     <div class="footer-left">
-      <div>@2021 DBFZ @ 株式会社ＴＯＫＹＯ 日本橋茅場町</div>
+      <div v-if="this.$store.state.lang === 'JP'">
+        @2021 DBFZ @ 株式会社ＴＯＫＹＯ 日本橋茅場町
+      </div>
+      <div v-if="this.$store.state.lang === 'EN'">
+        @2021 DBFZ @TOKYO Co., Ltd. Nihonbashi Kayabacho
+      </div>
     </div>
     <!-- <div class="footer-right">
     
@@ -55,7 +60,7 @@ export default {
   mounted() {},
   watch: {},
   methods: {},
-  components: {},
+  components: {}
 };
 </script>
 

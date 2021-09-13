@@ -28,6 +28,9 @@
       </div>
 
       <div class="r_box">
+        <div class="language_btn" @click="changeStoreLanguage">
+          {{ this.$store.state.lang === "JP" ? "English" : "日本語" }}
+        </div>
         <div class="connext_btn" @click="conecWallet">
           {{ interceptAccount !== "..." ? interceptAccount : "Connect" }}
         </div>
@@ -43,21 +46,35 @@
 </template>
 
 <script>
+import { mapMutations } from "vuex";
+console.log(mapMutations);
 export default {
   props: {},
   data() {
     return {
-      menuList: [
-        { text: "表紙", path: "/index" },
-        { text: "カードストア", path: "/cardShop" },
-        { text: "白書", path: "/whitepaper" },
-        { text: "鉱業", path: "/mining" },
-        { text: "マーケットプレイス", path: "/market" },
-      ],
-      menuStatus: true,
+      menuStatus: true
     };
   },
   computed: {
+    menuList() {
+      let language = this.$store.state.lang;
+      return [
+        { text: language === "JP" ? "表紙" : "Home", path: "/index" },
+        {
+          text: language === "JP" ? "カードストア" : "CardShop",
+          path: "/cardShop"
+        },
+        {
+          text: language === "JP" ? "白書" : "WhitePaper",
+          path: "/whitepaper"
+        },
+        { text: language === "JP" ? "鉱業" : "Mining", path: "/mining" },
+        {
+          text: language === "JP" ? "マーケットプレイス" : "Market",
+          path: "/market"
+        }
+      ];
+    },
     interceptAccount() {
       const account = this.$store.state.defaultAccount;
       return typeof account === "string"
@@ -66,7 +83,7 @@ export default {
             account.length
           )}`
         : "";
-    },
+    }
   },
   created() {},
   mounted() {},
@@ -78,12 +95,15 @@ export default {
     conecWallet() {
       window.location.reload();
     },
+    changeStoreLanguage() {
+      this.$store.commit("changeLanguage");
+    },
     goPage(path) {
       this.menuStatus = true;
       this.$router.push(path);
-    },
+    }
   },
-  components: {},
+  components: {}
 };
 </script>
 
@@ -135,6 +155,7 @@ export default {
     }
 
     .r_box {
+      display: flex;
       .connext_btn {
         background: url(./img/header/fs_001.png) no-repeat;
         background-size: 100% 100%;
@@ -146,6 +167,16 @@ export default {
         &:hover {
           opacity: 0.8;
         }
+      }
+      .language_btn {
+        background: url(./img/header/fs_001.png) no-repeat;
+        background-size: 100% 100%;
+        width: 105px;
+        height: 40px;
+        border-radius: 5px;
+        cursor: pointer;
+        line-height: 40px;
+        margin-right: 20px;
       }
     }
   }
