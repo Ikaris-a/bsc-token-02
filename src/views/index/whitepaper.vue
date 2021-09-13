@@ -74,10 +74,9 @@
           <br />
           Pledge Card Mining DBFZ Pledge Card Mining Token The total amount to
           be mined is 1000W (the amount mined in one year) Pledge mining is
-          allocated in proportion to the number of user battle values ​​relative
+          allocated in proportion to the number of user battle values relative-
           to the total battle value Details on how to play are explained in the
-          second addition of the white paper.
-          <br />
+          second addition of the white paper.<br />
           Realization of decentralized finance by NFT and Decentralized Finance
           Digital transformation is inevitable in today's market, but a single
           third party alone limits the transformation journey due to a variety
@@ -96,9 +95,6 @@
 </template>
 
 <script>
-// import "swiper/swiper-bundle.css";
-// import { Swiper, SwiperSlide } from "vue-awesome-swiper";
-
 export default {
   data() {
     return {};
@@ -111,8 +107,8 @@ export default {
     },
     removeActive($event) {
       $event.currentTarget.className = "lottery";
-    }
-  }
+    },
+  },
 };
 </script>
 

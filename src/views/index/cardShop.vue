@@ -70,29 +70,6 @@
           qualities step. Formal contract address:
         </div>
       </div>
-      <div
-        @click="lottery"
-        v-on:mouseover="changeActive($event)"
-        v-on:mouseout="removeActive($event)"
-        class="lottery"
-      ></div>
-      <div
-        @click="exchangeCard"
-        v-on:mouseover="changeActive($event)"
-        v-on:mouseout="removeActive($event)"
-        class="lottery"
-      ></div>
-      <div
-        @click="getReward"
-        v-on:mouseover="changeActive($event)"
-        v-on:mouseout="removeActive($event)"
-        class="lottery"
-      ></div>
-      <div
-        v-on:mouseover="changeActive($event)"
-        v-on:mouseout="removeActive($event)"
-        class="lottery"
-      ></div>
 
       <div class="title-info width_1200">
         <h2 v-if="this.$store.state.lang === 'JP'">私たちのチーム</h2>
