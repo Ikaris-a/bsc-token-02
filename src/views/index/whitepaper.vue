@@ -1,7 +1,7 @@
 <template>
   <div class="index_main">
     <div class="width_1200">
-      <div class="white-paper" v-if="this.$store.state.lang === 'JP'">
+      <div class="white-paper" v-if="this.$store.state.lang.includes('JP')">
         <p>
           I. ドラゴンボール ファイターズ」とは？
           <br />Dragon Ball Fighter
@@ -19,7 +19,7 @@
           合計：7枚、獲得できる：3000%トークン <br />
         </p>
       </div>
-      <div class="white-paper" v-if="this.$store.state.lang === 'EN'">
+      <div class="white-paper" v-if="this.$store.state.lang.includes('EN')">
         <p>
           I. What is "Dragon Ball FighterZ"?
           <br />Dragon Ball Fighter Z While BSC's DEFI + NFT project revolves
@@ -39,7 +39,7 @@
           Card type 7 Dragon Ball cards Total: 7 cards, earnable: 3000% tokens
         </p>
       </div>
-      <div class="white-paper" v-if="this.$store.state.lang === 'JP'">
+      <div class="white-paper" v-if="this.$store.state.lang.includes('JP')">
         <p>
           DBFZカードパックのゲーム性 1 スターバトルパワー： SR（20キャラクター
           合計：50セット）いずれかの5枚<br />
@@ -61,7 +61,7 @@
           Win-Winの状況は、フィジカルチェーンのすべてのプレーヤーと、業界全体のパートナーとのオープンなコラボレーションによってのみ達成されます。
         </p>
       </div>
-      <div class="white-paper" v-if="this.$store.state.lang === 'EN'">
+      <div class="white-paper" v-if="this.$store.state.lang.includes('EN')">
         <p>
           DBFZ Card Pack Game 1 Star Battle Power: SR (20 characters) Total: 50
           sets) Any 5 sheets<br />

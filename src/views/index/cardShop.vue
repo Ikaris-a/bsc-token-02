@@ -19,10 +19,10 @@
         </div>
 
         <div>
-          <span v-if="this.$store.state.lang === 'JP'">
+          <span v-if="this.$store.state.lang.includes('JP')">
             カード取引、お待ちください
           </span>
-          <span v-if="this.$store.state.lang === 'EN'">
+          <span v-if="this.$store.state.lang.includes('EN')">
             Card transaction, please wait
           </span>
         </div>
@@ -48,23 +48,23 @@
       </div>
       <div class="title-info ti-1 width_1200">
         <img src="../img/fs_002.png" alt />
-        <p v-if="this.$store.state.lang === 'JP'">
+        <p v-if="this.$store.state.lang.includes('JP')">
           特別なカード、1つの財布が7枚のカードを集めます、そしてあなたは主張することができます
           7日間連続のトークン
         </p>
-        <p v-if="this.$store.state.lang === 'EN'">
+        <p v-if="this.$store.state.lang.includes('EN')">
           Special cards, one wallet collects 7 cards, and you can insist 7
           consecutive days of tokens
         </p>
       </div>
       <div class="title-info width_1200">
         <h2>DBFZ Token</h2>
-        <div v-if="this.$store.state.lang === 'JP'">
+        <div v-if="this.$store.state.lang.includes('JP')">
           DBFZトークンはゲーム内の主要通貨です。それは取引に使用されます、
           主に最初に交換し、彼らの特別な資質を向上させる
           段階。正式な契約アドレス：
         </div>
-        <div v-if="this.$store.state.lang === 'EN'">
+        <div v-if="this.$store.state.lang.includes('EN')">
           DBFZ tokens are the main currency in the game. It is used for
           transactions, Mainly exchange first and improve their special
           qualities step. Formal contract address:
@@ -72,21 +72,21 @@
       </div>
 
       <div class="title-info width_1200">
-        <h2 v-if="this.$store.state.lang === 'JP'">私たちのチーム</h2>
-        <h2 v-if="this.$store.state.lang === 'EN'">Our team</h2>
+        <h2 v-if="this.$store.state.lang.includes('JP')">私たちのチーム</h2>
+        <h2 v-if="this.$store.state.lang.includes('EN')">Our team</h2>
 
         <ul class="te team">
           <li>
             <div class="thumb-icon">
               <img src="../../components/card/character_13.png" alt />
             </div>
-            <div v-if="this.$store.state.lang === 'JP'">ひなた</div>
-            <div v-if="this.$store.state.lang === 'EN'">Hinata</div>
-            <p v-if="this.$store.state.lang === 'JP'">
+            <div v-if="this.$store.state.lang.includes('JP')">ひなた</div>
+            <div v-if="this.$store.state.lang.includes('EN')">Hinata</div>
+            <p v-if="this.$store.state.lang.includes('JP')">
               事業開発ディレクター
               <br />@やまと <br />@ひろと (VRゲーム)
             </p>
-            <p v-if="this.$store.state.lang === 'EN'">
+            <p v-if="this.$store.state.lang.includes('EN')">
               Business Development Director
               <br />@Yamato <br />@Hiroto (VR game)
             </p>
@@ -95,13 +95,13 @@
             <div class="thumb-icon">
               <img src="../../components/card/character_14.png" alt />
             </div>
-            <div v-if="this.$store.state.lang === 'JP'">ドロシー</div>
-            <div v-if="this.$store.state.lang === 'EN'">Dorothy</div>
-            <p v-if="this.$store.state.lang === 'JP'">
+            <div v-if="this.$store.state.lang.includes('JP')">ドロシー</div>
+            <div v-if="this.$store.state.lang.includes('EN')">Dorothy</div>
+            <p v-if="this.$store.state.lang.includes('JP')">
               最高執行責任者
               <br />ゲームプロデューサー
             </p>
-            <p v-if="this.$store.state.lang === 'EN'">
+            <p v-if="this.$store.state.lang.includes('EN')">
               Highest executive responsibility
               <br />Game producer
             </p>
@@ -110,13 +110,13 @@
             <div class="thumb-icon">
               <img src="../../components/card/character_15.png" alt />
             </div>
-            <div v-if="this.$store.state.lang === 'JP'">パール</div>
-            <div v-if="this.$store.state.lang === 'EN'">Pearl</div>
-            <p v-if="this.$store.state.lang === 'JP'">
+            <div v-if="this.$store.state.lang.includes('JP')">パール</div>
+            <div v-if="this.$store.state.lang.includes('EN')">Pearl</div>
+            <p v-if="this.$store.state.lang.includes('JP')">
               発達
               <br />プログラムマネージャー
             </p>
-            <p v-if="this.$store.state.lang === 'EN'">
+            <p v-if="this.$store.state.lang.includes('EN')">
               development
               <br />Program manager
             </p>
@@ -125,13 +125,13 @@
             <div class="thumb-icon">
               <img src="../../components/card/character_16.png" alt />
             </div>
-            <div v-if="this.$store.state.lang === 'JP'">ウォレス</div>
-            <div v-if="this.$store.state.lang === 'EN'">Wallace</div>
-            <p v-if="this.$store.state.lang === 'JP'">
+            <div v-if="this.$store.state.lang.includes('JP')">ウォレス</div>
+            <div v-if="this.$store.state.lang.includes('EN')">Wallace</div>
+            <p v-if="this.$store.state.lang.includes('JP')">
               ゲームプロダクトマネージャー
               <br />
             </p>
-            <p v-if="this.$store.state.lang === 'EN'">
+            <p v-if="this.$store.state.lang.includes('EN')">
               Game product manager
               <br />
             </p>
@@ -190,22 +190,22 @@ export default {
     dataConfig() {
       return [
         {
-          name: this.$store.state.lang === "JP" ? "カカロット" : "Kakarot",
+          name: this.$store.state.lang.includes("JP") ? "カカロット" : "Kakarot",
           desc: "",
           urlIndex: "sunwukong"
         },
         {
-          name: this.$store.state.lang === "JP" ? "ベジット" : "Vegetto",
+          name: this.$store.state.lang.includes("JP") ? "ベジット" : "Vegetto",
           desc: "",
           urlIndex: "beijita"
         },
         {
-          name: this.$store.state.lang === "JP" ? "ウーブ" : "Uub",
+          name: this.$store.state.lang.includes("JP") ? "ウーブ" : "Uub",
           desc: "",
           urlIndex: "buou"
         },
         {
-          name: this.$store.state.lang === "JP" ? "ピッコロ" : "Piccolo",
+          name: this.$store.state.lang.includes("JP") ? "ピッコロ" : "Piccolo",
           desc: "",
           urlIndex: "dende"
         }
@@ -267,10 +267,10 @@ export default {
           }, 3000);
         });
        this.$notify({
-        title: this.$store.state.lang === "JP" ? "おめでとう" : "Congrats",
+        title: this.$store.state.lang.includes("JP") ? "おめでとう" : "Congrats",
         dangerouslyUseHTMLString: true,
         message:
-          this.$store.state.lang === "JP"
+          this.$store.state.lang.includes("JP")
             ? "<strong>オンチェーントランザクションが完了しました</strong>"
             : "<strong>On-chain transaction completed</strong>"
       });

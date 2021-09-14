@@ -11,8 +11,8 @@
             <div class="my-card-item" :key="index">
               <NewCardItem :cardInfo="item" />
               <div class="changeDBFZ" @click="changeDBFZ(item)">
-                <span v-if="language === 'JP'">両替 </span>
-                <span v-if="language === 'EN'"
+                <span v-if="language.includes('JP')">両替 </span>
+                <span v-if="language.includes('EN')"
                   >Currency exchange
                 </span>
                 {{ (item.amount * item.rate) / 100 }}DBFZ
@@ -22,8 +22,8 @@
         </div>
         <div v-else>
           <div class="go-clime" @click="goClime">
-            <span v-if="language === 'JP'">カードを引く </span>
-            <span v-if="language === 'EN'">Draw a card </span>
+            <span v-if="language.includes('JP')">カードを引く </span>
+            <span v-if="language.includes('EN')">Draw a card </span>
           </div>
         </div>
       </div>
@@ -39,26 +39,26 @@
       </div>
       <div class="title-info width_1200">
         <h2>
-          <span v-if="this.$store.state.lang === 'JP'"
+          <span v-if="this.$store.state.lang.includes('JP')"
             >トークンエコノミー
           </span>
-          <span v-if="this.$store.state.lang === 'EN'">Token economy </span>
+          <span v-if="this.$store.state.lang.includes('EN')">Token economy </span>
         </h2>
         <ul class="te">
           <li>
             <img src="../../components/card/character_17.png" alt />
 
             <div>
-              <span v-if="this.$store.state.lang === 'JP'">ゲーム内通貨 </span>
-              <span v-if="this.$store.state.lang === 'EN'">
+              <span v-if="this.$store.state.lang.includes('JP')">ゲーム内通貨 </span>
+              <span v-if="this.$store.state.lang.includes('EN')">
                 In-game currency
               </span>
             </div>
             <p>
-              <span v-if="this.$store.state.lang === 'JP'"
+              <span v-if="this.$store.state.lang.includes('JP')"
                 >ゲーム内のほとんどのアイテムは、DBFZトークンを使用して支払われます。
               </span>
-              <span v-if="this.$store.state.lang === 'EN'">
+              <span v-if="this.$store.state.lang.includes('EN')">
                 Most items in the game are paid using DBFZ tokens.
               </span>
             </p>
@@ -67,14 +67,14 @@
           <li>
             <img src="../../components/card/character_18.png" alt />
             <div>
-              <span v-if="this.$store.state.lang === 'JP'">ガバナンス </span>
-              <span v-if="this.$store.state.lang === 'EN'">Governance </span>
+              <span v-if="this.$store.state.lang.includes('JP')">ガバナンス </span>
+              <span v-if="this.$store.state.lang.includes('EN')">Governance </span>
             </div>
-            <p v-if="this.$store.state.lang === 'JP'">
+            <p v-if="this.$store.state.lang.includes('JP')">
               ゲームの新機能と設定に投票して、特別な賞金を獲得しましょう 報酬。
               DBFZトークンを一定時間ロックして、投票権を獲得します。
             </p>
-            <p v-if="this.$store.state.lang === 'EN'">
+            <p v-if="this.$store.state.lang.includes('EN')">
               Vote for new features and settings in the game to win special
               prizes. Lock the DBFZ token for a certain period of time to get
               the right to vote.
@@ -83,15 +83,15 @@
           <li>
             <img src="../../components/card/character_19.png" alt />
             <div>
-              <span v-if="this.$store.state.lang === 'JP'">ステーキング </span>
-              <span v-if="this.$store.state.lang === 'EN'">Staking </span>
+              <span v-if="this.$store.state.lang.includes('JP')">ステーキング </span>
+              <span v-if="this.$store.state.lang.includes('EN')">Staking </span>
             </div>
-            <p v-if="this.$store.state.lang === 'JP'">
+            <p v-if="this.$store.state.lang.includes('JP')">
               DBFZトークンをプールにステーキングして、ゲームの一部になりましょう。
               プールが異なれば、新しいアイテムなどの収益も異なります。
               DBFZトークン。
             </p>
-            <p v-if="this.$store.state.lang === 'EN'">
+            <p v-if="this.$store.state.lang.includes('EN')">
               Steak your DBFZ tokens into the pool and become part of the game.
               Different pools have different revenues, such as new items. DBFZ
               token.
@@ -100,16 +100,16 @@
           <li>
             <img src="../../components/card/character_20.png" alt />
             <div>
-              <span v-if="this.$store.state.lang === 'JP'">プレイ2獲得 </span>
-              <span v-if="this.$store.state.lang === 'EN'"
+              <span v-if="this.$store.state.lang.includes('JP')">プレイ2獲得 </span>
+              <span v-if="this.$store.state.lang.includes('EN')"
                 >Play 2 acquisition
               </span>
             </div>
-            <p v-if="this.$store.state.lang === 'JP'">
+            <p v-if="this.$store.state.lang.includes('JP')">
               プレイするだけで、ミッションやソーシャルを介してDBFZトークンを取得することもできます
               鉱業。
             </p>
-            <p v-if="this.$store.state.lang === 'EN'">
+            <p v-if="this.$store.state.lang.includes('EN')">
               You can also get DBFZ tokens via missions and social just by
               playing Mining.
             </p>
@@ -165,22 +165,22 @@ export default {
     dataConfig() {
       return [
         {
-          name: this.$store.state.lang === "JP" ? "カカロット" : "Kakarot",
+          name: this.$store.state.lang.includes("JP") ? "カカロット" : "Kakarot",
           desc: "",
           urlIndex: "sunwukong"
         },
         {
-          name: this.$store.state.lang === "JP" ? "ベジット" : "Vegetto",
+          name: this.$store.state.lang.includes("JP") ? "ベジット" : "Vegetto",
           desc: "",
           urlIndex: "beijita"
         },
         {
-          name: this.$store.state.lang === "JP" ? "ウーブ" : "Uub",
+          name: this.$store.state.lang.includes("JP") ? "ウーブ" : "Uub",
           desc: "",
           urlIndex: "buou"
         },
         {
-          name: this.$store.state.lang === "JP" ? "ピッコロ" : "Piccolo",
+          name: this.$store.state.lang.includes("JP") ? "ピッコロ" : "Piccolo",
           desc: "",
           urlIndex: "dende"
         }
@@ -222,10 +222,10 @@ export default {
         .send({ from: account, gas: 200000 });
       this.initContract();
       this.$notify({
-        title: this.$store.state.lang === "JP" ? "おめでとう" : "Congrats",
+        title: this.$store.state.lang.includes("JP") ? "おめでとう" : "Congrats",
         dangerouslyUseHTMLString: true,
         message:
-          this.$store.state.lang === "JP"
+          this.$store.state.lang.includes("JP")
             ? "<strong>オンチェーントランザクションが完了しました</strong>"
             : "<strong>On-chain transaction completed</strong>"
       });

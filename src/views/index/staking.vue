@@ -13,26 +13,26 @@
         <img src="../img/new/mining_bg.png" alt />
         <div class="mining-content">
           <div>
-            <span v-if="this.$store.state.lang === 'JP'">総戦闘力:</span>
-            <span v-if="this.$store.state.lang === 'EN'"
+            <span v-if="this.$store.state.lang.includes('JP')">総戦闘力:</span>
+            <span v-if="this.$store.state.lang.includes('EN')"
               >Total combat power:</span
             >
             &nbsp;&nbsp;{{ totalCombatPower }} &nbsp;&nbsp;CP
           </div>
           <div>
-            <span v-if="this.$store.state.lang === 'JP'">私の戦闘力:</span>
-            <span v-if="this.$store.state.lang === 'EN'">My combat power:</span>
+            <span v-if="this.$store.state.lang.includes('JP')">私の戦闘力:</span>
+            <span v-if="this.$store.state.lang.includes('EN')">My combat power:</span>
             &nbsp;&nbsp;{{ myCombatPower }} &nbsp;&nbsp;CP
           </div>
           <div>
-            <span v-if="this.$store.state.lang === 'JP'">私の収入:</span>
-            <span v-if="this.$store.state.lang === 'EN'">My income:</span
+            <span v-if="this.$store.state.lang.includes('JP')">私の収入:</span>
+            <span v-if="this.$store.state.lang.includes('EN')">My income:</span
             >&nbsp;&nbsp;{{ rewardAmount }}&nbsp;&nbsp;DBFZ
           </div>
         </div>
         <div class="getDbfz" @click="getReward">
-          <span v-if="this.$store.state.lang === 'JP'">収入を受け取る</span>
-          <span v-if="this.$store.state.lang === 'EN'">Receive income </span>
+          <span v-if="this.$store.state.lang.includes('JP')">収入を受け取る</span>
+          <span v-if="this.$store.state.lang.includes('EN')">Receive income </span>
         </div>
       </div>
       <div class="change-container">
@@ -40,10 +40,10 @@
           <img src="../img/long/long.png" alt />
           <div class="mining-content">
             <div>
-              <span v-if="this.$store.state.lang === 'JP'"
+              <span v-if="this.$store.state.lang.includes('JP')"
                 >トータルボーナス</span
               >
-              <span v-if="this.$store.state.lang === 'EN'">Total bonus</span>
+              <span v-if="this.$store.state.lang.includes('EN')">Total bonus</span>
               <br />{{ totalRewardDbfz }}
               &nbsp;&nbsp;DBFZ
             </div>
@@ -53,18 +53,18 @@
             <div class="getDbfz-card" @click="getExchange(2)">SSR</div>
             <br />
             <div class="getDbfz-card" @click="getExchange(1)">
-              <span v-if="this.$store.state.lang === 'JP'">ドラゴンボール</span>
-              <span v-if="this.$store.state.lang === 'EN'">Dragon Ball</span>
+              <span v-if="this.$store.state.lang.includes('JP')">ドラゴンボール</span>
+              <span v-if="this.$store.state.lang.includes('EN')">Dragon Ball</span>
             </div>
           </div>
         </div>
       </div>
       <div class="title-info ti-1 width_1200">
         <img src="../img/fs_002.png" alt />
-        <p v-if="this.$store.state.lang === 'JP'">
+        <p v-if="this.$store.state.lang.includes('JP')">
           この収入は、マイニングプール全体に対する戦闘力の比率です。年間1000wのDBFZマイニング報酬、カードをDBFZに交換すると、マイニング報酬はなくなります。
         </p>
-        <p v-if="this.$store.state.lang === 'EN'">
+        <p v-if="this.$store.state.lang.includes('EN')">
           This income is the ratio of combat power to the entire mining pool. If
           you exchange 1000w of DBFZ mining rewards and cards for DBFZ per year,
           the mining rewards will disappear.
@@ -72,12 +72,12 @@
       </div>
       <div class="title-info width_1200">
         <h2>DBFZ Token</h2>
-        <div v-if="this.$store.state.lang === 'JP'">
+        <div v-if="this.$store.state.lang.includes('JP')">
           DBFZトークンはゲーム内の主要通貨です。それは取引に使用されます、
           主に最初に交換し、彼らの特別な資質を向上させる
           段階。正式な契約アドレス：
         </div>
-        <div v-if="this.$store.state.lang === 'EN'">
+        <div v-if="this.$store.state.lang.includes('EN')">
           DBFZ tokens are the main currency in the game. It is used for
           transactions, Mainly exchange first and improve their special
           qualities step. Formal contract address:
@@ -85,21 +85,21 @@
       </div>
 
       <div class="title-info width_1200">
-        <h2 v-if="this.$store.state.lang === 'JP'">私たちのチーム</h2>
-        <h2 v-if="this.$store.state.lang === 'EN'">Our team</h2>
+        <h2 v-if="this.$store.state.lang.includes('JP')">私たちのチーム</h2>
+        <h2 v-if="this.$store.state.lang.includes('EN')">Our team</h2>
         <ul class="te team">
           <li>
             <div class="thumb-icon">
               <img src="../../components/card/character_13.png" alt />
             </div>
-            <div v-if="this.$store.state.lang === 'JP'">ひなた</div>
-            <div v-if="this.$store.state.lang === 'EN'">Hinata</div>
+            <div v-if="this.$store.state.lang.includes('JP')">ひなた</div>
+            <div v-if="this.$store.state.lang.includes('EN')">Hinata</div>
 
-            <p v-if="this.$store.state.lang === 'JP'">
+            <p v-if="this.$store.state.lang.includes('JP')">
               事業開発ディレクター
               <br />@やまと <br />@ひろと (VRゲーム)
             </p>
-            <p v-if="this.$store.state.lang === 'EN'">
+            <p v-if="this.$store.state.lang.includes('EN')">
               Business Development Director
               <br />@Yamato <br />@Hiroto (VR game)
             </p>
@@ -108,13 +108,13 @@
             <div class="thumb-icon">
               <img src="../../components/card/character_14.png" alt />
             </div>
-            <div v-if="this.$store.state.lang === 'JP'">ドロシー</div>
-            <div v-if="this.$store.state.lang === 'EN'">Dorothy</div>
-            <p v-if="this.$store.state.lang === 'JP'">
+            <div v-if="this.$store.state.lang.includes('JP')">ドロシー</div>
+            <div v-if="this.$store.state.lang.includes('EN')">Dorothy</div>
+            <p v-if="this.$store.state.lang.includes('JP')">
               最高執行責任者
               <br />ゲームプロデューサー
             </p>
-            <p v-if="this.$store.state.lang === 'EN'">
+            <p v-if="this.$store.state.lang.includes('EN')">
               Highest executive responsibility
               <br />Game producer
             </p>
@@ -123,13 +123,13 @@
             <div class="thumb-icon">
               <img src="../../components/card/character_15.png" alt />
             </div>
-            <div v-if="this.$store.state.lang === 'JP'">パール</div>
-            <div v-if="this.$store.state.lang === 'EN'">Pearl</div>
-            <p v-if="this.$store.state.lang === 'JP'">
+            <div v-if="this.$store.state.lang.includes('JP')">パール</div>
+            <div v-if="this.$store.state.lang.includes('EN')">Pearl</div>
+            <p v-if="this.$store.state.lang.includes('JP')">
               発達
               <br />プログラムマネージャー
             </p>
-            <p v-if="this.$store.state.lang === 'EN'">
+            <p v-if="this.$store.state.lang.includes('EN')">
               development
               <br />Program manager
             </p>
@@ -138,13 +138,13 @@
             <div class="thumb-icon">
               <img src="../../components/card/character_16.png" alt />
             </div>
-            <div v-if="this.$store.state.lang === 'JP'">ウォレス</div>
-            <div v-if="this.$store.state.lang === 'EN'">Wallace</div>
-            <p v-if="this.$store.state.lang === 'JP'">
+            <div v-if="this.$store.state.lang.includes('JP')">ウォレス</div>
+            <div v-if="this.$store.state.lang.includes('EN')">Wallace</div>
+            <p v-if="this.$store.state.lang.includes('JP')">
               ゲームプロダクトマネージャー
               <br />
             </p>
-            <p v-if="this.$store.state.lang === 'EN'">
+            <p v-if="this.$store.state.lang.includes('EN')">
               Game product manager
               <br />
             </p>
@@ -190,22 +190,22 @@ export default {
     dataConfig() {
       return [
         {
-          name: this.$store.state.lang === "JP"?"カカロット":"Kakarot",
+          name: this.$store.state.lang.includes("JP")?"カカロット":"Kakarot",
           desc: "",
           urlIndex: "sunwukong"
         },
         {
-          name: this.$store.state.lang === "JP"?"ベジット":"Vegetto",
+          name: this.$store.state.lang.includes("JP")?"ベジット":"Vegetto",
           desc: "",
           urlIndex: "beijita"
         },
         {
-          name: this.$store.state.lang === "JP"?"ウーブ":"Uub",
+          name: this.$store.state.lang.includes("JP")?"ウーブ":"Uub",
           desc: "",
           urlIndex: "buou"
         },
         {
-          name: this.$store.state.lang === "JP"?"ピッコロ":"Piccolo",
+          name: this.$store.state.lang.includes("JP")?"ピッコロ":"Piccolo",
           desc: "",
           urlIndex: "dende"
         }

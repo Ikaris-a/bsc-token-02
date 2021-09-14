@@ -29,7 +29,7 @@
 
       <div class="r_box">
         <div class="language_btn" @click="changeStoreLanguage">
-          {{ this.$store.state.lang === "JP" ? "English" : "日本語" }}
+          {{ this.$store.state.lang.includes("JP") ? "English" : "日本語" }}
         </div>
         <div class="connext_btn" @click="conecWallet">
           {{ interceptAccount !== "..." ? interceptAccount : "Connect" }}
@@ -59,18 +59,18 @@ export default {
     menuList() {
       let language = this.$store.state.lang;
       return [
-        { text: language === "JP" ? "表紙" : "Home", path: "/index" },
+        { text: language.includes("JP") ? "表紙" : "Home", path: "/index" },
         {
-          text: language === "JP" ? "カードストア" : "CardShop",
+          text: language.includes("JP") ? "カードストア" : "CardShop",
           path: "/cardShop"
         },
         {
-          text: language === "JP" ? "白書" : "WhitePaper",
+          text: language.includes("JP") ? "白書" : "WhitePaper",
           path: "/whitepaper"
         },
-        { text: language === "JP" ? "鉱業" : "Mining", path: "/mining" },
+        { text: language.includes("JP") ? "鉱業" : "Mining", path: "/mining" },
         {
-          text: language === "JP" ? "マーケットプレイス" : "Market",
+          text: language.includes("JP") ? "マーケットプレイス" : "Market",
           path: "/market"
         }
       ];

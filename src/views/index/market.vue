@@ -12,10 +12,10 @@
           <div class="inner two"></div>
           <div class="inner three"></div>
         </div>
-        <div v-if="this.$store.state.lang === 'JP'">
+        <div v-if="this.$store.state.lang.includes('JP')">
           カード取引、お待ちください
         </div>
-        <div v-if="this.$store.state.lang === 'EN'">
+        <div v-if="this.$store.state.lang.includes('EN')">
           Card transaction, please wait
         </div>
       </div>
@@ -23,28 +23,28 @@
         <div
           class="mf-btn"
           @click="type = 0"
-          v-if="this.$store.state.lang === 'JP'"
+          v-if="this.$store.state.lang.includes('JP')"
         >
           すべてのカード
         </div>
         <div
           class="mf-btn"
           @click="type = 0"
-          v-if="this.$store.state.lang === 'EN'"
+          v-if="this.$store.state.lang.includes('EN')"
         >
           All cards
         </div>
         <div
           class="mf-btn"
           @click="type = 1"
-          v-if="this.$store.state.lang === 'JP'"
+          v-if="this.$store.state.lang.includes('JP')"
         >
           私のカード
         </div>
         <div
           class="mf-btn"
           @click="type = 1"
-          v-if="this.$store.state.lang === 'EN'"
+          v-if="this.$store.state.lang.includes('EN')"
         >
           My card
         </div>
@@ -52,14 +52,14 @@
         <div
           class="mf-btn"
           @click="type = 2"
-          v-if="this.$store.state.lang === 'JP'"
+          v-if="this.$store.state.lang.includes('JP')"
         >
           に追加されました
         </div>
         <div
           class="mf-btn"
           @click="type = 2"
-          v-if="this.$store.state.lang === 'EN'"
+          v-if="this.$store.state.lang.includes('EN')"
         >
           Was added to
         </div>
@@ -70,7 +70,7 @@
             <input
               type="text"
               :placeholder="
-                this.$store.state.lang === 'JP'
+                this.$store.state.lang.includes('JP')
                   ? 'カードの価格を入力してください'
                   : 'Please enter the price of the card'
               "
@@ -83,8 +83,8 @@
               <NewCardItem :cardInfo="item" />
 
               <div class="mc-btn" @click="put(item)">
-                <span v-if="language === 'JP'">棚の上の</span>
-                <span v-if="language === 'EN'">On the shelf</span>
+                <span v-if="language.includes('JP')">棚の上の</span>
+                <span v-if="language.includes('EN')">On the shelf</span>
               </div>
             </div>
           </template>
@@ -94,13 +94,13 @@
             <div class="my-card-item" :key="index">
               <NewCardItem :cardInfo="item" />
               <div class="price">
-                <span v-if="language === 'JP'">価格：</span>
-                <span v-if="language === 'EN'">price:</span>
+                <span v-if="language.includes('JP')">価格：</span>
+                <span v-if="language.includes('EN')">price:</span>
                 {{ getPrice(item.amount) }} DBFZ
               </div>
               <div class="mc-btn" @click="buy(item)">
-                <span v-if="language === 'JP'">買う</span>
-                <span v-if="language === 'EN'">buy</span>
+                <span v-if="language.includes('JP')">買う</span>
+                <span v-if="language.includes('EN')">buy</span>
               </div>
             </div>
           </template>
@@ -111,8 +111,8 @@
               <NewCardItem :cardInfo="item" />
               <!-- <div class="mc-btn" @click="put(item)">売る</div> -->
               <div class="mc-btn" @click="pull(item)">
-                <span v-if="language === 'JP'">既製</span>
-                <span v-if="language === 'EN'">Ready-made</span>
+                <span v-if="language.includes('JP')">既製</span>
+                <span v-if="language.includes('EN')">Ready-made</span>
               </div>
             </div>
           </template>
@@ -166,22 +166,22 @@ export default {
     dataConfig() {
       return [
         {
-          name: this.$store.state.lang === "JP" ? "カカロット" : "Kakarot",
+          name: this.$store.state.lang.includes("JP") ? "カカロット" : "Kakarot",
           desc: "",
           urlIndex: "sunwukong"
         },
         {
-          name: this.$store.state.lang === "JP" ? "ベジット" : "Vegetto",
+          name: this.$store.state.lang.includes("JP") ? "ベジット" : "Vegetto",
           desc: "",
           urlIndex: "beijita"
         },
         {
-          name: this.$store.state.lang === "JP" ? "ウーブ" : "Uub",
+          name: this.$store.state.lang.includes("JP") ? "ウーブ" : "Uub",
           desc: "",
           urlIndex: "buou"
         },
         {
-          name: this.$store.state.lang === "JP" ? "ピッコロ" : "Piccolo",
+          name: this.$store.state.lang.includes("JP") ? "ピッコロ" : "Piccolo",
           desc: "",
           urlIndex: "dende"
         }
@@ -245,10 +245,10 @@ export default {
       this.initList();
       this.cardPrice = "";
       this.$notify({
-        title: this.$store.state.lang === "JP" ? "おめでとう" : "Congrats",
+        title: this.$store.state.lang.includes("JP") ? "おめでとう" : "Congrats",
         dangerouslyUseHTMLString: true,
         message:
-          this.$store.state.lang === "JP"
+          this.$store.state.lang.includes("JP")
             ? "<strong>オンチェーントランザクションが完了しました</strong>"
             : "<strong>On-chain transaction completed</strong>"
       });
@@ -283,10 +283,10 @@ export default {
         });
       this.initList();
       this.$notify({
-        title: this.$store.state.lang === "JP" ? "おめでとう" : "Congrats",
+        title: this.$store.state.lang.includes("JP") ? "おめでとう" : "Congrats",
         dangerouslyUseHTMLString: true,
         message:
-          this.$store.state.lang === "JP"
+          this.$store.state.lang.includes("JP")
             ? "<strong>オンチェーントランザクションが完了しました</strong>"
             : "<strong>On-chain transaction completed</strong>"
       });
@@ -300,10 +300,10 @@ export default {
       await ExchangeContract.methods.pull(item.tokenId).send({ from: account });
       this.initList();
       this.$notify({
-        title: this.$store.state.lang === "JP" ? "おめでとう" : "Congrats",
+        title: this.$store.state.lang.includes("JP") ? "おめでとう" : "Congrats",
         dangerouslyUseHTMLString: true,
         message:
-          this.$store.state.lang === "JP"
+          this.$store.state.lang.includes("JP")
             ? "<strong>オンチェーントランザクションが完了しました</strong>"
             : "<strong>On-chain transaction completed</strong>"
       });

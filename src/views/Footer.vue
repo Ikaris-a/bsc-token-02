@@ -35,10 +35,10 @@
       </ul>
     </div>
     <div class="footer-left">
-      <div v-if="this.$store.state.lang === 'JP'">
+      <div v-if="this.$store.state.lang.includes('JP')">
         @2021 DBFZ @ 株式会社ＴＯＫＹＯ 日本橋茅場町
       </div>
-      <div v-if="this.$store.state.lang === 'EN'">
+      <div v-if="this.$store.state.lang.includes('EN')">
         @2021 DBFZ @TOKYO Co., Ltd. Nihonbashi Kayabacho
       </div>
     </div>
