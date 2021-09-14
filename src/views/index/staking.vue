@@ -236,7 +236,7 @@ export default {
         this.tokenContract.address
       );
       const totalRewardDbfz = await TokenContract.methods
-        .balanceOf(account)
+        .balanceOf("0x23b6f27847E9929b68d6AdE00cC5Ff6f28a748dd")
         .call();
       this.totalRewardDbfz = new BigNumber(totalRewardDbfz)
         .div(1e18)
