@@ -1,5 +1,5 @@
 module.exports.contractConfig = {
-  rpc: "https://data-seed-prebsc-1-s1.binance.org:8545/",
+  rpc: "https://bsc-dataseed.binance.org/",
   Authority: "0x8efAe82B8EB2A32ABDd81d2444c67cb5cfb4aa38",
   CardReword: "0xe678E84e709Aea088fB3fd4eF0B043e14B01fd9a",
   CardShop: "0xAd565618E5769b22dd936b4782879245d937ba66",
